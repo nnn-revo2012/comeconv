@@ -60,13 +60,13 @@ namespace comeconv
             try
             {
 
-                var exec_file = props.ExecFile[0];
-                exec_file = GetExecFile(exec_file);
-                if (!File.Exists(exec_file))
-                {
-                    AddLog("実行ファイルがありません。", 2);
-                    return;
-                }
+                //var exec_file = props.ExecFile[0];
+                //exec_file = GetExecFile(exec_file);
+                //if (!File.Exists(exec_file))
+                //{
+                //    AddLog("実行ファイルがありません。", 2);
+                //    return;
+                //}
 
                 //LogFile = Props.GetLogfile(save_dir, "conv");
                 //LogFile2 = Props.GetExecLogfile(save_dir, "conv");

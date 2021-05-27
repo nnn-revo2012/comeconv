@@ -101,8 +101,6 @@ namespace comeconv
         {
             try
             {
-                AddLog("出力開始します。", 1);
-
                 //録画開始
                 Task.Run(() => StartConv(filename));
             }
@@ -114,22 +112,16 @@ namespace comeconv
 
         private void StartConv(string filename)
         {
-            if (filename.IndexOf(".xml") < 0) return;
+            //if (filename.IndexOf(".xml") < 0) return;
 
             try
             {
-
-                AddLog("コメント変換開始します。", 1);
-                //ファイル読み込みオープン
-                //ファイル出力オープン
-                //一行読み込み
-                //処理(置き換えなど)
-                //一行出力
-                //ファイル出力クローズ
-                //ファイル読み込みクローズ
+                AddLog("出力開始します。", 1);
+                using (var conv = new ConvComment(this, filename, null))
+                {
+                    conv.FileCopy(filename, "D:\\home\\tmp\\aaa.xml");
+                }
                 AddLog("コメント出力終了しました。", 1);
-
-                //終了処理
             }
             catch (Exception Ex)
             {
