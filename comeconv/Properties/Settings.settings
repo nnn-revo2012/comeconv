@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="ExecFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ffmpeg.exe;ffmpeg.exe</Value>
+      <Value Profile="(Default)">ffmpeg.exe</Value>
     </Setting>
     <Setting Name="ExecCommand" Type="System.String" Scope="User">
-      <Value Profile="(Default)">;</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="BreakCommand" Type="System.String" Scope="User">
-      <Value Profile="(Default)">;</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

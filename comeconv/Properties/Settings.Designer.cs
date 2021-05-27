@@ -25,7 +25,7 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg.exe;ffmpeg.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg.exe")]
         public string ExecFile {
             get {
                 return ((string)(this["ExecFile"]));
@@ -37,7 +37,7 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(";")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ExecCommand {
             get {
                 return ((string)(this["ExecCommand"]));
@@ -49,7 +49,7 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(";")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string BreakCommand {
             get {
                 return ((string)(this["BreakCommand"]));

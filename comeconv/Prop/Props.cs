@@ -72,9 +72,9 @@ namespace comeconv.Prop
 
         public bool IsDebug { get; set; }
 
-        public string[] ExecFile { get; set; }
-        public string[] ExecCommand { get; set; }
-        public string[] BreakCommand { get; set; }
+        public string ExecFile { get; set; }
+        public string ExecCommand { get; set; }
+        public string BreakCommand { get; set; }
         public bool IsComment { get; set; }
         public bool IsSeetNo { get; set; }
         public bool IsVideo { get; set; }
@@ -82,18 +82,18 @@ namespace comeconv.Prop
 
         public Props()
         {
-            ExecFile = new string[2];
-            ExecCommand = new string[2];
-            BreakCommand = new string[2];
+            //ExecFile = new string[2];
+            //ExecCommand = new string[2];
+            //BreakCommand = new string[2];
         }
 
         public bool LoadData()
         {
             try
             {
-                this.ExecFile = Properties.Settings.Default.ExecFile.Split(';');
-                this.ExecCommand = Properties.Settings.Default.ExecCommand.Split(';');
-                this.BreakCommand = Properties.Settings.Default.BreakCommand.Split(';');
+                this.ExecFile = Properties.Settings.Default.ExecFile;
+                this.ExecCommand = Properties.Settings.Default.ExecCommand;
+                this.BreakCommand = Properties.Settings.Default.BreakCommand;
                 //this.IsComment = Properties.Settings.Default.IsComment;
                 //this.IsSeetNo = Properties.Settings.Default.IsSeetNo;
                 //this.IsVideo = Properties.Settings.Default.IsVideo;
@@ -110,9 +110,9 @@ namespace comeconv.Prop
         {
             try
             {
-                Properties.Settings.Default.ExecFile = String.Join(";", this.ExecFile);
-                Properties.Settings.Default.ExecCommand = String.Join(";", this.ExecCommand);
-                Properties.Settings.Default.BreakCommand = String.Join(";", this.BreakCommand);
+                Properties.Settings.Default.ExecFile = this.ExecFile;
+                Properties.Settings.Default.ExecCommand = this.ExecCommand;
+                Properties.Settings.Default.BreakCommand = this.BreakCommand;
                 //Properties.Settings.Default.IsComment = this.IsComment;
                 //Properties.Settings.Default.IsSeetNo = this.IsSeetNo;
                 //Properties.Settings.Default.IsVideo = this.IsVideo;

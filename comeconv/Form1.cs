@@ -7,6 +7,7 @@ using System.IO;
 
 using comeconv.Prop;
 using comeconv.Proc;
+using comeconv.Util;
 
 namespace comeconv
 {
@@ -15,7 +16,6 @@ namespace comeconv
         public static Props props;                   //設定
 
         //0処理待ち 1録画準備 2録画中 3再接続 4中断 5変換処理中 9終了
-        private volatile bool start_flg = false;
         private static int ProgramStatus { get; set; } //プログラム状態
 
         //dispose するもの
@@ -41,6 +41,7 @@ namespace comeconv
 
             //設定データー読み込み
             props = new Props();
+            props.LoadData();
 
             //if (IsBatchMode) button1.PerformClick();
         }
@@ -60,8 +61,8 @@ namespace comeconv
             try
             {
 
-                //var exec_file = props.ExecFile[0];
-                //exec_file = GetExecFile(exec_file);
+                var exec_file = props.ExecFile;
+                exec_file = GetExecFile(exec_file);
                 //if (!File.Exists(exec_file))
                 //{
                 //    AddLog("実行ファイルがありません。", 2);

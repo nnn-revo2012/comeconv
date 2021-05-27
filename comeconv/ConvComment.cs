@@ -15,39 +15,11 @@ using System.Diagnostics;
 using System.Web;
 using System.Globalization;
 
+using comeconv.Prop;
+using comeconv.Util;
+
 namespace comeconv
 {
-
-    //サロペートペア＆結合文字 検出＆文字除去
-    //\ud83d\ude0a
-    //か\u3099
-    public class HttpUtilityEx2
-    {
-        public static string HtmlDelete(string s, string t = "")
-        {
-            if (!IsSurrogatePair(s)) return s;
-
-            StringBuilder sb = new StringBuilder();
-            TextElementEnumerator tee = StringInfo.GetTextElementEnumerator(s);
-
-            tee.Reset();
-            while (tee.MoveNext())
-            {
-                string te = tee.GetTextElement();
-                if (1 < te.Length)
-                    sb.Append(t); //サロペートペアまたは結合文字の場合
-                else
-                    sb.Append(te);
-            }
-            return sb.ToString();
-        }
-
-        public static bool IsSurrogatePair(string s)
-        {
-            StringInfo si = new StringInfo(s);
-            return si.LengthInTextElements < s.Length;
-        }
-    }
 
     public class ConvComment : IDisposable
     {
@@ -119,8 +91,7 @@ namespace comeconv
                                     }
                                     data[ele.Name.ToString()] = ele.Value.ToString();
                                 }
-                                //var aaa = HttpUtilityEx2.HtmlDecode(xdoc.Element("chat").Value.ToString());
-                                data["content"] = HttpUtilityEx2.HtmlDelete(xdoc.Element("chat").Value.ToString(), "　");
+                                data["content"] = Utils.DelEmoji(xdoc.Element("chat").Value.ToString(), "　");
                                 line = Table2Xml(data).TrimEnd();
                             }
                         }
