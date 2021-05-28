@@ -28,17 +28,19 @@ namespace comeconv
         private bool disposedValue = false; // 重複する呼び出しを検出するには
 
         private Form1 _form = null;
+        private Props _props = null;
         private string _sfile = null;
         private string _dfile = null;
 
         //Debug
         public bool IsDebug { get; set; }
 
-        public ConvComment(Form1 fo, string sfile, string dfile)
+        public ConvComment(Form1 fo, Props props, string sfile, string dfile)
         {
             IsDebug = false;
 
             this._form = fo;
+            this._props = props;
             this._sfile = sfile;
             this._dfile = dfile;
         }
@@ -49,7 +51,7 @@ namespace comeconv
         }
 
         //XML形式のコメントファイルを読み込み変換する
-        public bool FileCopy(string sfile, string dfile)
+        public bool SacXmlConvert(string sfile, string dfile)
         {
 
             var enc = new System.Text.UTF8Encoding(false);
@@ -75,24 +77,9 @@ namespace comeconv
                             }
                             //チャットの処理
                             {
-                                var data = new Dictionary<string, string>();
-                                var xdoc = XDocument.Parse(line);
-                                //var aaa = xdoc.Descendants("chat");
-                                foreach (var ele in xdoc.Element("chat").Attributes())
-                                {
-                                    if (ele.Name.ToString() == "premium")
-                                    {
-                                        if (ele.Value.ToString() == "8" ||
-                                            ele.Value.ToString() == "24")
-                                            continue;
-                                        else if (ele.Value.ToString() == "9" ||
-                                            ele.Value.ToString() == "25")
-                                            ele.Value = "1";
-                                    }
-                                    data[ele.Name.ToString()] = ele.Value.ToString();
-                                }
-                                data["content"] = Utils.DelEmoji(xdoc.Element("chat").Value.ToString(), "　");
-                                line = Table2Xml(data).TrimEnd();
+                                line = ConvChatData(line, _props).TrimEnd();
+                                if (string.IsNullOrEmpty(line))
+                                    line = "deteted";
                             }
                         }
                         else if (line.StartsWith("<thread "))
@@ -106,11 +93,91 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message);
+                DebugWrite.Writeln(nameof(Table2Xml), Ex);
                 return false;
             }
             return true;
 
+        }
+
+        private string ConvChatData(string chat, Props props)
+        {
+            var del_flg = false;
+            var data = new Dictionary<string, string>();
+            var xdoc = XDocument.Parse(chat);
+
+            try
+            {
+                foreach (var ele in xdoc.Element("chat").Attributes())
+                {
+                    if (ele.Name.ToString() == "premium")
+                    {
+                        if (props.IsSacPremium)
+                        {
+                            if (ele.Value.ToString() == "9" ||
+                                ele.Value.ToString() == "25")
+                                ele.Value = "1";
+                            else if (ele.Value.ToString() == "8" ||
+                                ele.Value.ToString() == "24")
+                            {
+                                if (props.SacPremiumMode == "pdel")
+                                    del_flg = true;
+                                continue;
+                            }
+                        }
+                    }
+                    data[ele.Name.ToString()] = ele.Value.ToString();
+                }
+                var ttt = xdoc.Element("chat").Value.ToString();
+                //SacNGWordsの処理
+                if (data.ContainsKey("premium") &&
+                    (data["premium"] == "2" || data["premium"] == "3"))
+                {
+                    //Giftの処理
+
+                    foreach (var ngword in props.SacNGWords)
+                    {
+                        if (ttt.IndexOf(ngword) > -1)
+                        {
+                            del_flg = true;
+                            break;
+                        }
+                    }
+                }
+                //vpos
+                if (props.IsSacCommLen)
+                {
+                    if (ttt.Length > props.SacCommLen)
+                        del_flg = true;
+                }
+                //コメント長
+                if (props.IsSacCommLen)
+                {
+                    if (ttt.Length > props.SacCommLen)
+                        del_flg = true;
+                }
+                //絵文字処理
+                if (props.IsSacEmoji)
+                {
+                    if (Utils.IsSurrogatePair(ttt))
+                    {
+                        if (props.SacEmojiMode == "edel")
+                            del_flg = true;
+                        else
+                            ttt = Utils.DelEmoji(ttt, "　");
+                    }
+                }
+                data["content"] = ttt;
+                if (del_flg)
+                    return "";
+                else
+                    return Table2Xml(data);
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ConvChatData), Ex);
+                return "";
+            }
         }
 
         public string Table2Xml(IDictionary<string, string> data)

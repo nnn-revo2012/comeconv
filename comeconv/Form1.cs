@@ -42,8 +42,16 @@ namespace comeconv
             //設定データー読み込み
             props = new Props();
             props.LoadData();
-
-            //if (IsBatchMode) button1.PerformClick();
+            if (!Directory.Exists(Props.GetSettingDirectory()))
+                props.SaveData();
+            var dfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
+            //NGWordファイルをコピー
+            if (!File.Exists(dfile))
+            {
+                var sfile = GetExecFile(props.SacNGLists);
+                File.Copy(sfile, dfile);
+            }
+            SetForm();
         }
 
 
@@ -60,7 +68,7 @@ namespace comeconv
 
             try
             {
-
+                GetForm();
                 var exec_file = props.ExecFile;
                 exec_file = GetExecFile(exec_file);
                 //if (!File.Exists(exec_file))
@@ -78,10 +86,7 @@ namespace comeconv
                 //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)
                 {
-                    //Convert(files[i]);
-                    await Task.Run(() => StartConv(files[i]));
-                    //AddLog("Task.Run() 処理終わり", 1);
-
+                    await Task.Run(() => ConvXml(files[i]));
                 }
             }
             catch (Exception Ex)
@@ -107,5 +112,12 @@ namespace comeconv
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //OKボタンが押されたら設定を保存
+            GetForm();
+            var result = props.SaveData(); //設定ファイルに保存
+            result = Form1.props.LoadData(); //親フォームの設定データを更新
+        }
     }
 }

@@ -10,12 +10,6 @@ namespace comeconv.Prop
     public class Props
     {
         //定数設定
-
-        public static readonly string TIMESHIFT = "(TS)";
-
-
-        public static readonly string Commnet_SeetNo = "/hb ifseetno";
-
         public static readonly string[][] ReplaceWords =
             {
             new[] {"?PID?","lv1234567","ProgramId。lv1234567のような文字列。"},
@@ -75,16 +69,27 @@ namespace comeconv.Prop
         public string ExecFile { get; set; }
         public string ExecCommand { get; set; }
         public string BreakCommand { get; set; }
-        public bool IsComment { get; set; }
-        public bool IsSeetNo { get; set; }
-        public bool IsVideo { get; set; }
+        public bool IsSacEmoji { get; set; }
+        public string SacEmojiMode { get; set; }
+        public bool IsSacPremium { get; set; }
+        public string SacPremiumMode { get; set; }
+        public bool IsSacCommLen { get; set; }
+        public int SacCommLen { get; set; }
+        public bool IsSacVpos { get; set; }
+        public float SacVpos { get; set; }
+        public bool IsSacGift { get; set; }
+        public bool IsSacEmotion { get; set; }
+        public bool IsSacNicoAd { get; set; }
+        public string SacNGLists { get; set; }
+        public string SacVideoMode { get; set; }
 
+        public IDictionary<string, string> SacVideoList;
+        public IList<string> SacNGWords;
 
         public Props()
         {
-            //ExecFile = new string[2];
-            //ExecCommand = new string[2];
-            //BreakCommand = new string[2];
+            SacVideoList = new Dictionary<string, string>();
+            SacNGWords = new List<string>();
         }
 
         public bool LoadData()
@@ -94,9 +99,23 @@ namespace comeconv.Prop
                 this.ExecFile = Properties.Settings.Default.ExecFile;
                 this.ExecCommand = Properties.Settings.Default.ExecCommand;
                 this.BreakCommand = Properties.Settings.Default.BreakCommand;
-                //this.IsComment = Properties.Settings.Default.IsComment;
-                //this.IsSeetNo = Properties.Settings.Default.IsSeetNo;
-                //this.IsVideo = Properties.Settings.Default.IsVideo;
+
+                this.IsSacEmoji = Properties.Settings.Default.IsSacEmoji;
+                this.SacEmojiMode = Properties.Settings.Default.SacEmojiMode;
+                this.IsSacPremium = Properties.Settings.Default.IsSacPremium;
+                this.SacPremiumMode = Properties.Settings.Default.SacPremiumMode;
+                this.IsSacCommLen = Properties.Settings.Default.IsSacCommLen;
+                this.SacCommLen = Properties.Settings.Default.SacCommLen;
+                this.IsSacVpos = Properties.Settings.Default.IsSacVpos;
+                this.SacVpos = Properties.Settings.Default.SacVpos;
+                this.IsSacGift = Properties.Settings.Default.IsSacGift;
+                this.IsSacEmotion = Properties.Settings.Default.IsSacEmotion;
+                this.IsSacNicoAd = Properties.Settings.Default.IsSacNicoAd;
+                this.SacNGLists = Properties.Settings.Default.SacNGLists;
+                this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
+                //TEST compoboxの内容をDicに読み込む
+                SacVideoList["mp4"] = "aaaaaaa";
+                SacVideoList["flv"] = "bbbbbbb";
             }
             catch (Exception Ex)
             {
@@ -113,9 +132,20 @@ namespace comeconv.Prop
                 Properties.Settings.Default.ExecFile = this.ExecFile;
                 Properties.Settings.Default.ExecCommand = this.ExecCommand;
                 Properties.Settings.Default.BreakCommand = this.BreakCommand;
-                //Properties.Settings.Default.IsComment = this.IsComment;
-                //Properties.Settings.Default.IsSeetNo = this.IsSeetNo;
-                //Properties.Settings.Default.IsVideo = this.IsVideo;
+
+                Properties.Settings.Default.IsSacEmoji = this.IsSacEmoji;
+                Properties.Settings.Default.SacEmojiMode = this.SacEmojiMode;
+                Properties.Settings.Default.IsSacPremium = this.IsSacPremium;
+                Properties.Settings.Default.SacPremiumMode = this.SacPremiumMode;
+                Properties.Settings.Default.IsSacCommLen = this.IsSacCommLen;
+                Properties.Settings.Default.SacCommLen = this.SacCommLen;
+                Properties.Settings.Default.IsSacVpos = this.IsSacVpos;
+                Properties.Settings.Default.SacVpos = this.SacVpos;
+                Properties.Settings.Default.IsSacGift = this.IsSacGift;
+                Properties.Settings.Default.IsSacEmotion = this.IsSacEmotion;
+                Properties.Settings.Default.IsSacNicoAd = this.IsSacNicoAd;
+                Properties.Settings.Default.SacNGLists = this.SacNGLists;
+                Properties.Settings.Default.SacVideoMode = this.SacVideoMode;
                 Properties.Settings.Default.Save();
              }
             catch (Exception Ex)

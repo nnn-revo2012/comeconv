@@ -1,0 +1,15 @@
+perm 次枠→
+reset
+コメNGです。
+info
+koukoku
+show2
+uadpoint
+coupon
+disconnect
+ifseetno
+NGコメントです
+clear
+perm
+target=
+自動延長が発動しました！<br

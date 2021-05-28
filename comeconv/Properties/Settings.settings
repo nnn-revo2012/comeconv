@@ -11,5 +11,47 @@
     <Setting Name="BreakCommand" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="IsSacEmoji" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SacEmojiMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">space</Value>
+    </Setting>
+    <Setting Name="IsSacPremium" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SacPremiumMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">henkan</Value>
+    </Setting>
+    <Setting Name="IsSacCommLen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SacCommLen" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="IsSacVpos" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SacVpos" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="IsSacGift" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsSacEmotion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsSacNicoAd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SacNGLists" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SacNGLists.txt</Value>
+    </Setting>
+    <Setting Name="SacVideoMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mp4</Value>
+    </Setting>
+    <Setting Name="SacVideoList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mp4\taaaaaaa;flv\tbbbbbbbb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

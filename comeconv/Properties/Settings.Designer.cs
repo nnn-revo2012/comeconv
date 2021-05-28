@@ -58,5 +58,173 @@ namespace comeconv.Properties {
                 this["BreakCommand"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSacEmoji {
+            get {
+                return ((bool)(this["IsSacEmoji"]));
+            }
+            set {
+                this["IsSacEmoji"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("space")]
+        public string SacEmojiMode {
+            get {
+                return ((string)(this["SacEmojiMode"]));
+            }
+            set {
+                this["SacEmojiMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSacPremium {
+            get {
+                return ((bool)(this["IsSacPremium"]));
+            }
+            set {
+                this["IsSacPremium"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("henkan")]
+        public string SacPremiumMode {
+            get {
+                return ((string)(this["SacPremiumMode"]));
+            }
+            set {
+                this["SacPremiumMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSacCommLen {
+            get {
+                return ((bool)(this["IsSacCommLen"]));
+            }
+            set {
+                this["IsSacCommLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int SacCommLen {
+            get {
+                return ((int)(this["SacCommLen"]));
+            }
+            set {
+                this["SacCommLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSacVpos {
+            get {
+                return ((bool)(this["IsSacVpos"]));
+            }
+            set {
+                this["IsSacVpos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float SacVpos {
+            get {
+                return ((float)(this["SacVpos"]));
+            }
+            set {
+                this["SacVpos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSacGift {
+            get {
+                return ((bool)(this["IsSacGift"]));
+            }
+            set {
+                this["IsSacGift"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSacEmotion {
+            get {
+                return ((bool)(this["IsSacEmotion"]));
+            }
+            set {
+                this["IsSacEmotion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSacNicoAd {
+            get {
+                return ((bool)(this["IsSacNicoAd"]));
+            }
+            set {
+                this["IsSacNicoAd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SacNGLists.txt")]
+        public string SacNGLists {
+            get {
+                return ((string)(this["SacNGLists"]));
+            }
+            set {
+                this["SacNGLists"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mp4")]
+        public string SacVideoMode {
+            get {
+                return ((string)(this["SacVideoMode"]));
+            }
+            set {
+                this["SacVideoMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mp4\\taaaaaaa;flv\\tbbbbbbbb")]
+        public string SacVideoList {
+            get {
+                return ((string)(this["SacVideoList"]));
+            }
+            set {
+                this["SacVideoList"] = value;
+            }
+        }
     }
 }
