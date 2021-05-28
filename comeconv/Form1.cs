@@ -54,7 +54,7 @@ namespace comeconv
 
         }
 
-        private void tabPage1_DragDrop(object sender, DragEventArgs e)
+        private async void tabPage1_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 
@@ -75,9 +75,13 @@ namespace comeconv
                 LogFile2 = null;
                 LogFile3 = null;
 
+                //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)
                 {
-                    Convert(files[i]);
+                    //Convert(files[i]);
+                    await Task.Run(() => StartConv(files[i]));
+                    //AddLog("Task.Run() 処理終わり", 1);
+
                 }
             }
             catch (Exception Ex)

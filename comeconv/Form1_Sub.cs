@@ -97,19 +97,6 @@ namespace comeconv
             }));
         }
 
-        private void Convert(string filename)
-        {
-            try
-            {
-                //録画開始
-                Task.Run(() => StartConv(filename));
-            }
-            catch (Exception Ex)
-            {
-                AddLog("出力処理エラー。\r\n" + Ex.Message, 2);
-            }
-        }
-
         private void StartConv(string filename)
         {
             //if (filename.IndexOf(".xml") < 0) return;
