@@ -37,21 +37,30 @@ namespace comeconv
 
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
-
-            //設定データー読み込み
-            props = new Props();
-            props.LoadData();
-            if (!Directory.Exists(Props.GetSettingDirectory()))
-                props.SaveData();
-            var dfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
-            //NGWordファイルをコピー
-            if (!File.Exists(dfile))
+            try
             {
-                var sfile = GetExecFile(props.SacNGLists);
-                File.Copy(sfile, dfile);
+                base.OnLoad(e);
+
+                //設定データー読み込み
+                props = new Props();
+                props.LoadData();
+                if (!Directory.Exists(Props.GetSettingDirectory()))
+                    props.SaveData();
+                var dfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
+                //NGWordファイルをコピー
+                if (!File.Exists(dfile))
+                {
+                    var sfile = GetExecFile(props.SacNGLists);
+                    File.Copy(sfile, dfile);
+                }
+                SetForm();
             }
-            SetForm();
+            catch (Exception Ex)
+            {
+                AddLog("初期処理エラー。\r\n" + Ex.Message, 2);
+                return;
+            }
+
         }
 
 

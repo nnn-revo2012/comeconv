@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 using comeconv.Prop;
 using comeconv.Proc;
+using comeconv.Util;
 
 namespace comeconv
 {
@@ -239,12 +240,23 @@ namespace comeconv
 
             try
             {
+                var newfile = Path.Combine(Path.GetDirectoryName(filename), Path.GetRandomFileName());
+                var renamefile = Utils.GetLogfile(Path.GetDirectoryName(filename), Path.GetFileName(filename));
+
                 AddLog("コメント変換開始します。", 1);
-                using (var conv = new ConvComment(this, props, filename, null))
+                using (var conv = new ConvComment(this, props))
                 {
-                    conv.SacXmlConvert(filename, "D:\\home\\tmp\\aaa.xml");
+                    if (conv.SacXmlConvert(filename, newfile))
+                    {
+                        if (!File.Exists(renamefile))
+                            File.Move(newfile, renamefile);
+                        AddLog("コメント変換終了しました。", 1);
+                    }
+                    else
+                    {
+                        AddLog("コメント変換に失敗しました。", 1);
+                    }
                 }
-                AddLog("コメント変換終了しました。", 1);
             }
             catch (Exception Ex)
             {

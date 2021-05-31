@@ -29,20 +29,16 @@ namespace comeconv
 
         private Form1 _form = null;
         private Props _props = null;
-        private string _sfile = null;
-        private string _dfile = null;
 
         //Debug
         public bool IsDebug { get; set; }
 
-        public ConvComment(Form1 fo, Props props, string sfile, string dfile)
+        public ConvComment(Form1 fo, Props props)
         {
             IsDebug = false;
 
             this._form = fo;
             this._props = props;
-            this._sfile = sfile;
-            this._dfile = dfile;
         }
 
         ~ConvComment()
@@ -77,16 +73,21 @@ namespace comeconv
                             }
                             //チャットの処理
                             {
-                                line = ConvChatData(line, _props).TrimEnd();
-                                if (string.IsNullOrEmpty(line))
-                                    line = "deteted";
+                                var ttt = ConvChatData(line, _props).TrimEnd();
+                                if (!string.IsNullOrEmpty(ttt))
+                                    sw.WriteLine(ttt);
+                                //else
+                                //    sw.WriteLine("deleted:"+line);
                             }
                         }
                         else if (line.StartsWith("<thread "))
                         {
-                            //thread 
+                            sw.WriteLine(line);
                         }
-                        sw.WriteLine(line);
+                        else
+                        {
+                            sw.WriteLine(line);
+                        }
                     }
                 }
 
@@ -129,42 +130,56 @@ namespace comeconv
                     data[ele.Name.ToString()] = ele.Value.ToString();
                 }
                 var ttt = xdoc.Element("chat").Value.ToString();
+                //vpos先
+                if (props.IsSacVpos)
+                {
+                    //data["date"] + props.SacVpos;
+                }
                 //SacNGWordsの処理
                 if (data.ContainsKey("premium") &&
                     (data["premium"] == "2" || data["premium"] == "3"))
                 {
                     //Giftの処理
+                    if (props.IsSacGift && ttt.IndexOf("/gift") > -1)
+                    {
+                        del_flg = true;
+                    }
+                    if (props.IsSacEmotion && ttt.IndexOf("/emotion") > -1)
+                    {
+                        del_flg = true;
+                    }
+                    if (props.IsSacNicoAd && ttt.IndexOf("/nicoad") > -1)
+                    {
+                        del_flg = true;
+                    }
 
                     foreach (var ngword in props.SacNGWords)
                     {
                         if (ttt.IndexOf(ngword) > -1)
                         {
-                            del_flg = true;
-                            break;
+                                del_flg = true;
+                                break;
+                            }
                         }
-                    }
                 }
-                //vpos
-                if (props.IsSacCommLen)
+                else
                 {
-                    if (ttt.Length > props.SacCommLen)
-                        del_flg = true;
-                }
-                //コメント長
-                if (props.IsSacCommLen)
-                {
-                    if (ttt.Length > props.SacCommLen)
-                        del_flg = true;
-                }
-                //絵文字処理
-                if (props.IsSacEmoji)
-                {
-                    if (Utils.IsSurrogatePair(ttt))
+                    //コメント長
+                    if (props.IsSacCommLen)
                     {
-                        if (props.SacEmojiMode == "edel")
+                        if (ttt.Length > props.SacCommLen)
                             del_flg = true;
-                        else
-                            ttt = Utils.DelEmoji(ttt, "　");
+                    }
+                    //絵文字処理
+                    if (props.IsSacEmoji)
+                    {
+                        if (Utils.IsSurrogatePair(ttt))
+                        {
+                            if (props.SacEmojiMode == "edel")
+                                del_flg = true;
+                            else
+                                ttt = Utils.DelEmoji(ttt, "　");
+                        }
                     }
                 }
                 data["content"] = ttt;
