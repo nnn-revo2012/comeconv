@@ -130,10 +130,15 @@ namespace comeconv
                     data[ele.Name.ToString()] = ele.Value.ToString();
                 }
                 var ttt = xdoc.Element("chat").Value.ToString();
+                if (!data.ContainsKey("vpos"))
+                    data["vpos"] = "0";
+                if (!data.ContainsKey("date_usec"))
+                    data["date_usec"] = "0";
                 //vpos先
                 if (props.IsSacVpos)
                 {
-                    //data["date"] + props.SacVpos;
+                    if (long.TryParse(data["vpos"], out var ll))
+                        data["vpos"] = (ll + props.SacVpos).ToString();
                 }
                 //SacNGWordsの処理
                 if (data.ContainsKey("premium") &&
@@ -157,10 +162,10 @@ namespace comeconv
                     {
                         if (ttt.IndexOf(ngword) > -1)
                         {
-                                del_flg = true;
-                                break;
-                            }
+                            del_flg = true;
+                            break;
                         }
+                    }
                 }
                 else
                 {

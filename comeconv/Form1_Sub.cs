@@ -132,7 +132,7 @@ namespace comeconv
                 checkBox7.Checked = props.IsSacNicoAd;
 
                 textBox1.Text = props.SacCommLen.ToString();
-                textBox2.Text = props.SacVpos.ToString();
+                textBox2.Text = props.SacVpos.ToString("0.00");
 
                 foreach (var item in props.SacVideoList.Keys)
                     comboBox1.Items.Add(item);
@@ -187,8 +187,8 @@ namespace comeconv
                     props.SacCommLen = i;
                 else
                     props.SacCommLen = Properties.Settings.Default.SacCommLen;
-                if (float.TryParse(textBox2.Text, out var f))
-                    props.SacVpos = f;
+                if (long.TryParse(textBox2.Text.Replace(".", ""), out var lo))
+                    props.SacVpos = lo;
                 else
                     props.SacVpos = Properties.Settings.Default.SacVpos;
 

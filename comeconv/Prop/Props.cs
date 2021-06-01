@@ -76,7 +76,7 @@ namespace comeconv.Prop
         public bool IsSacCommLen { get; set; }
         public int SacCommLen { get; set; }
         public bool IsSacVpos { get; set; }
-        public float SacVpos { get; set; }
+        public long SacVpos { get; set; }
         public bool IsSacGift { get; set; }
         public bool IsSacEmotion { get; set; }
         public bool IsSacNicoAd { get; set; }
@@ -198,13 +198,6 @@ namespace comeconv.Prop
         public static string GetExecLogfile(string dir, string filename)
         {
             var tmp = Path.GetFileNameWithoutExtension(filename) + "_exec_" + System.DateTime.Now.ToString("yyMMdd_HHmmss") + ".log";
-            return Path.Combine(dir, tmp);
-        }
-
-        //data-propsファイル名をGet
-        public static string GetDataPropsfile(string dir, string filename)
-        {
-            var tmp = Path.GetFileNameWithoutExtension(filename) + "_data-props_" + System.DateTime.Now.ToString("yyMMdd_HHmmss") + ".log";
             return Path.Combine(dir, tmp);
         }
 

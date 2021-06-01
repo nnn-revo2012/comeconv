@@ -128,5 +128,30 @@ namespace comeconv
             var result = props.SaveData(); //設定ファイルに保存
             result = Form1.props.LoadData(); //親フォームの設定データを更新
         }
+
+        private void textBox1_Validated(object sender, EventArgs e)
+        {
+            string ttt = textBox1.Text;
+            if (int.TryParse(ttt, out var i))
+                textBox1.Text = ttt;
+            else
+                textBox1.Text = Properties.Settings.Default.SacCommLen.ToString();
+        }
+
+        private void textBox2_Validated(object sender, EventArgs e)
+        {
+            // 15 15.4 15.454445
+            string ttt = textBox2.Text;
+            if (!ttt.Contains("."))
+                ttt += ".0";
+            ttt += "00";
+            // 15.000 15.400 15.4565455000
+            ttt = ttt.Substring(0, ttt.IndexOf('.') + 3);
+            if (float.TryParse(ttt, out var f))
+                textBox2.Text = ttt;
+            else
+                textBox2.Text = Properties.Settings.Default.SacVpos.ToString("0.00");
+        }
+
     }
 }

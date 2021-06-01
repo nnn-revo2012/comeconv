@@ -72,14 +72,14 @@
             this.listBox1.ItemHeight = 12;
             this.listBox1.Location = new System.Drawing.Point(0, 371);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(404, 100);
+            this.listBox1.Size = new System.Drawing.Size(426, 100);
             this.listBox1.TabIndex = 0;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(404, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(426, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -92,7 +92,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(404, 313);
+            this.tabControl1.Size = new System.Drawing.Size(426, 313);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -103,7 +103,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(396, 287);
+            this.tabPage1.Size = new System.Drawing.Size(418, 287);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "さきゅばす変換";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(3, 236);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 45);
+            this.groupBox2.Size = new System.Drawing.Size(407, 45);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "映像設定";
@@ -160,7 +160,7 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(385, 227);
+            this.groupBox1.Size = new System.Drawing.Size(407, 227);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "コメント設定";
@@ -230,27 +230,27 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(160, 199);
+            this.checkBox7.Location = new System.Drawing.Point(203, 199);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(48, 16);
+            this.checkBox7.Size = new System.Drawing.Size(72, 16);
             this.checkBox7.TabIndex = 16;
-            this.checkBox7.Text = "広告";
+            this.checkBox7.Text = "広告表示";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(77, 199);
+            this.checkBox6.Location = new System.Drawing.Point(101, 199);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(77, 16);
+            this.checkBox6.Size = new System.Drawing.Size(101, 16);
             this.checkBox6.TabIndex = 15;
-            this.checkBox6.Text = "エモーション";
+            this.checkBox6.Text = "エモーション表示";
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(239, 200);
+            this.label3.Location = new System.Drawing.Point(290, 200);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 12);
             this.label3.TabIndex = 14;
@@ -258,7 +258,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(294, 195);
+            this.button2.Location = new System.Drawing.Point(345, 195);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 13;
@@ -270,15 +270,15 @@
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(21, 199);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(50, 16);
+            this.checkBox5.Size = new System.Drawing.Size(74, 16);
             this.checkBox5.TabIndex = 12;
-            this.checkBox5.Text = "ギフト";
+            this.checkBox5.Text = "ギフト表示";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(167, 174);
+            this.label2.Location = new System.Drawing.Point(180, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 12);
             this.label2.TabIndex = 11;
@@ -288,9 +288,10 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(123, 171);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(38, 19);
+            this.textBox2.Size = new System.Drawing.Size(51, 19);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox2.Validated += new System.EventHandler(this.textBox2_Validated);
             // 
             // checkBox4
             // 
@@ -318,6 +319,7 @@
             this.textBox1.Size = new System.Drawing.Size(38, 19);
             this.textBox1.TabIndex = 7;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox1.Validated += new System.EventHandler(this.textBox1_Validated);
             // 
             // checkBox3
             // 
@@ -362,7 +364,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(293, 343);
+            this.button1.Location = new System.Drawing.Point(315, 343);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 22);
             this.button1.TabIndex = 4;
@@ -374,7 +376,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 471);
+            this.ClientSize = new System.Drawing.Size(426, 471);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.listBox1);

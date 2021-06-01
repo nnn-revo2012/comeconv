@@ -146,9 +146,9 @@ namespace comeconv.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public float SacVpos {
+        public long SacVpos {
             get {
-                return ((float)(this["SacVpos"]));
+                return ((long)(this["SacVpos"]));
             }
             set {
                 this["SacVpos"] = value;
