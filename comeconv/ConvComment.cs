@@ -14,6 +14,10 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using System.Web;
 using System.Globalization;
+using System.Text.RegularExpressions;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using comeconv.Prop;
 using comeconv.Util;
@@ -29,6 +33,7 @@ namespace comeconv
 
         private Form1 _form = null;
         private Props _props = null;
+        private Regex _RegGift = new Regex("\"([^\"]+)\" (\\d+) \"([^\"]*)\" \"([^\"]+)\" ?(\\d*)", RegexOptions.Compiled);
 
         //Debug
         public bool IsDebug { get; set; }
@@ -77,7 +82,7 @@ namespace comeconv
                                 if (!string.IsNullOrEmpty(ttt))
                                     sw.WriteLine(ttt);
                                 //else
-                                //    sw.WriteLine("deleted:"+line);
+                                //_form.AddLog("deleted:" + line, 9);
                             }
                         }
                         else if (line.StartsWith("<thread "))
@@ -145,17 +150,48 @@ namespace comeconv
                     (data["premium"] == "2" || data["premium"] == "3"))
                 {
                     //Giftの処理
-                    if (props.IsSacGift && ttt.IndexOf("/gift") > -1)
+                    // /gift ajisairandom 999999 "＊＊＊＊" 300 "" "ランダムあじさい" 1
+                    if (ttt.StartsWith("/gift "))
                     {
-                        del_flg = true;
+                        if (props.IsSacGift)
+                            del_flg = true;
+                        else
+                        {
+                            var gift = HttpUtility.HtmlDecode(ttt);
+                            ttt = _RegGift.Match(gift).Groups[1] + "さん:"
+                                + _RegGift.Match(gift).Groups[4]
+                                + "(+" + _RegGift.Match(gift).Groups[2] + ")";
+                            data["mail"] = "184 white shita medium";
+                            data["premium"] = "1";
+                        }
                     }
-                    if (props.IsSacEmotion && ttt.IndexOf("/emotion") > -1)
+                    if (ttt.StartsWith("/emotion "))
                     {
-                        del_flg = true;
+                        if (props.IsSacEmotion)
+                            del_flg = true;
+                        else
+                        {
+                            ttt = HttpUtility.HtmlDecode(ttt).Substring(9);
+                            if (ttt.Contains("🍀"))
+                                ttt = ttt.Replace("🍀", "クローバー");
+                            data["mail"] = data["mail"] + " white shita medium";
+                            data["premium"] = "1";
+                        }
                     }
-                    if (props.IsSacNicoAd && ttt.IndexOf("/nicoad") > -1)
+                    if (ttt.StartsWith("/nicoad "))
                     {
-                        del_flg = true;
+                        if (props.IsSacNicoAd)
+                            del_flg = true;
+                        else
+                        {
+                            var jo = JObject.Parse(HttpUtility.HtmlDecode(ttt).Substring(8));
+                            if (jo["message"] != null)
+                            {
+                                ttt = jo["message"].ToString();
+                                data["mail"] = data["mail"] + " white shita small";
+                                data["premium"] = "1";
+                            }
+                        }
                     }
 
                     foreach (var ngword in props.SacNGWords)

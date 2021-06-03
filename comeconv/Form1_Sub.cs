@@ -58,8 +58,8 @@ namespace comeconv
                         MessageBox.Show(s + "\r\n",
                             "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    //if (props.IsLogging && LogFile != null)
-                    //    System.IO.File.AppendAllText(LogFile, System.DateTime.Now.ToString("HH:mm:ss ") + s + "\r\n");
+                    if (LogFile != null)
+                        System.IO.File.AppendAllText(LogFile, System.DateTime.Now.ToString("HH:mm:ss ") + s + "\r\n");
                 }
             }));
         }
@@ -241,7 +241,7 @@ namespace comeconv
             try
             {
                 var newfile = Path.Combine(Path.GetDirectoryName(filename), Path.GetRandomFileName());
-                var renamefile = Utils.GetLogfile(Path.GetDirectoryName(filename), Path.GetFileName(filename));
+                var renamefile = filename + ".org";
 
                 AddLog("コメント変換開始します。", 1);
                 using (var conv = new ConvComment(this, props))
@@ -249,7 +249,10 @@ namespace comeconv
                     if (conv.SacXmlConvert(filename, newfile))
                     {
                         if (!File.Exists(renamefile))
-                            File.Move(newfile, renamefile);
+                        {
+                            File.Move(filename, renamefile);
+                            File.Move(newfile, filename);
+                        }
                         AddLog("コメント変換終了しました。", 1);
                     }
                     else
@@ -257,10 +260,12 @@ namespace comeconv
                         AddLog("コメント変換に失敗しました。", 1);
                     }
                 }
+                return;
             }
             catch (Exception Ex)
             {
-                AddLog("コメント変換処理エラー。\r\n" + Ex.Message, 2);
+                DebugWrite.Writeln(nameof(ConvXml), Ex);
+                return;
             }
         }
 

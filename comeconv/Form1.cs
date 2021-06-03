@@ -80,17 +80,12 @@ namespace comeconv
                 GetForm();
                 var exec_file = props.ExecFile;
                 exec_file = GetExecFile(exec_file);
-                //if (!File.Exists(exec_file))
-                //{
-                //    AddLog("実行ファイルがありません。", 2);
-                //    return;
-                //}
+                if (!File.Exists(exec_file))
+                {
+                    AddLog("FFmpeg.exe がありません。", 2);
+                }
 
-                //LogFile = Props.GetLogfile(save_dir, "conv");
-                //LogFile2 = Props.GetExecLogfile(save_dir, "conv");
-                LogFile = null;
-                LogFile2 = null;
-                LogFile3 = null;
+                LogFile = Props.GetLogfile("D:\\home\\tmp", "conv");
 
                 //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)

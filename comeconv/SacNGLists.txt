@@ -1,16 +1,16 @@
-perm 次枠→
-reset
+/perm 次枠→
+/reset
 コメNGです。
-info
-koukoku
-show2
-uadpoint
-coupon
-disconnect
-ifseetno
+/info
+/koukoku
+/show2
+/uadpoint
+/coupon
+/disconnect
+/ifseetno
 NGコメントです
-clear
-perm
+/clear
+/perm
 target=
 自動延長が発動しました！<br
-spi
+/spi
