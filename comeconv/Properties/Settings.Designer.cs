@@ -181,7 +181,7 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsSacNicoAd {
             get {
                 return ((bool)(this["IsSacNicoAd"]));
@@ -224,6 +224,18 @@ namespace comeconv.Properties {
             }
             set {
                 this["SacVideoList"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsLogging {
+            get {
+                return ((bool)(this["IsLogging"]));
+            }
+            set {
+                this["IsLogging"] = value;
             }
         }
     }

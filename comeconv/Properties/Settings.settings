@@ -32,7 +32,7 @@
     <Setting Name="IsSacVpos" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SacVpos" Type="System.Single" Scope="User">
+    <Setting Name="SacVpos" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="IsSacGift" Type="System.Boolean" Scope="User">
@@ -42,7 +42,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="IsSacNicoAd" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SacNGLists" Type="System.String" Scope="User">
       <Value Profile="(Default)">SacNGLists.txt</Value>
@@ -52,6 +52,9 @@
     </Setting>
     <Setting Name="SacVideoList" Type="System.String" Scope="User">
       <Value Profile="(Default)">mp4\taaaaaaa;flv\tbbbbbbbb</Value>
+    </Setting>
+    <Setting Name="IsLogging" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
