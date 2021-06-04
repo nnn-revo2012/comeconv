@@ -154,8 +154,6 @@ namespace comeconv
                     if (ttt.StartsWith("/gift "))
                     {
                         if (props.IsSacGift)
-                            del_flg = true;
-                        else
                         {
                             var gift = HttpUtility.HtmlDecode(ttt);
                             ttt = _RegGift.Match(gift).Groups[1] + "さん:"
@@ -164,12 +162,14 @@ namespace comeconv
                             data["mail"] = "184 white shita medium";
                             data["premium"] = "1";
                         }
+                        else
+                        {
+                            del_flg = true;
+                        }
                     }
                     if (ttt.StartsWith("/emotion "))
                     {
                         if (props.IsSacEmotion)
-                            del_flg = true;
-                        else
                         {
                             ttt = HttpUtility.HtmlDecode(ttt).Substring(9);
                             if (ttt.Contains("🍀"))
@@ -177,12 +177,15 @@ namespace comeconv
                             data["mail"] = data["mail"] + " white shita medium";
                             data["premium"] = "1";
                         }
+                        else
+                        {
+                            del_flg = true;
+
+                        }
                     }
                     if (ttt.StartsWith("/nicoad "))
                     {
                         if (props.IsSacNicoAd)
-                            del_flg = true;
-                        else
                         {
                             var jo = JObject.Parse(HttpUtility.HtmlDecode(ttt).Substring(8));
                             if (jo["message"] != null)
@@ -191,6 +194,10 @@ namespace comeconv
                                 data["mail"] = data["mail"] + " white shita small";
                                 data["premium"] = "1";
                             }
+                        }
+                        else
+                        {
+                            del_flg = true;
                         }
                     }
 

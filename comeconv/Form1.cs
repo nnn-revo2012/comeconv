@@ -148,5 +148,9 @@ namespace comeconv
                 textBox2.Text = Properties.Settings.Default.SacVpos.ToString("0.00");
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
