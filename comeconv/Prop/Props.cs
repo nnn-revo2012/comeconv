@@ -82,6 +82,7 @@ namespace comeconv.Prop
         public bool IsSacNicoAd { get; set; }
         public string SacNGLists { get; set; }
         public string SacVideoMode { get; set; }
+        public bool IsLogging { get; set; }
 
         public IDictionary<string, string> SacVideoList;
         public IList<string> SacNGWords;
@@ -113,6 +114,7 @@ namespace comeconv.Prop
                 this.IsSacNicoAd = Properties.Settings.Default.IsSacNicoAd;
                 this.SacNGLists = Properties.Settings.Default.SacNGLists;
                 this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
+                this.IsLogging = Properties.Settings.Default.IsLogging;
                 //TEST compoboxの内容をDicに読み込む
                 SacVideoList["mp4"] = "aaaaaaa";
                 SacVideoList["flv"] = "bbbbbbb";
@@ -146,6 +148,7 @@ namespace comeconv.Prop
                 Properties.Settings.Default.IsSacNicoAd = this.IsSacNicoAd;
                 Properties.Settings.Default.SacNGLists = this.SacNGLists;
                 Properties.Settings.Default.SacVideoMode = this.SacVideoMode;
+                Properties.Settings.Default.IsLogging = this.IsLogging;
                 Properties.Settings.Default.Save();
              }
             catch (Exception Ex)

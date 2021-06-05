@@ -107,6 +107,10 @@ namespace comeconv
         {
             try
             {
+                textBox3.Text = props.ExecFile;
+                textBox4.Text = props.BreakCommand;
+                checkBox8.Checked = props.IsLogging;
+
                 foreach (Control co in panel1.Controls)
                 {
                     if (co.GetType().Name == "RadioButton")
@@ -132,8 +136,7 @@ namespace comeconv
                 checkBox7.Checked = props.IsSacNicoAd;
 
                 textBox1.Text = props.SacCommLen.ToString();
-                textBox2.Text = props.SacVpos.ToString("0.00");
-
+                textBox2.Text = ((double)props.SacVpos / 100D).ToString("0.00");
                 foreach (var item in props.SacVideoList.Keys)
                     comboBox1.Items.Add(item);
                 comboBox1.SelectedItem = props.SacVideoMode;
@@ -154,6 +157,10 @@ namespace comeconv
         {
             try
             {
+                props.ExecFile = textBox3.Text;
+                props.BreakCommand = textBox4.Text;
+                props.IsLogging=  checkBox8.Checked;
+
                 foreach (Control co in panel1.Controls)
                 {
                     if (co.GetType().Name == "RadioButton")
@@ -219,7 +226,8 @@ namespace comeconv
                     while (!sr.EndOfStream) // 1行ずつ読み出し
                     {
                         line = sr.ReadLine();
-                        if (!string.IsNullOrEmpty(line))
+
+                        if (!string.IsNullOrEmpty(line) && !line.StartsWith("//"))
                             lists.Add(line);
                     }
                 }
@@ -240,8 +248,8 @@ namespace comeconv
 
             try
             {
-                var newfile = Path.Combine(Path.GetDirectoryName(filename), Path.GetRandomFileName());
-                var renamefile = filename + ".org";
+                var newfile = Path.Combine(Path.GetDirectoryName(filename), Path.GetRandomFileName()+".xml");
+                var renamefile = filename;
 
                 AddLog("コメント変換開始します。", 1);
                 using (var conv = new ConvComment(this, props))
@@ -250,8 +258,8 @@ namespace comeconv
                     {
                         if (!File.Exists(renamefile))
                         {
-                            File.Move(filename, renamefile);
-                            File.Move(newfile, filename);
+                            //File.Move(filename, renamefile);
+                            //File.Move(newfile, filename);
                         }
                         AddLog("コメント変換終了しました。", 1);
                     }

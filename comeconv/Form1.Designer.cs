@@ -117,7 +117,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "さきゅばす変換";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             this.tabPage1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragDrop);
             this.tabPage1.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragEnter);
             // 
@@ -286,6 +285,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "編集";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox5
             // 
@@ -447,8 +447,9 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(59, 23);
             this.button3.TabIndex = 1;
-            this.button3.Text = "参照 ...";
+            this.button3.Text = "参照";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox3
             // 

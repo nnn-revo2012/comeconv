@@ -145,7 +145,6 @@ namespace comeconv
                     if (long.TryParse(data["vpos"], out var ll))
                         data["vpos"] = (ll + props.SacVpos).ToString();
                 }
-                //SacNGWordsの処理
                 if (data.ContainsKey("premium") &&
                     (data["premium"] == "2" || data["premium"] == "3"))
                 {
@@ -200,15 +199,6 @@ namespace comeconv
                             del_flg = true;
                         }
                     }
-
-                    foreach (var ngword in props.SacNGWords)
-                    {
-                        if (ttt.IndexOf(ngword) > -1)
-                        {
-                            del_flg = true;
-                            break;
-                        }
-                    }
                 }
                 else
                 {
@@ -228,6 +218,15 @@ namespace comeconv
                             else
                                 ttt = Utils.DelEmoji(ttt, "　");
                         }
+                    }
+                }
+                //SacNGWordsの処理
+                foreach (var ngword in props.SacNGWords)
+                {
+                    if (ttt.IndexOf(ngword) > -1)
+                    {
+                        del_flg = true;
+                        break;
                     }
                 }
                 data["content"] = ttt;

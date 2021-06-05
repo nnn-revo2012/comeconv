@@ -84,8 +84,7 @@ namespace comeconv
                 {
                     AddLog("FFmpeg.exe がありません。", 2);
                 }
-
-                LogFile = Props.GetLogfile("D:\\home\\tmp", "conv");
+                LogFile = null;
 
                 //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)
@@ -118,38 +117,82 @@ namespace comeconv
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //OKボタンが押されたら設定を保存
-            GetForm();
-            var result = props.SaveData(); //設定ファイルに保存
-            result = Form1.props.LoadData(); //親フォームの設定データを更新
+            try
+            {
+                //OKボタンが押されたら設定を保存
+                GetForm();
+                var result = props.SaveData(); //設定ファイルに保存
+                result = Form1.props.LoadData(); //親フォームの設定データを更新
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(button1_Click), Ex);
+            }
         }
 
         private void textBox1_Validated(object sender, EventArgs e)
         {
-            string ttt = textBox1.Text;
-            if (int.TryParse(ttt, out var i))
-                textBox1.Text = ttt;
-            else
-                textBox1.Text = Properties.Settings.Default.SacCommLen.ToString();
+            try
+            {
+                if (int.TryParse(textBox1.Text, out var i))
+                    textBox1.Text = i.ToString();
+                else
+                    textBox1.Text = props.SacCommLen.ToString();
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(textBox1_Validated), Ex);
+            }
         }
 
         private void textBox2_Validated(object sender, EventArgs e)
         {
-            // 15 15.4 15.454445
-            string ttt = textBox2.Text;
-            if (!ttt.Contains("."))
-                ttt += ".0";
-            ttt += "00";
-            // 15.000 15.400 15.4565455000
-            ttt = ttt.Substring(0, ttt.IndexOf('.') + 3);
-            if (float.TryParse(ttt, out var f))
-                textBox2.Text = ttt;
-            else
-                textBox2.Text = Properties.Settings.Default.SacVpos.ToString("0.00");
+            try
+            {
+                // 15 15.4 15.454445
+                if (double.TryParse(textBox2.Text, out var dbl))
+                    textBox2.Text = dbl.ToString("0.00");
+                else
+                    textBox2.Text = ((double)(props.SacVpos / 100L)).ToString("0.00");
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(textBox2_Validated), Ex);
+            }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            var textfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
+            var notepad = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Windows), "System32", "notepad.exe");
+            OpenProcess.OpenProgram(textfile, notepad);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog1 = new System.Windows.Forms.OpenFileDialog())
+                {
+                    //openFileDialog1.FileName = Properties.Settings.Default.DefExecFile;
+                    openFileDialog1.InitialDirectory = @"C:\";
+                    openFileDialog1.Filter = "実行ファイル(*.exe;*.com)|*.exe;*.com|すべてのファイル(*.*)|*.*";
+                    openFileDialog1.FilterIndex = 1;
+                    openFileDialog1.Title = "開くファイルを選択してください";
+                    //ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
+                    openFileDialog1.RestoreDirectory = true;
+
+                    if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                    {
+                        //選択されたファイルを表示する
+                        textBox3.Text = openFileDialog1.FileName;
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(textBox2_Validated), Ex);
+            }
 
         }
     }

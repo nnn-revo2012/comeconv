@@ -71,6 +71,7 @@
     <Compile Include="Process\AExecProcess.cs" />
     <Compile Include="Process\ExecConvert.cs" />
     <Compile Include="Process\ExecPsInfo.cs" />
+    <Compile Include="Process\OpenProcess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Prop\Props.cs" />
