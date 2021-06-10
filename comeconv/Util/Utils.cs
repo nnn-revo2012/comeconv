@@ -59,21 +59,25 @@ namespace comeconv.Util
         }
 
         //保存ファイルにシーケンスNoをつける
-        public static string GetBackupFileName(string filename)
+        public static string GetBackupFileName(string filename, string ext)
         {
-            if (!File.Exists(filename)) return filename;
+            var dir = Path.GetDirectoryName(filename);
+            var backup = Path.Combine(dir, Path.GetFileNameWithoutExtension(filename) + ext);
+            if (!File.Exists(backup)) return backup;
 
             var ii = 1;
             //同名ファイル名がないかチェック
-            while (IsExistFile(filename, ii)) ++ii;
+            while (IsExistFile(backup, ii)) ++ii;
 
-            return filename + "(" + ii.ToString() + ")";
+            return Path.Combine(dir, Path.GetFileNameWithoutExtension(backup) + "(" + ii.ToString() + ")" + ext);
+
         }
 
         //同名ファイル名がないかチェック
         public static bool IsExistFile(string file, int seq)
         {
-            var fn = file + "(" + seq.ToString() + ")";
+            var dir = Path.GetDirectoryName(file);
+            var fn = Path.Combine(dir, Path.GetFileNameWithoutExtension(file) + "(" + seq.ToString() + ")" + Path.GetExtension(file));
 
             return !File.Exists(fn) ? false : true;
         }

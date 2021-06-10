@@ -14,3 +14,4 @@ NGコメントです
 target=
 自動延長が発動しました！<br
 /spi
+/trialpanel

@@ -248,19 +248,15 @@ namespace comeconv
 
             try
             {
-                var newfile = Path.Combine(Path.GetDirectoryName(filename), Path.GetRandomFileName()+".xml");
-                var renamefile = filename;
+                //元のファイルをrename
+                var backupfile = Utils.GetBackupFileName(filename, ".org");
+                File.Move(filename, backupfile);
 
                 AddLog("コメント変換開始します。", 1);
                 using (var conv = new ConvComment(this, props))
                 {
-                    if (conv.SacXmlConvert(filename, newfile))
+                    if (conv.SacXmlConvert(backupfile, filename))
                     {
-                        if (!File.Exists(renamefile))
-                        {
-                            //File.Move(filename, renamefile);
-                            //File.Move(newfile, filename);
-                        }
                         AddLog("コメント変換終了しました。", 1);
                     }
                     else
