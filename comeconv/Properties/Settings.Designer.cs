@@ -217,7 +217,8 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mp4\\taaaaaaa;flv\\tbbbbbbbb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mp4\t-c copy -y \"%OUTFILE%\";flv\t-c:v copy -c:a aac -bsf:a aac_adtstoasc -y \"%OUTFI" +
+            "LE%\"")]
         public string SacVideoList {
             get {
                 return ((string)(this["SacVideoList"]));

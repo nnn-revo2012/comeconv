@@ -114,10 +114,8 @@ namespace comeconv.Prop
                 this.IsSacNicoAd = Properties.Settings.Default.IsSacNicoAd;
                 this.SacNGLists = Properties.Settings.Default.SacNGLists;
                 this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
+                SacVideoList = ReadVideoList(Properties.Settings.Default.SacVideoList);
                 this.IsLogging = Properties.Settings.Default.IsLogging;
-                //TEST compoboxの内容をDicに読み込む
-                SacVideoList["mp4"] = "aaaaaaa";
-                SacVideoList["flv"] = "bbbbbbb";
             }
             catch (Exception Ex)
             {
@@ -171,6 +169,55 @@ namespace comeconv.Prop
             Properties.Settings.Default.Reset();
             result = this.LoadData();
             return result;
+        }
+
+        //動画変換リストを読み込み
+        private Dictionary<string, string> ReadVideoList(string file)
+        {
+            var dic = new Dictionary<string, string>();
+
+            try
+            {
+                foreach (var item in file.Split(';'))
+                {
+                    var ttt = item.Split('\t');
+                    dic.Add(ttt[0], ttt[1]);
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ReadVideoList), Ex);
+                return dic;
+            }
+            return dic;
+        }
+
+        //NGLists.txtを読み込み
+        public List<string> ReadNGList(string r_file)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+            var lists = new List<string>();
+
+            try
+            {
+                using (var sr = new StreamReader(r_file, enc))
+                {
+                    string line;
+                    while (!sr.EndOfStream) // 1行ずつ読み出し
+                    {
+                        line = sr.ReadLine();
+
+                        if (!string.IsNullOrEmpty(line) && !line.StartsWith("//"))
+                            lists.Add(line);
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ReadNGList), Ex);
+                return lists;
+            }
+            return lists;
         }
 
         //設定ファイルの場所をGet

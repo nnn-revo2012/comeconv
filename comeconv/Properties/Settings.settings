@@ -51,7 +51,7 @@
       <Value Profile="(Default)">mp4</Value>
     </Setting>
     <Setting Name="SacVideoList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mp4\taaaaaaa;flv\tbbbbbbbb</Value>
+      <Value Profile="(Default)">mp4	-c copy -y "%OUTFILE%";flv	-c:v copy -c:a aac -bsf:a aac_adtstoasc -y "%OUTFILE%"</Value>
     </Setting>
     <Setting Name="IsLogging" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

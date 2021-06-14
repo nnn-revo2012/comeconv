@@ -133,7 +133,7 @@ namespace comeconv
                     comboBox1.Items.Add(item);
                 comboBox1.SelectedItem = props.SacVideoMode;
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
-                props.SacNGWords = ReadNGData<string>(ngfile);
+                props.SacNGWords = props.ReadNGList(ngfile);
             }
             catch (Exception Ex)
             {
@@ -193,7 +193,7 @@ namespace comeconv
 
                 props.SacVideoMode = comboBox1.SelectedItem.ToString();
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
-                props.SacNGWords = ReadNGData<string>(ngfile);
+                props.SacNGWords = props.ReadNGList(ngfile);
             }
             catch (Exception Ex)
             {
@@ -202,35 +202,6 @@ namespace comeconv
             }
 
             return;
-        }
-
-        //NGLists.txtを読み込み
-        private List<string> ReadNGData<T>(string r_file)
-        {
-            var enc = new System.Text.UTF8Encoding(false);
-            var lists = new List<string>();
-
-            try
-            {
-                using (var sr = new StreamReader(r_file, enc))
-                {
-                    string line;
-                    while (!sr.EndOfStream) // 1行ずつ読み出し
-                    {
-                        line = sr.ReadLine();
-
-                        if (!string.IsNullOrEmpty(line) && !line.StartsWith("//"))
-                            lists.Add(line);
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                DebugWrite.Writeln(nameof(ReadNGData), Ex);
-                return lists;
-            }
-
-            return lists;
         }
 
         //コメントファイルを変換
@@ -263,6 +234,7 @@ namespace comeconv
             }
         }
 
+        //動画ファイルを変換
         private void ConvVideo(string filename)
         {
             try
@@ -270,16 +242,16 @@ namespace comeconv
                 //保存ファイル名作成
                 epi = new ExecPsInfo();
                 epi.Exec = props.ExecFile;
-                epi.Arg = "-i \"%INFILE%\" -c:v copy -c:a copy -y \"%OUTFILE%\"";
+                epi.Arg = "-i \"%INFILE%\" " + props.SacVideoList[props.SacVideoMode];
                 epi.SaveFile = filename;
-                epi.Ext2 = ".mp4";
+                epi.Ext2 = "." + props.SacVideoMode;
 
-                AddLog("映像変換開始します。", 1);
+                AddLog("動画変換開始します。", 1);
                 //映像ファイル出力処理
                 if (ExecFFmpeg(epi))
-                    AddLog("映像変換終了しました。", 1);
+                    AddLog("動画変換終了しました。", 1);
                 else
-                    AddLog("映像変換に失敗しました。", 1);
+                    AddLog("動画変換に失敗しました。", 1);
             }
             catch (Exception Ex)
             {
