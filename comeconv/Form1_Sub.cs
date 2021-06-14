@@ -67,15 +67,7 @@ namespace comeconv
         //実行プロセスのログ書き込み
         public void AddExecLog(string s)
         {
-            this.Invoke(new Action(() =>
-            {
-                lock (lockObject2)
-                {
-                    //textBox7.Text = s;
-                    //if (props.IsLogging && LogFile2 != null)
-                    //    System.IO.File.AppendAllText(LogFile2, System.DateTime.Now.ToString("HH:mm:ss ") + s);
-                }
-            }));
+            AddLog(s, 1);
         }
 
         public void EnableButton(bool flag)
@@ -244,8 +236,6 @@ namespace comeconv
         //コメントファイルを変換
         private void ConvXml(string filename)
         {
-            //if (filename.IndexOf(".xml") < 0) return;
-
             try
             {
                 //元のファイルをrename
@@ -272,6 +262,85 @@ namespace comeconv
                 return;
             }
         }
+
+        private void ConvVideo(string filename)
+        {
+            try
+            {
+                //保存ファイル名作成
+                epi = new ExecPsInfo();
+                epi.Exec = props.ExecFile;
+                epi.Arg = "-i \"%INFILE%\" -c:v copy -c:a copy -y \"%OUTFILE%\"";
+                epi.SaveFile = filename;
+                epi.Ext2 = ".mp4";
+
+                AddLog("映像変換開始します。", 1);
+                //映像ファイル出力処理
+                if (ExecFFmpeg(epi))
+                    AddLog("映像変換終了しました。", 1);
+                else
+                    AddLog("映像変換に失敗しました。", 1);
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ConvVideo), Ex);
+                return;
+            }
+        }
+
+        public bool ExecFFmpeg(ExecPsInfo epi)
+        {
+            ExecConvert ecv = null;
+            var result = false;
+            try
+            {
+                ecv = new ExecConvert(this);
+                var arg = epi.Arg;
+                arg = arg.Replace("%INFILE%", epi.SaveFile);
+                var dir = Path.GetDirectoryName(epi.SaveFile);
+                var outfile = Path.Combine(dir, Path.GetFileNameWithoutExtension(epi.SaveFile) + epi.Ext2);
+                arg = arg.Replace("%OUTFILE%", outfile);
+                if (epi.SaveFile == outfile)
+                {
+                    AddLog("変換元と変換先のファイルが同じです。", 1);
+                }
+                else
+                {
+                    ecv.ExecPs(epi.Exec, arg);
+                    result = true;
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ExecFFmpeg), Ex);
+            }
+            finally
+            {
+                var endflg = false;
+                while (!endflg)
+                {
+                    if (ecv != null)
+                    {
+                        if (ecv.PsStatus >= 1)
+                        {
+                            ecv.Dispose();
+                            ecv = null;
+                        }
+                        else
+                        {
+                            endflg = false;
+                            Task.Delay(1000).Wait();
+                        }
+                    }
+                    else
+                    {
+                        endflg = true;
+                    }
+                }
+            }
+            return result;
+        }
+
 
         //実行ファイルと同じフォルダにある指定ファイルのフルパスをGet
         private string GetExecFile(string file)

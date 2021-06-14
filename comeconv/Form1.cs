@@ -80,6 +80,7 @@ namespace comeconv
                 GetForm();
                 var exec_file = props.ExecFile;
                 exec_file = GetExecFile(exec_file);
+                props.ExecFile = exec_file;
                 if (!File.Exists(exec_file))
                 {
                     AddLog("FFmpeg.exe がありません。", 2);
@@ -89,7 +90,11 @@ namespace comeconv
                 //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)
                 {
-                    await Task.Run(() => ConvXml(files[i]));
+                    var filetype = Utils.IsFileType(files[i]);
+                    if (filetype == 0)
+                        await Task.Run(() => ConvXml(files[i]));
+                    else if (filetype == 1)
+                        await Task.Run(() => ConvVideo(files[i]));
                 }
             }
             catch (Exception Ex)
@@ -153,7 +158,7 @@ namespace comeconv
                 if (double.TryParse(textBox2.Text, out var dbl))
                     textBox2.Text = dbl.ToString("0.00");
                 else
-                    textBox2.Text = ((double)(props.SacVpos / 100L)).ToString("0.00");
+                    textBox2.Text = ((double)props.SacVpos / 100D).ToString("0.00");
             }
             catch (Exception Ex)
             {

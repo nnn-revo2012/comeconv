@@ -74,13 +74,25 @@ namespace comeconv.Util
         }
 
         //同名ファイル名がないかチェック
-        public static bool IsExistFile(string file, int seq)
+        public static bool IsExistFile(string filename, int seq)
         {
-            var dir = Path.GetDirectoryName(file);
-            var fn = Path.Combine(dir, Path.GetFileNameWithoutExtension(file) + "(" + seq.ToString() + ")" + Path.GetExtension(file));
+            var dir = Path.GetDirectoryName(filename);
+            var fn = Path.Combine(dir, Path.GetFileNameWithoutExtension(filename) + "(" + seq.ToString() + ")" + Path.GetExtension(filename));
 
             return !File.Exists(fn) ? false : true;
         }
 
+        public static int IsFileType(string filename)
+        {
+            var result = -1;
+
+            var ext = Path.GetExtension(filename);
+            if (ext == ".xml" || ext == ".json")
+                result = 0;
+            else if (ext == ".ts" || ext == ".flv" || ext == ".mp4")
+                result = 1;
+
+            return result;
+        }
     }
 }
