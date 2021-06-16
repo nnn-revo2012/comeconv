@@ -70,7 +70,7 @@ namespace comeconv
                     while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
                     {
                         line = sr.ReadLine();
-                        if (line.StartsWith("<chat "))
+                        if (line.TrimStart().StartsWith("<chat "))
                         {
                             while (!line.EndsWith("</chat>"))
                             {
@@ -248,6 +248,8 @@ namespace comeconv
             var content = string.Empty;
             if (data.Count <= 0)
                 return result;
+            else
+                result = "<chat";
 
             try
             {
@@ -258,7 +260,7 @@ namespace comeconv
                     switch (it.Key.ToString())
                     {
                         case "thread":
-                            result = "<chat " + it.Key.ToString() + @"=""" + value + @"""";
+                            result += " " + it.Key.ToString() + @"=""" + value + @"""";
                             break;
                         case "no":
                             if (int.Parse(value) > -1)
