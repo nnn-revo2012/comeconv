@@ -209,5 +209,36 @@ namespace comeconv
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                this.panel1.Enabled = true;
+            else
+                this.panel1.Enabled = false;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+                this.panel2.Enabled = true;
+            else
+                this.panel2.Enabled = false;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+                this.textBox1.Enabled = true;
+            else
+                this.textBox1.Enabled = false;
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+                this.textBox2.Enabled = true;
+            else
+                this.textBox2.Enabled = false;
+        }
     }
 }

@@ -192,6 +192,7 @@
             // 
             this.panel2.Controls.Add(this.rB_pdel);
             this.panel2.Controls.Add(this.rB_henkan);
+            this.panel2.Enabled = false;
             this.panel2.Location = new System.Drawing.Point(37, 95);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(312, 26);
@@ -223,6 +224,7 @@
             // 
             this.panel1.Controls.Add(this.rB_space);
             this.panel1.Controls.Add(this.rB_edel);
+            this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(37, 41);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(313, 26);
@@ -310,6 +312,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(123, 171);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(51, 19);
@@ -326,6 +329,7 @@
             this.checkBox4.TabIndex = 9;
             this.checkBox4.Text = "表示位置調整";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // label1
             // 
@@ -338,6 +342,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(41, 148);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(38, 19);
@@ -354,6 +359,7 @@
             this.checkBox3.TabIndex = 6;
             this.checkBox3.Text = "コメント文字数制限";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -364,6 +370,7 @@
             this.checkBox2.TabIndex = 3;
             this.checkBox2.Text = "半透明コメント (コメントが多いときに半透明になるもの)";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -374,6 +381,7 @@
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "絵文字 (動画結合時に□□のようになるもの)";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // tabPage2
             // 
