@@ -158,8 +158,6 @@ namespace comeconv
                     if (co.GetType().Name == "RadioButton")
                     {
                         if ((bool)((RadioButton)co).Checked)
-                            //if (rbRegex.Replace(co.Name.ToString(), "$1") == props.SacEmojiMode.ToString())
-                            //    ((RadioButton)co).Checked = true;
                             props.SacEmojiMode = rbRegex.Replace(co.Name.ToString(), "$1");
                     }
                 }
@@ -168,8 +166,6 @@ namespace comeconv
                     if (co.GetType().Name == "RadioButton")
                     {
                         if ((bool)((RadioButton)co).Checked)
-                            //if (rbRegex.Replace(co.Name.ToString(), "$1") == props.SacPremiumMode.ToString())
-                            //    ((RadioButton)co).Checked = true;
                             props.SacPremiumMode = rbRegex.Replace(co.Name.ToString(), "$1");
                     }
                 }

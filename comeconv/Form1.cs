@@ -15,7 +15,7 @@ namespace comeconv
     {
         public static Props props;                   //設定
 
-        //0処理待ち 1録画準備 2録画中 3再接続 4中断 5変換処理中 9終了
+        //0処理待ち 1処理中 2中断
         private static int ProgramStatus { get; set; } //プログラム状態
 
         //dispose するもの
@@ -24,7 +24,6 @@ namespace comeconv
         private ExecPsInfo epi = null;                //実行／保存ファイル情報
 
         private readonly object lockObject = new object();  //情報表示用
-        private readonly object lockObject2 = new object(); //実行ファイルのログ用
         private string LogFile;
         private string LogFile2;
         private string LogFile3;
@@ -54,6 +53,7 @@ namespace comeconv
                     File.Copy(sfile, dfile);
                 }
                 SetForm();
+                ProgramStatus = 0;
             }
             catch (Exception Ex)
             {
@@ -77,16 +77,20 @@ namespace comeconv
 
             try
             {
+                if (ProgramStatus == 1) return;
+
                 GetForm();
                 var exec_file = props.ExecFile;
-                exec_file = GetExecFile(exec_file);
-                props.ExecFile = exec_file;
                 if (!File.Exists(exec_file))
                 {
-                    AddLog("FFmpeg.exe がありません。", 2);
+                    exec_file = GetExecFile(exec_file);
+                    if (!File.Exists(exec_file))
+                        AddLog("FFmpeg.exe がありません。", 2);
                 }
+                props.ExecFile = exec_file;
                 LogFile = null;
 
+                ProgramStatus = 1;
                 //1ファイルずつ順次実行する
                 for (int i = 0; i < files.Length; i++)
                 {
@@ -96,6 +100,8 @@ namespace comeconv
                     else if (filetype == 1)
                         await Task.Run(() => ConvVideo(files[i]));
                 }
+                ProgramStatus = 0;
+
             }
             catch (Exception Ex)
             {
@@ -111,13 +117,9 @@ namespace comeconv
         private void tabPage1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
                 e.Effect = DragDropEffects.All;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -168,9 +170,16 @@ namespace comeconv
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var textfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
-            var notepad = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Windows), "System32", "notepad.exe");
-            OpenProcess.OpenProgram(textfile, notepad);
+            try
+            {
+                var textfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
+                var notepad = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Windows), "System32", "notepad.exe");
+                OpenProcess.OpenProgram(textfile, notepad);
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(button2_Click), Ex);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -196,9 +205,9 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                DebugWrite.Writeln(nameof(textBox2_Validated), Ex);
+                DebugWrite.Writeln(nameof(button3_Click), Ex);
             }
-
         }
+
     }
 }
