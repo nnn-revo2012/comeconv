@@ -245,9 +245,13 @@ namespace comeconv
                 AddLog("動画変換開始します。", 1);
                 //映像ファイル出力処理
                 if (ExecFFmpeg(epi))
+                {
                     AddLog("動画変換終了しました。", 1);
+                }
                 else
+                {
                     AddLog("動画変換に失敗しました。", 1);
+                }
             }
             catch (Exception Ex)
             {
@@ -271,6 +275,8 @@ namespace comeconv
                 if (epi.SaveFile == outfile)
                 {
                     AddLog("変換元と変換先のファイルが同じです。", 1);
+                    ecv.Dispose();
+                    ecv = null;
                 }
                 else
                 {

@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/06/17
+【作成月日】 2021/06/18
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -42,7 +42,16 @@
 
 ■動作環境
 .Net Framework 4.7.2以降が必要です。Windows 10では標準でインストールされています。
-https://www.microsoft.com/ja-jp/download/details.aspx?id=49981
+https://support.microsoft.com/ja-jp/topic/windows-%E7%94%A8%E3%81%AE-microsoft-net-framework-4-7-2-web-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A9%E3%83%BC-dda5cddc-b85e-545d-8d4a-d213349b7775
+
+■動作確認ソフト
+・Saccubus（さきゅばす）1.67.2.11
+https://github.com/Saccubus/Saccubus1.x/releases
+・動画ファイルおよびコメントファイル
+  - ニコ生新配信録画ツール（仮
+  - livedl
+  - NCV (コメントファイルのみ)
+  ※ニコニコ動画の動画ファイル、コメントファイルは未検証です
 
 ■免責事項
 本ソフトウェアを利用して発生した如何なる損害について著作者は一切の責任を負いません。
@@ -52,13 +61,19 @@ https://www.microsoft.com/ja-jp/download/details.aspx?id=49981
 ・comeconv
 https://github.com/nnn-revo2012/comeconv
 Copyright (c) 2021 nnn-revo2012
+Released under the MIT License
 
 ・Json.NET
 https://www.newtonsoft.com/json
 Copyright (c) 2007 James Newton-King
 Released under the MIT License
 
+・FFmpeg
+https://www.ffmpeg.org/
+https://github.com/FFmpeg/FFmpeg/
+Copyright (c) 2000-2021 the FFmpeg developers
+GNU General Public License v3.0
 
 ■更新履歴
-2021/06/17　Version 0.0.1.05
+2021/06/18　Version 0.0.1.05
 初期バージョンリリース
