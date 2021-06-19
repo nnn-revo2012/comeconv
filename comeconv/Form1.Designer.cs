@@ -67,6 +67,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -125,11 +128,13 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(3, 254);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(421, 45);
+            this.groupBox2.Size = new System.Drawing.Size(421, 72);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "映像設定";
@@ -139,7 +144,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(78, 15);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(76, 20);
+            this.comboBox1.Size = new System.Drawing.Size(123, 20);
             this.comboBox1.TabIndex = 1;
             // 
             // label4
@@ -155,6 +160,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
@@ -303,12 +309,13 @@
             // 
             // label2
             // 
+            this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(180, 174);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 12);
+            this.label2.Size = new System.Drawing.Size(45, 12);
             this.label2.TabIndex = 11;
-            this.label2.Text = "秒ずらす(1.50のように指定)";
+            this.label2.Text = "秒ずらす";
             // 
             // textBox2
             // 
@@ -473,7 +480,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(337, 401);
+            this.button1.Location = new System.Drawing.Point(329, 401);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 22);
             this.button1.TabIndex = 4;
@@ -502,6 +509,34 @@
             this.label9.Size = new System.Drawing.Size(61, 12);
             this.label9.TabIndex = 6;
             this.label9.Text = "              ";
+            // 
+            // label10
+            // 
+            this.label10.AutoEllipsis = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(231, 174);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(155, 24);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "例  -3.50 3.50秒前にずらす\r\n      12.33 12.33秒後ろにずらす";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(217, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(169, 12);
+            this.label11.TabIndex = 2;
+            this.label11.Text = ".tsファイルを.mp4か.flvに変換します";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(71, 47);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(315, 12);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "(再エンコード)は動画変換中にエラーが出る場合に使用してください";
             // 
             // Form1
             // 
@@ -579,6 +614,9 @@
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
 

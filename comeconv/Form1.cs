@@ -80,6 +80,8 @@ namespace comeconv
                 if (ProgramStatus == 1) return;
 
                 GetForm();
+                ClearLog();
+
                 var exec_file = props.ExecFile;
                 if (!File.Exists(exec_file))
                 {

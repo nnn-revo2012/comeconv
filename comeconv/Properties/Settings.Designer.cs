@@ -133,7 +133,7 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsSacVpos {
             get {
                 return ((bool)(this["IsSacVpos"]));
@@ -217,8 +217,9 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mp4\t-c copy -y \"%OUTFILE%\";flv\t-c:v copy -c:a aac -bsf:a aac_adtstoasc -y \"%OUTFI" +
-            "LE%\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mp4\t-c copy -y \"%OUTFILE%\";flv\t-c copy -y \"%OUTFILE%\";mp4(再エンコード)\t-c:v copy -c:a " +
+            "aac -bsf:a aac_adtstoasc -y \"%OUTFILE%\";flv(再エンコード)\t-c:v copy -c:a aac -bsf:a aa" +
+            "c_adtstoasc -y \"%OUTFILE%\"")]
         public string SacVideoList {
             get {
                 return ((string)(this["SacVideoList"]));

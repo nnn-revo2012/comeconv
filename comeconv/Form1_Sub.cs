@@ -210,6 +210,8 @@ namespace comeconv
                 File.Move(filename, backupfile);
 
                 AddLog("コメント変換開始します。", 1);
+                AddLog("元ファイル: " + Path.GetFileName(backupfile), 1);
+                AddLog("変換ファイル: " + Path.GetFileName(filename), 1);
                 using (var conv = new ConvComment(this, props))
                 {
                     if (conv.SacXmlConvert(backupfile, filename))
@@ -240,9 +242,18 @@ namespace comeconv
                 epi.Exec = props.ExecFile;
                 epi.Arg = "-i \"%INFILE%\" " + props.SacVideoList[props.SacVideoMode];
                 epi.SaveFile = filename;
-                epi.Ext2 = "." + props.SacVideoMode;
+                epi.Ext2 = "." + props.SplitVideoItem(props.SacVideoMode);
+                epi.SaveFile2 = Path.Combine(Path.GetDirectoryName(epi.SaveFile), Path.GetFileNameWithoutExtension(epi.SaveFile) + epi.Ext2);
+                if (Path.GetExtension(filename) == epi.Ext2)
+                {
+                    //元のファイルをrename
+                    epi.SaveFile = Utils.GetBackupFileName(filename, ".org");
+                    File.Move(filename, epi.SaveFile);
+                }
 
                 AddLog("動画変換開始します。", 1);
+                AddLog("元ファイル: " + Path.GetFileName(epi.SaveFile), 1);
+                AddLog("変換ファイル: " + Path.GetFileName(epi.SaveFile2), 1);
                 //映像ファイル出力処理
                 if (ExecFFmpeg(epi))
                 {
@@ -269,10 +280,8 @@ namespace comeconv
                 ecv = new ExecConvert(this);
                 var arg = epi.Arg;
                 arg = arg.Replace("%INFILE%", epi.SaveFile);
-                var dir = Path.GetDirectoryName(epi.SaveFile);
-                var outfile = Path.Combine(dir, Path.GetFileNameWithoutExtension(epi.SaveFile) + epi.Ext2);
-                arg = arg.Replace("%OUTFILE%", outfile);
-                if (epi.SaveFile == outfile)
+                arg = arg.Replace("%OUTFILE%", epi.SaveFile2);
+                if (epi.SaveFile == epi.SaveFile2)
                 {
                     AddLog("変換元と変換先のファイルが同じです。", 1);
                     ecv.Dispose();

@@ -30,7 +30,7 @@
       <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="IsSacVpos" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SacVpos" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -51,7 +51,7 @@
       <Value Profile="(Default)">mp4</Value>
     </Setting>
     <Setting Name="SacVideoList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mp4	-c copy -y "%OUTFILE%";flv	-c:v copy -c:a aac -bsf:a aac_adtstoasc -y "%OUTFILE%"</Value>
+      <Value Profile="(Default)">mp4	-c copy -y "%OUTFILE%";flv	-c copy -y "%OUTFILE%";mp4(再エンコード)	-c:v copy -c:a aac -bsf:a aac_adtstoasc -y "%OUTFILE%";flv(再エンコード)	-c:v copy -c:a aac -bsf:a aac_adtstoasc -y "%OUTFILE%"</Value>
     </Setting>
     <Setting Name="IsLogging" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

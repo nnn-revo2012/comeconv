@@ -192,6 +192,11 @@ namespace comeconv.Prop
             return dic;
         }
 
+        public string SplitVideoItem(string item)
+        {
+            return item.Split('(')[0];
+        }
+
         //NGLists.txtを読み込み
         public List<string> ReadNGList(string r_file)
         {
