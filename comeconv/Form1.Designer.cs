@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rB_pdel = new System.Windows.Forms.RadioButton();
@@ -67,9 +71,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,6 +140,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "映像設定";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(71, 47);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(315, 12);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "(再エンコード)は動画変換中にエラーが出る場合に使用してください";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(217, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(169, 12);
+            this.label11.TabIndex = 2;
+            this.label11.Text = ".tsファイルを.mp4か.flvに変換します";
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -183,6 +202,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "コメント設定";
+            // 
+            // label10
+            // 
+            this.label10.AutoEllipsis = true;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(231, 174);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(155, 24);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "例  -3.50 3.50秒前にずらす\r\n      12.33 12.33秒後ろにずらす";
             // 
             // label7
             // 
@@ -510,34 +539,6 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "              ";
             // 
-            // label10
-            // 
-            this.label10.AutoEllipsis = true;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(231, 174);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(155, 24);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "例  -3.50 3.50秒前にずらす\r\n      12.33 12.33秒後ろにずらす";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(217, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(169, 12);
-            this.label11.TabIndex = 2;
-            this.label11.Text = ".tsファイルを.mp4か.flvに変換します";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(71, 47);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(315, 12);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "(再エンコード)は動画変換中にエラーが出る場合に使用してください";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -550,6 +551,7 @@
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
