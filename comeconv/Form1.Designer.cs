@@ -71,6 +71,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.設定ファイルを開くOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.設定フォルダーを開くOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,6 +98,8 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.設定ファイルを開くOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(440, 24);
@@ -539,6 +546,35 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "              ";
             // 
+            // 設定ファイルを開くOToolStripMenuItem
+            // 
+            this.設定ファイルを開くOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.設定フォルダーを開くOToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.終了XToolStripMenuItem});
+            this.設定ファイルを開くOToolStripMenuItem.Name = "設定ファイルを開くOToolStripMenuItem";
+            this.設定ファイルを開くOToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.設定ファイルを開くOToolStripMenuItem.Text = "ファイル(&F)";
+            // 
+            // 設定フォルダーを開くOToolStripMenuItem
+            // 
+            this.設定フォルダーを開くOToolStripMenuItem.Name = "設定フォルダーを開くOToolStripMenuItem";
+            this.設定フォルダーを開くOToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.設定フォルダーを開くOToolStripMenuItem.Text = "設定フォルダーを開く(&O)";
+            this.設定フォルダーを開くOToolStripMenuItem.Click += new System.EventHandler(this.設定フォルダーを開くOToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            // 
+            // 終了XToolStripMenuItem
+            // 
+            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.終了XToolStripMenuItem.Text = "終了(&X)";
+            this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -556,6 +592,8 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "comeconv";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -619,6 +657,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem 設定ファイルを開くOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 設定フォルダーを開くOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
     }
 }
 

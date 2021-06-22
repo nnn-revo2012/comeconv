@@ -242,5 +242,18 @@ namespace comeconv
             else
                 this.textBox2.Enabled = false;
         }
+
+        private void 設定フォルダーを開くOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Props.GetSettingDirectory()))
+            {
+                Process.Start(Props.GetSettingDirectory());
+            }
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
