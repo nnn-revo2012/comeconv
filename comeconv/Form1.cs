@@ -25,8 +25,8 @@ namespace comeconv
 
         private readonly object lockObject = new object();  //情報表示用
         private string LogFile;
-        private string LogFile2;
-        private string LogFile3;
+        //private string LogFile2;
+        //private string LogFile3;
 
         public Form1(string[] args)
         {

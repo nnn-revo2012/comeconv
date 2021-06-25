@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/06/22
+【作成月日】 2021/06/25
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -104,5 +104,5 @@ Copyright (c) 2000-2021 the FFmpeg developers
 GNU General Public License v3.0
 
 ■更新履歴
-2021/06/22　Version 0.0.1.06
+2021/06/25　Version 0.0.1.07
 初期バージョンリリース
