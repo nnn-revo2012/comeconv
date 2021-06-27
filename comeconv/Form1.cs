@@ -255,5 +255,59 @@ namespace comeconv
         {
             this.Close();
         }
+
+        private async void tabPage3_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
+            try
+            {
+                if (ProgramStatus == 1) return;
+
+                GetForm();
+                ClearLog();
+
+                var exec_file = props.ExecFile;
+                if (!File.Exists(exec_file))
+                {
+                    exec_file = GetExecFile(exec_file);
+                    if (!File.Exists(exec_file))
+                        AddLog("FFmpeg.exe がありません。", 2);
+                }
+                props.ExecFile = exec_file;
+                LogFile = null;
+
+                ProgramStatus = 1;
+                //1ファイルずつ順次実行する
+                for (int i = 0; i < files.Length; i++)
+                {
+                    var filetype = Utils.IsFileType(files[i]);
+                    if (filetype == 0)
+                        await Task.Run(() => ConvXml(files[i], "twitch"));
+                    else if (filetype == 1)
+                        await Task.Run(() => ConvVideo(files[i]));
+                }
+                ProgramStatus = 0;
+
+            }
+            catch (Exception Ex)
+            {
+                //if (_ndb != null)
+                //{
+                //    _ndb.Dispose();
+                //}
+                AddLog("ドラッグ＆ドロップできません。\r\n" + Ex.Message, 2);
+            }
+
+        }
+
+        private void tabPage3_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+
+        }
     }
 }

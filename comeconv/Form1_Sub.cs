@@ -201,8 +201,9 @@ namespace comeconv
         }
 
         //コメントファイルを変換
-        private void ConvXml(string filename)
+        private void ConvXml(string filename, string mode = "sac")
         {
+            var result = false;
             try
             {
                 //元のファイルをrename
@@ -214,7 +215,11 @@ namespace comeconv
                 AddLog("変換ファイル: " + Path.GetFileName(filename), 1);
                 using (var conv = new ConvComment(this, props))
                 {
-                    if (conv.SacXmlConvert(backupfile, filename))
+                    if (mode == "twitch")
+                        result = conv.TwitchConvert(backupfile, filename);
+                    else
+                        result = conv.SacXmlConvert(backupfile, filename);
+                    if (result)
                     {
                         AddLog("コメント変換終了しました。", 1);
                     }
