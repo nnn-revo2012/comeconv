@@ -242,18 +242,18 @@ namespace comeconv
             }
         }
 
-        public void BeginXmlDoc(StreamWriter sw)
+        public static void BeginXmlDoc(StreamWriter sw)
         {
             sw.Write("<?xml version='1.0' encoding='UTF-8'?>\r\n");
             sw.Write("<packet>\r\n");
         }
 
-        public void EndXmlDoc(StreamWriter sw)
+        public static void EndXmlDoc(StreamWriter sw)
         {
             sw.Write("</packet>\r\n");
         }
 
-        public string Table2Xml(IDictionary<string, string> data)
+        public static string Table2Xml(IDictionary<string, string> data)
         {
             var result = string.Empty;
             var content = string.Empty;
@@ -322,69 +322,6 @@ namespace comeconv
             }
 
             return result;
-        }
-
-        //Twitch形式のコメントファイルを読み込み変換する
-        public bool TwitchConvert(string sfile, string dfile)
-        {
-
-            var enc = new System.Text.UTF8Encoding(false);
-
-            try
-            {
-                if (!File.Exists(sfile))
-                {
-                    return false;
-                }
-                using (var sr = new StreamReader(sfile, enc))
-                using (var sw = new StreamWriter(dfile, true, enc))
-                {
-                    string line;
-                    BeginXmlDoc(sw);
-                    while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
-                    {
-                        line = sr.ReadLine();
-                        if (line.TrimStart().StartsWith("{'message_id':"))
-                        {
-                            //チャットの処理
-                            {
-                                var data = new Dictionary<string, string>();
-                                var jo = JObject.Parse(line.Replace(": None", ": 'None'"));
-                                data.Add("threadid", jo["message_id"].ToString());
-                                data.Add("vpos", ((long)((double)jo["time_in_seconds"] * 100D)).ToString());
-                                var utime = jo["timestamp"].ToString();
-                                if (utime.Length > 6)
-                                {
-                                    //01 234567
-                                    data.Add("date", utime.Substring(0, utime.Length-6));
-                                    data.Add("date_usec", utime.Substring(utime.Length-6));
-                                }
-                                if (jo["author"]["colour"] != null)
-                                    data.Add("color", jo["author"]["colour"].ToString());
-                                data.Add("user_id", HttpUtility.HtmlEncode(jo["author"]["name"].ToString()));
-                                data.Add("name", HttpUtility.HtmlEncode(jo["author"]["display_name"].ToString()));
-                                data.Add("content", HttpUtility.HtmlEncode(jo["message"].ToString()));
-                                if (data.Count() > 0)
-                                {
-                                    var ttt = Table2Xml(data).TrimEnd();
-                                    if (!string.IsNullOrEmpty(ttt))
-                                        sw.WriteLine(ttt);
-                                    //else
-                                    //_form.AddLog("deleted:" + line, 9);
-                                }
-                            }
-                        }
-                    }
-                    EndXmlDoc(sw);
-                }
-
-            }
-            catch (Exception Ex)
-            {
-                DebugWrite.Writeln(nameof(Table2Xml), Ex);
-                return false;
-            }
-            return true;
         }
 
 

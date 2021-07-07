@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvComment.cs" />
+    <Compile Include="ConvTwitch.cs" />
     <Compile Include="DebugWrite.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

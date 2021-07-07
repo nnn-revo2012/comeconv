@@ -204,21 +204,33 @@ namespace comeconv
         private void ConvXml(string filename, string mode = "sac")
         {
             var result = false;
+            var backupfile = "";
+            var newfile = "";
             try
             {
                 //元のファイルをrename
-                var backupfile = Utils.GetBackupFileName(filename, ".org");
-                File.Move(filename, backupfile);
+                if (mode == "twitch")
+                {
+                    backupfile = filename;
+                    newfile = Utils.GetNewFileName(filename, ".xml");
+                }
+                else
+                {
+                    backupfile = Utils.GetBackupFileName(filename, ".org");
+                    File.Move(filename, backupfile);
+                    newfile = filename;
+                }
 
                 AddLog("コメント変換開始します。", 1);
                 AddLog("元ファイル: " + Path.GetFileName(backupfile), 1);
-                AddLog("変換ファイル: " + Path.GetFileName(filename), 1);
-                using (var conv = new ConvComment(this, props))
+                AddLog("変換ファイル: " + Path.GetFileName(newfile), 1);
                 {
                     if (mode == "twitch")
-                        result = conv.TwitchConvert(backupfile, filename);
+                        using (var conv = new ConvTwitch(this, props))
+                            result = conv.TwitchConvert(backupfile, newfile);
                     else
-                        result = conv.SacXmlConvert(backupfile, filename);
+                        using (var conv = new ConvComment(this, props))
+                            result = conv.SacXmlConvert(backupfile, newfile);
                     if (result)
                     {
                         AddLog("コメント変換終了しました。", 1);

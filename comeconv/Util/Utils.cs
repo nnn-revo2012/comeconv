@@ -57,19 +57,34 @@ namespace comeconv.Util
             return Path.Combine(dir, tmp);
         }
 
-        //保存ファイルにシーケンスNoをつける
+        //保存ファイルにシーケンスNoをつける (file名.xml(n).org の形式)
         public static string GetBackupFileName(string filename, string ext)
         {
             var dir = Path.GetDirectoryName(filename);
-            var ext2 = Path.GetExtension(filename);
+            var ext2 = Path.GetExtension(filename); //元の拡張子
             var backup = Path.Combine(dir, Path.GetFileNameWithoutExtension(filename) + ext2 + ext);
             if (!File.Exists(backup)) return backup;
 
             var ii = 1;
             //同名ファイル名がないかチェック
-            while (IsExistFile(backup, ext2+ext, ii)) ++ii;
+            while (IsExistFile(backup, ext2 + ext, ii)) ++ii;
 
             return Path.Combine(dir, Path.GetFileNameWithoutExtension(backup) + "(" + ii.ToString() + ")" + ext2 + ext);
+        }
+
+        //保存ファイルにシーケンスNoをつける (file名.json -> file名.xml(n) の形式)
+        public static string GetNewFileName(string filename, string ext)
+        {
+            var dir = Path.GetDirectoryName(filename);
+            var ext2 = Path.GetExtension(filename); //元の拡張子
+            var newfile = Path.Combine(dir, Path.GetFileNameWithoutExtension(filename) + ext);
+            if (!File.Exists(newfile)) return newfile;
+
+            var ii = 1;
+            //同名ファイル名がないかチェック
+            while (IsExistFile(newfile, ext, ii)) ++ii;
+
+            return Path.Combine(dir, Path.GetFileNameWithoutExtension(newfile) + "(" + ii.ToString() + ")" + ext);
         }
 
         //同名ファイル名がないかチェック
@@ -86,7 +101,7 @@ namespace comeconv.Util
             var result = -1;
 
             var ext = Path.GetExtension(filename);
-            if (ext == ".xml" || ext == ".json")
+            if (ext == ".xml" || ext == ".json" || ext == ".txt")
                 result = 0;
             else if (ext == ".ts" || ext == ".flv" || ext == ".mp4")
                 result = 1;
