@@ -37,6 +37,7 @@
             this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,6 +66,21 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rB_tspace = new System.Windows.Forms.RadioButton();
+            this.rB_tdel = new System.Windows.Forms.RadioButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -83,6 +99,9 @@
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +111,7 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(0, 427);
+            this.listBox1.Location = new System.Drawing.Point(0, 458);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(440, 112);
             this.listBox1.TabIndex = 0;
@@ -146,23 +165,36 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(440, 358);
+            this.tabControl1.Size = new System.Drawing.Size(440, 384);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             this.tabPage1.AllowDrop = true;
             this.tabPage1.BackColor = System.Drawing.Color.Honeydew;
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(432, 332);
+            this.tabPage1.Size = new System.Drawing.Size(432, 358);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "さきゅばす変換";
             this.tabPage1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragDrop);
             this.tabPage1.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragEnter);
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label13.Location = new System.Drawing.Point(8, 3);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(360, 15);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "ニコ生のコメントファイル(xml)をさきゅばす用に変換します";
             // 
             // groupBox2
             // 
@@ -171,7 +203,7 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(3, 254);
+            this.groupBox2.Location = new System.Drawing.Point(3, 277);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(421, 72);
             this.groupBox2.TabIndex = 1;
@@ -234,12 +266,12 @@
             this.groupBox1.Controls.Add(this.checkBox3);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 31);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(421, 245);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "コメント設定";
+            this.groupBox1.Text = "コメント設定 (表示設定以外はチェックすると変換します)";
             // 
             // label10
             // 
@@ -461,14 +493,177 @@
             // 
             this.tabPage3.AllowDrop = true;
             this.tabPage3.BackColor = System.Drawing.Color.Honeydew;
+            this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Controls.Add(this.label18);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(432, 332);
+            this.tabPage3.Size = new System.Drawing.Size(432, 358);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Twitch変換";
             this.tabPage3.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragDrop);
             this.tabPage3.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragEnter);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(91, 53);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(151, 24);
+            this.label19.TabIndex = 6;
+            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader(json)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 53);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(54, 12);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "対応ソフト";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.panel4);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.checkBox10);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.checkBox11);
+            this.groupBox4.Controls.Add(this.checkBox9);
+            this.groupBox4.Location = new System.Drawing.Point(6, 89);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(421, 165);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "コメント設定(チェックすると変換します)";
+            // 
+            // label15
+            // 
+            this.label15.AutoEllipsis = true;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(232, 129);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(155, 24);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "例  -3.50 3.50秒前にずらす\r\n      12.33 12.33秒後ろにずらす";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.rB_tspace);
+            this.panel4.Controls.Add(this.rB_tdel);
+            this.panel4.Enabled = false;
+            this.panel4.Location = new System.Drawing.Point(37, 41);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(313, 26);
+            this.panel4.TabIndex = 17;
+            // 
+            // rB_tspace
+            // 
+            this.rB_tspace.AutoSize = true;
+            this.rB_tspace.Location = new System.Drawing.Point(4, 3);
+            this.rB_tspace.Name = "rB_tspace";
+            this.rB_tspace.Size = new System.Drawing.Size(80, 16);
+            this.rB_tspace.TabIndex = 1;
+            this.rB_tspace.TabStop = true;
+            this.rB_tspace.Text = "空白に置換";
+            this.rB_tspace.UseVisualStyleBackColor = true;
+            // 
+            // rB_tdel
+            // 
+            this.rB_tdel.AutoSize = true;
+            this.rB_tdel.Location = new System.Drawing.Point(137, 3);
+            this.rB_tdel.Name = "rB_tdel";
+            this.rB_tdel.Size = new System.Drawing.Size(133, 16);
+            this.rB_tdel.TabIndex = 2;
+            this.rB_tdel.TabStop = true;
+            this.rB_tdel.Text = "絵文字のある行を削除";
+            this.rB_tdel.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(181, 129);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 12);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "秒ずらす";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Enabled = false;
+            this.textBox5.Location = new System.Drawing.Point(124, 126);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(51, 19);
+            this.textBox5.TabIndex = 10;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(22, 128);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(96, 16);
+            this.checkBox10.TabIndex = 9;
+            this.checkBox10.Text = "表示位置調整";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(85, 101);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(164, 12);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "文字以上のコメントは削除（数字)";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Enabled = false;
+            this.textBox6.Location = new System.Drawing.Point(41, 98);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(38, 19);
+            this.textBox6.TabIndex = 7;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(21, 73);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(117, 16);
+            this.checkBox11.TabIndex = 6;
+            this.checkBox11.Text = "コメント文字数制限";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(21, 19);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(238, 16);
+            this.checkBox9.TabIndex = 0;
+            this.checkBox9.Text = "絵文字 (動画結合時に□□のようになるもの)";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label14.Location = new System.Drawing.Point(6, 3);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(409, 30);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Twitchのコメントファイルをニコ動コメント形式(xml)に変換します\r\nさきゅばす用にはコメント設定にチェックすると変換できます";
             // 
             // tabPage2
             // 
@@ -477,7 +672,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(432, 332);
+            this.tabPage2.Size = new System.Drawing.Size(432, 358);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "設定";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -487,7 +682,7 @@
             this.checkBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox8.AutoSize = true;
             this.checkBox8.Enabled = false;
-            this.checkBox8.Location = new System.Drawing.Point(11, 289);
+            this.checkBox8.Location = new System.Drawing.Point(11, 336);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(118, 16);
             this.checkBox8.TabIndex = 1;
@@ -560,7 +755,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(329, 401);
+            this.button1.Location = new System.Drawing.Point(337, 430);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 22);
             this.button1.TabIndex = 4;
@@ -573,7 +768,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(12, 385);
+            this.label8.Location = new System.Drawing.Point(12, 412);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(416, 13);
             this.label8.TabIndex = 5;
@@ -584,7 +779,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Honeydew;
-            this.label9.Location = new System.Drawing.Point(46, 386);
+            this.label9.Location = new System.Drawing.Point(42, 413);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 12);
             this.label9.TabIndex = 6;
@@ -594,7 +789,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 539);
+            this.ClientSize = new System.Drawing.Size(440, 570);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
@@ -611,6 +806,7 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -619,6 +815,12 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -677,6 +879,22 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RadioButton rB_tspace;
+        private System.Windows.Forms.RadioButton rB_tdel;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }
 

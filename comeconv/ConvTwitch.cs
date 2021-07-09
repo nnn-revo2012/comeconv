@@ -53,15 +53,43 @@ namespace comeconv
         //Twitch形式のコメントファイルを読み込み変換する
         public bool TwitchConvert(string sfile, string dfile)
         {
+            var result = false;
+            try
+            {
+                if (!File.Exists(sfile))
+                    return false;
 
+                var filetype = Utils.IsTwitchFileType(sfile);
+                if (filetype == -1)
+                    return false;
+
+                switch (filetype)
+                {
+                    case 0:
+                        result = TwitchConvertChatDownloader(sfile, dfile);
+                        break;
+                    case 1:
+                        //result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
+                        break;
+                    case 2:
+                        //result = TwitchConvertTwitchDownloaderText(sfile, dfile);
+                        break;
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(TwitchConvert), Ex);
+                return false;
+            }
+            return result;
+        }
+
+        public bool TwitchConvertChatDownloader(string sfile, string dfile)
+        {
             var enc = new System.Text.UTF8Encoding(false);
 
             try
             {
-                if (!File.Exists(sfile))
-                {
-                    return false;
-                }
                 using (var sr = new StreamReader(sfile, enc))
                 using (var sw = new StreamWriter(dfile, true, enc))
                 {
@@ -107,7 +135,7 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                DebugWrite.Writeln(nameof(TwitchConvert), Ex);
+                DebugWrite.Writeln(nameof(TwitchConvertChatDownloader), Ex);
                 return false;
             }
             return true;

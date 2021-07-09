@@ -108,5 +108,31 @@ namespace comeconv.Util
 
             return result;
         }
+
+        private static char[] _read_buf = new char[32];
+        //ファイルの種類を返す
+        public static int IsTwitchFileType(string filename)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+            var result = -1;
+
+            using (var sr = new StreamReader(filename, enc))
+            {
+                var len = sr.ReadBlock(_read_buf, 0, 32);
+                if (len > 0)
+                {
+                    var str = new string(_read_buf);
+                    if (str.StartsWith("{'message_id': "))
+                        result = 0;
+                    else if (str.StartsWith("{\"streamer\":{\"name\":"))
+                        result = 1;
+                    else
+                        result = 2;
+                }
+            }
+
+            return result;
+        }
+
     }
 }

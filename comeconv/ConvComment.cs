@@ -283,7 +283,7 @@ namespace comeconv
                             break;
                         case "name":
                             if (value != "")
-                                result += " " + it.Key.ToString() + @"=""" + value + @"""";
+                                result += " " + it.Key.ToString() + @"=""" + HttpUtility.HtmlEncode(value) + @"""";
                             break;
                         case "premium":
                             if (value != "0")
