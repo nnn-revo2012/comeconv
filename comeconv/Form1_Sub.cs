@@ -134,6 +134,21 @@ namespace comeconv
                 comboBox1.SelectedItem = props.SacVideoMode;
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
                 props.SacNGWords = props.ReadNGList(ngfile);
+
+                foreach (Control co in panel4.Controls)
+                {
+                    if (co.GetType().Name == "RadioButton")
+                    {
+                        if (rbRegex.Replace(co.Name.ToString(), "$1") == props.TwiEmojiMode.ToString())
+                            ((RadioButton)co).Checked = true;
+                    }
+                }
+                checkBox9.Checked = props.IsTwiEmoji;
+                checkBox11.Checked = props.IsTwiCommLen;
+                checkBox10.Checked = props.IsTwiVpos;
+
+                textBox6.Text = props.TwiCommLen.ToString();
+                textBox5.Text = ((double)props.TwiVpos / 100D).ToString("0.00");
             }
             catch (Exception Ex)
             {
@@ -190,6 +205,27 @@ namespace comeconv
                 props.SacVideoMode = comboBox1.SelectedItem.ToString();
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
                 props.SacNGWords = props.ReadNGList(ngfile);
+
+                foreach (Control co in panel4.Controls)
+                {
+                    if (co.GetType().Name == "RadioButton")
+                    {
+                        if ((bool)((RadioButton)co).Checked)
+                            props.TwiEmojiMode = rbRegex.Replace(co.Name.ToString(), "$1");
+                    }
+                }
+                props.IsTwiEmoji = checkBox9.Checked;
+                props.IsTwiCommLen = checkBox11.Checked;
+                props.IsTwiVpos = checkBox10.Checked;
+
+                if (int.TryParse(textBox6.Text, out i))
+                    props.TwiCommLen = i;
+                else
+                    props.TwiCommLen = Properties.Settings.Default.TwiCommLen;
+                if (long.TryParse(textBox5.Text.Replace(".", ""), out lo))
+                    props.TwiVpos = lo;
+                else
+                    props.TwiVpos = Properties.Settings.Default.TwiVpos;
             }
             catch (Exception Ex)
             {

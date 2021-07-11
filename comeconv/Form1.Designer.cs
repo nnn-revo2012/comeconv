@@ -604,6 +604,7 @@
             this.textBox5.Size = new System.Drawing.Size(51, 19);
             this.textBox5.TabIndex = 10;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox5.Validated += new System.EventHandler(this.textBox5_Validated);
             // 
             // checkBox10
             // 
@@ -614,6 +615,7 @@
             this.checkBox10.TabIndex = 9;
             this.checkBox10.Text = "表示位置調整";
             this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
             // 
             // label17
             // 
@@ -632,6 +634,7 @@
             this.textBox6.Size = new System.Drawing.Size(38, 19);
             this.textBox6.TabIndex = 7;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox6.Validated += new System.EventHandler(this.textBox6_Validated);
             // 
             // checkBox11
             // 
@@ -642,6 +645,7 @@
             this.checkBox11.TabIndex = 6;
             this.checkBox11.Text = "コメント文字数制限";
             this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
             // 
             // checkBox9
             // 
@@ -652,6 +656,7 @@
             this.checkBox9.TabIndex = 0;
             this.checkBox9.Text = "絵文字 (動画結合時に□□のようになるもの)";
             this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
             // 
             // label14
             // 

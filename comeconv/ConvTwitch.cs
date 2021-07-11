@@ -84,6 +84,54 @@ namespace comeconv
             return result;
         }
 
+        private string ConvChatData(IDictionary<string, string> data, Props props)
+        {
+            var del_flg = false;
+
+            try
+            {
+                var ttt = HttpUtility.HtmlDecode(data["content"]);
+                if (!data.ContainsKey("vpos"))
+                    data["vpos"] = "0";
+                if (!data.ContainsKey("date_usec"))
+                    data["date_usec"] = "0";
+
+                if (props.IsTwiVpos)
+                {
+                    if (long.TryParse(data["vpos"], out var ll))
+                        data["vpos"] = (ll + props.TwiVpos).ToString();
+                }
+                //コメント長
+                if (props.IsTwiCommLen)
+                {
+                    if (ttt.Length > props.TwiCommLen)
+                        del_flg = true;
+                }
+                //絵文字処理
+                if (props.IsTwiEmoji)
+                {
+                    if (Utils.IsSurrogatePair(ttt))
+                    {
+                        if (props.TwiEmojiMode == "tdel")
+                            del_flg = true;
+                        else
+                            ttt = Utils.DelEmoji(ttt, "　");
+                    }
+                }
+
+                data["content"] = ttt;
+                if (del_flg)
+                    return "";
+                else
+                    return ConvComment.Table2Xml(data);
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(ConvChatData), Ex);
+                return "";
+            }
+        }
+
         public bool TwitchConvertChatDownloader(string sfile, string dfile)
         {
             var enc = new System.Text.UTF8Encoding(false);
@@ -115,12 +163,12 @@ namespace comeconv
                                 }
                                 if (jo["author"]["colour"] != null)
                                     data.Add("color", jo["author"]["colour"].ToString());
-                                data.Add("user_id", HttpUtility.HtmlEncode(jo["author"]["name"].ToString()));
-                                data.Add("name", HttpUtility.HtmlEncode(jo["author"]["display_name"].ToString()));
-                                data.Add("content", HttpUtility.HtmlEncode(jo["message"].ToString()));
+                                data.Add("user_id", jo["author"]["name"].ToString());
+                                data.Add("name", jo["author"]["display_name"].ToString());
+                                data.Add("content", jo["message"].ToString());
                                 if (data.Count() > 0)
                                 {
-                                    var ttt = ConvComment.Table2Xml(data).TrimEnd();
+                                    var ttt = ConvChatData(data, _props).TrimEnd();
                                     if (!string.IsNullOrEmpty(ttt))
                                         sw.WriteLine(ttt);
                                     //else

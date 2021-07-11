@@ -134,7 +134,7 @@ namespace comeconv
                     }
                     data[ele.Name.ToString()] = ele.Value.ToString();
                 }
-                var ttt = xdoc.Element("chat").Value.ToString();
+                var ttt = HttpUtility.HtmlDecode(xdoc.Element("chat").Value.ToString());
                 if (!data.ContainsKey("vpos"))
                     data["vpos"] = "0";
                 if (!data.ContainsKey("date_usec"))
@@ -154,7 +154,7 @@ namespace comeconv
                     {
                         if (props.IsSacGift)
                         {
-                            var gift = HttpUtility.HtmlDecode(ttt);
+                            var gift = ttt;
                             ttt = _RegGift.Match(gift).Groups[1] + "さん:"
                                 + _RegGift.Match(gift).Groups[4]
                                 + "(+" + _RegGift.Match(gift).Groups[2] + ")";
@@ -170,7 +170,7 @@ namespace comeconv
                     {
                         if (props.IsSacEmotion)
                         {
-                            ttt = HttpUtility.HtmlDecode(ttt).Substring(9);
+                            ttt = ttt.Substring(9);
                             if (ttt.Contains("🍀"))
                                 ttt = ttt.Replace("🍀", "クローバー");
                             data["mail"] = data["mail"] + " white shita medium";
@@ -179,14 +179,13 @@ namespace comeconv
                         else
                         {
                             del_flg = true;
-
                         }
                     }
                     if (ttt.StartsWith("/nicoad "))
                     {
                         if (props.IsSacNicoAd)
                         {
-                            var jo = JObject.Parse(HttpUtility.HtmlDecode(ttt).Substring(8));
+                            var jo = JObject.Parse(ttt.Substring(8));
                             if (jo["message"] != null)
                             {
                                 ttt = jo["message"].ToString();

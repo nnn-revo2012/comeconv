@@ -84,6 +84,13 @@ namespace comeconv.Prop
         public string SacVideoMode { get; set; }
         public bool IsLogging { get; set; }
 
+        public bool IsTwiEmoji { get; set; }
+        public string TwiEmojiMode { get; set; }
+        public bool IsTwiCommLen { get; set; }
+        public int TwiCommLen { get; set; }
+        public bool IsTwiVpos { get; set; }
+        public long TwiVpos { get; set; }
+
         public IDictionary<string, string> SacVideoList;
         public IList<string> SacNGWords;
 
@@ -116,6 +123,14 @@ namespace comeconv.Prop
                 this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
                 SacVideoList = ReadVideoList(Properties.Settings.Default.SacVideoList);
                 this.IsLogging = Properties.Settings.Default.IsLogging;
+
+                this.IsTwiEmoji = Properties.Settings.Default.IsTwiEmoji;
+                this.TwiEmojiMode = Properties.Settings.Default.TwiEmojiMode;
+                this.IsTwiCommLen = Properties.Settings.Default.IsTwiCommLen;
+                this.TwiCommLen = Properties.Settings.Default.TwiCommLen;
+                this.IsTwiVpos = Properties.Settings.Default.IsTwiVpos;
+                this.TwiVpos = Properties.Settings.Default.TwiVpos;
+
             }
             catch (Exception Ex)
             {
@@ -147,6 +162,14 @@ namespace comeconv.Prop
                 Properties.Settings.Default.SacNGLists = this.SacNGLists;
                 Properties.Settings.Default.SacVideoMode = this.SacVideoMode;
                 Properties.Settings.Default.IsLogging = this.IsLogging;
+
+                Properties.Settings.Default.IsTwiEmoji = this.IsTwiEmoji;
+                Properties.Settings.Default.TwiEmojiMode = this.TwiEmojiMode;
+                Properties.Settings.Default.IsTwiCommLen = this.IsTwiCommLen;
+                Properties.Settings.Default.TwiCommLen = this.TwiCommLen;
+                Properties.Settings.Default.IsTwiVpos = this.IsTwiVpos;
+                Properties.Settings.Default.TwiVpos = this.TwiVpos;
+
                 Properties.Settings.Default.Save();
              }
             catch (Exception Ex)

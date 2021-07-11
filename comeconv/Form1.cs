@@ -309,5 +309,61 @@ namespace comeconv
                 e.Effect = DragDropEffects.None;
 
         }
+
+        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox9.Checked)
+                this.panel4.Enabled = true;
+            else
+                this.panel4.Enabled = false;
+        }
+
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox11.Checked)
+                this.textBox6.Enabled = true;
+            else
+                this.textBox6.Enabled = false;
+        }
+
+        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox10.Checked)
+                this.textBox5.Enabled = true;
+            else
+                this.textBox5.Enabled = false;
+        }
+
+        private void textBox6_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                if (int.TryParse(textBox6.Text, out var i))
+                    textBox6.Text = i.ToString();
+                else
+                    textBox6.Text = props.TwiCommLen.ToString();
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(textBox6_Validated), Ex);
+            }
+        }
+
+        private void textBox5_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                // 15 15.4 15.454445
+                if (double.TryParse(textBox5.Text, out var dbl))
+                    textBox5.Text = dbl.ToString("0.00");
+                else
+                    textBox5.Text = ((double)props.TwiVpos / 100D).ToString("0.00");
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(textBox5_Validated), Ex);
+            }
+        }
+
     }
 }

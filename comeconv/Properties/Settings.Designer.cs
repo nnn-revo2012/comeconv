@@ -240,5 +240,77 @@ namespace comeconv.Properties {
                 this["IsLogging"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsTwiEmoji {
+            get {
+                return ((bool)(this["IsTwiEmoji"]));
+            }
+            set {
+                this["IsTwiEmoji"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tspace")]
+        public string TwiEmojiMode {
+            get {
+                return ((string)(this["TwiEmojiMode"]));
+            }
+            set {
+                this["TwiEmojiMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsTwiCommLen {
+            get {
+                return ((bool)(this["IsTwiCommLen"]));
+            }
+            set {
+                this["IsTwiCommLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int TwiCommLen {
+            get {
+                return ((int)(this["TwiCommLen"]));
+            }
+            set {
+                this["TwiCommLen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsTwiVpos {
+            get {
+                return ((bool)(this["IsTwiVpos"]));
+            }
+            set {
+                this["IsTwiVpos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long TwiVpos {
+            get {
+                return ((long)(this["TwiVpos"]));
+            }
+            set {
+                this["TwiVpos"] = value;
+            }
+        }
     }
 }
