@@ -668,7 +668,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(409, 30);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Twitchのコメントファイルをニコ動コメント形式(xml)に変換します\r\nさきゅばす用にはコメント設定にチェックすると変換できます";
+            this.label14.Text = "Twitchのコメントファイルをニコ動コメント形式(xml)に変換します\r\nさきゅばす用にも変換できます。";
             // 
             // tabPage2
             // 

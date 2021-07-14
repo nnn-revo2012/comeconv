@@ -57,6 +57,18 @@ namespace comeconv.Util
             return Path.Combine(dir, tmp);
         }
 
+        private static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        public static long GetUnixTime(DateTime localtime)
+        {
+            DateTime utc = localtime.ToUniversalTime();
+            return (long)(((TimeSpan)(utc - UNIX_EPOCH)).TotalSeconds);
+        }
+
+        public static DateTime GetUnixToDateTime(long unix)
+        {
+            return UNIX_EPOCH.AddSeconds(unix).ToLocalTime();
+        }
+
         //保存ファイルにシーケンスNoをつける (file名.xml(n).org の形式)
         public static string GetBackupFileName(string filename, string ext)
         {

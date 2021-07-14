@@ -33,7 +33,7 @@ namespace comeconv
 
         private Form1 _form = null;
         private Props _props = null;
-        private Regex _RegGift = new Regex("\"([^\"]+)\" (\\d+) \"([^\"]*)\" \"([^\"]+)\" ?(\\d*)", RegexOptions.Compiled);
+        private static Regex _RegGift = new Regex("\"([^\"]+)\" (\\d+) \"([^\"]*)\" \"([^\"]+)\" ?(\\d*)", RegexOptions.Compiled);
 
         //Debug
         public bool IsDebug { get; set; }
@@ -54,7 +54,6 @@ namespace comeconv
         //XML形式のコメントファイルを読み込み変換する
         public bool SacXmlConvert(string sfile, string dfile)
         {
-
             var enc = new System.Text.UTF8Encoding(false);
 
             try
@@ -95,7 +94,6 @@ namespace comeconv
                         }
                     }
                 }
-
             }
             catch (Exception Ex)
             {
@@ -103,7 +101,6 @@ namespace comeconv
                 return false;
             }
             return true;
-
         }
 
         private string ConvChatData(string chat, Props props)

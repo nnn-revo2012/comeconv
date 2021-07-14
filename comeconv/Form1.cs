@@ -53,6 +53,7 @@ namespace comeconv
                     File.Copy(sfile, dfile);
                 }
                 SetForm();
+                //this.tabControl1.SelectedTab = tabPage3;
                 ProgramStatus = 0;
             }
             catch (Exception Ex)

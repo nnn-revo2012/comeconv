@@ -72,7 +72,7 @@ namespace comeconv
                         //result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
                         break;
                     case 2:
-                        //result = TwitchConvertTwitchDownloaderText(sfile, dfile);
+                        result = TwitchConvertTwitchDownloaderText(sfile, dfile);
                         break;
                 }
             }
@@ -179,11 +179,102 @@ namespace comeconv
                     }
                     ConvComment.EndXmlDoc(sw);
                 }
-
             }
             catch (Exception Ex)
             {
                 DebugWrite.Writeln(nameof(TwitchConvertChatDownloader), Ex);
+                return false;
+            }
+            return true;
+        }
+
+        private static Regex _RegUtc = new Regex("^\\[(.+ UTC)\\] (.+)\\: (.*)", RegexOptions.Compiled);
+        private static Regex _RegRelative = new Regex("^\\[(\\d+\\:\\d+\\:\\d+)\\] (.+)\\: (.*)", RegexOptions.Compiled);
+        public bool TwitchConvertTwitchDownloaderText(string sfile, string dfile)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+            var timestamp = -1;  //0:UTC 1:Relative -1:ERROR
+
+            try
+            {
+                using (var sr = new StreamReader(sfile, enc))
+                {
+                    string line;
+                    line = sr.ReadLine();
+                    if (!string.IsNullOrEmpty(_RegUtc.Match(line).Groups[1].ToString()))
+                        timestamp = 0;
+                    else if (!string.IsNullOrEmpty(_RegRelative.Match(line).Groups[1].ToString()))
+                        timestamp = 1;
+                    if (timestamp == -1)
+                    {
+                        return false;
+                    }
+                }
+
+                using (var sr = new StreamReader(sfile, enc))
+                using (var sw = new StreamWriter(dfile, true, enc))
+                {
+                    string line;
+                    long last_vpos = 0;
+                    long last_unixtime = 0;
+                    ConvComment.BeginXmlDoc(sw);
+                    while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
+                    {
+                        line = sr.ReadLine();
+                        if (line.TrimStart().StartsWith("["))
+                        {
+                            //チャットの処理
+                            {
+                                var data = new Dictionary<string, string>();
+                                switch (timestamp)
+                                {
+                                    case 0:
+                                        var localtime = DateTime.Parse(_RegUtc.Match(line).Groups[1].ToString().Replace(" UTC", "Z"));
+                                        var unixtime = Utils.GetUnixTime(localtime);
+                                        if (last_unixtime > 0L)
+                                        {
+                                            var vpos = last_vpos + (unixtime - last_unixtime) * 100L;
+                                            data.Add("vpos", vpos.ToString());
+                                            last_vpos = vpos;
+                                        }
+                                        else
+                                            data.Add("vpos", "0");
+                                        last_unixtime = unixtime;
+                                        data.Add("date", unixtime.ToString());
+                                        //data.Add("ddd", Utils.GetUnixToDateTime(unixtime).ToString());
+                                        data.Add("date_usec", "0");
+                                        data.Add("user_id", _RegUtc.Match(line).Groups[2].ToString());
+                                        data.Add("name", _RegUtc.Match(line).Groups[2].ToString());
+                                        data.Add("content", _RegUtc.Match(line).Groups[3].ToString());
+                                        break;
+                                    case 1:
+                                        var rtime = TimeSpan.Parse(_RegRelative.Match(line).Groups[1].ToString());
+                                        data.Add("vpos", ((long)(rtime.TotalSeconds * 100D)).ToString());
+                                        data.Add("date", "0");
+                                        data.Add("date_usec", "0");
+                                        //data.Add("ttt", _RegRelative.Match(line).Groups[1].ToString());
+                                        data.Add("user_id", _RegRelative.Match(line).Groups[2].ToString());
+                                        data.Add("name", _RegRelative.Match(line).Groups[2].ToString());
+                                        data.Add("content", _RegRelative.Match(line).Groups[3].ToString());
+                                        break;
+                                }
+                                if (data.Count() > 0)
+                                {
+                                    var ttt = ConvChatData(data, _props).TrimEnd();
+                                    if (!string.IsNullOrEmpty(ttt))
+                                        sw.WriteLine(ttt);
+                                    //else
+                                    //_form.AddLog("deleted:" + line, 9);
+                                }
+                            }
+                        }
+                    }
+                    ConvComment.EndXmlDoc(sw);
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(TwitchConvertTwitchDownloaderText), Ex);
                 return false;
             }
             return true;
