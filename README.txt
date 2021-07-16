@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/06/25
+【作成月日】 2021/07/17
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -15,10 +15,12 @@
 ===============================================================================
 
 ■説明
-・ニコニコ生放送のコメントや動画を変換するツールです。
+・ニコニコ生放送のコメントや動画、Twitchのコメントを変換するツールです。
 ・GUI(Windows Forms)使用。
 ・ニコ生新配信録画ツール（仮などでダウンロードした動画やコメントをさきゅばすで合成するための
   各種変換をおこないます
+・TwitchDownloaderおよびchat-downloaderでダウンロードしたTwitchのコメントをニコ動形式および
+　さきゅばす合成用に変換します。
 ・そのほかのコメントや動画も行えるようにする予定。
 
 ■インストール方法
@@ -69,6 +71,11 @@ https://blog.nicovideo.jp/niconews/127212.html
 　やり直す際はまず変換したファイル *.xml を先に消してから *.xml.org を *.xml に名前変更するとスムーズにできます。
 10.問題なければさきゅばすで変換してください。
 
+★Twitchのコメント変換
+現在対応してるのは以下です
+1)TwitchDownloaderの Simple Text形式(UTCおよびRelative)
+2)chat-downloader
+
 ■動作環境
 .Net Framework 4.7.2以降が必要です。Windows 10では標準でインストールされているので新たにインストールする必要はありません。
 https://support.microsoft.com/ja-jp/topic/windows-%E7%94%A8%E3%81%AE-microsoft-net-framework-4-7-2-web-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A9%E3%83%BC-dda5cddc-b85e-545d-8d4a-d213349b7775
@@ -81,6 +88,10 @@ https://github.com/Saccubus/Saccubus1.x/releases
   - livedl
   - NCV (コメントファイルのみ)
   ※ニコニコ動画の動画ファイル、コメントファイルは未検証です
+・TwitchDownloader
+https://github.com/lay295/TwitchDownloader/releases
+・chat-downloader
+https://github.com/xenova/chat-downloader/releases
 
 ■免責事項
 本ソフトウェアを利用して発生した如何なる損害について著作者は一切の責任を負いません。
@@ -106,3 +117,6 @@ GNU General Public License v3.0
 ■更新履歴
 2021/06/25　Version 0.0.1.07
 初期バージョンリリース
+2021/07/17　Version 0.0.1.08t
+Twitch変換を追加
+その他いろいろな修正
