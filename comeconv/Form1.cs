@@ -53,7 +53,7 @@ namespace comeconv
                     File.Copy(sfile, dfile);
                 }
                 SetForm();
-                //this.tabControl1.SelectedTab = tabPage3;
+                tabControl1.SelectedTab = tabControl1.TabPages[props.DispTab];
                 ProgramStatus = 0;
             }
             catch (Exception Ex)
@@ -64,13 +64,6 @@ namespace comeconv
 
         }
 
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-            //_ndb?.Dispose();
-
-        }
 
         private async void tabPage1_DragDrop(object sender, DragEventArgs e)
         {
@@ -366,5 +359,13 @@ namespace comeconv
             }
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (props.IsSaveData)
+            {
+                GetForm();
+                props.SaveData();
+            }
+        }
     }
 }

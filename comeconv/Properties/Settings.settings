@@ -74,5 +74,11 @@
     <Setting Name="TwiVpos" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="IsSaveData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DispTab" Type="System.String" Scope="User">
+      <Value Profile="(Default)">saccubus</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

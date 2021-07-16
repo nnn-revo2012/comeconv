@@ -97,7 +97,7 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                DebugWrite.Writeln(nameof(Table2Xml), Ex);
+                DebugWrite.Writeln(nameof(SacXmlConvert), Ex);
                 return false;
             }
             return true;
@@ -151,10 +151,9 @@ namespace comeconv
                     {
                         if (props.IsSacGift)
                         {
-                            var gift = ttt;
-                            ttt = _RegGift.Match(gift).Groups[1] + "さん:"
-                                + _RegGift.Match(gift).Groups[4]
-                                + "(+" + _RegGift.Match(gift).Groups[2] + ")";
+                            ttt = _RegGift.Match(ttt).Groups[1] + "さん:"
+                                + _RegGift.Match(ttt).Groups[4]
+                                + "(+" + _RegGift.Match(ttt).Groups[2] + ")";
                             data["mail"] = "184 white shita medium";
                             data["premium"] = "1";
                         }

@@ -83,6 +83,8 @@ namespace comeconv.Prop
         public string SacNGLists { get; set; }
         public string SacVideoMode { get; set; }
         public bool IsLogging { get; set; }
+        public bool IsSaveData { get; set; }
+        public string DispTab { get; set; }
 
         public bool IsTwiEmoji { get; set; }
         public string TwiEmojiMode { get; set; }
@@ -93,11 +95,13 @@ namespace comeconv.Prop
 
         public IDictionary<string, string> SacVideoList;
         public IList<string> SacNGWords;
+        public IDictionary<string, string> DispTabList;
 
         public Props()
         {
             SacVideoList = new Dictionary<string, string>();
             SacNGWords = new List<string>();
+            DispTabList = new Dictionary<string, string>();
         }
 
         public bool LoadData()
@@ -123,6 +127,8 @@ namespace comeconv.Prop
                 this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
                 SacVideoList = ReadVideoList(Properties.Settings.Default.SacVideoList);
                 this.IsLogging = Properties.Settings.Default.IsLogging;
+                this.IsSaveData = Properties.Settings.Default.IsSaveData;
+                this.DispTab = Properties.Settings.Default.DispTab;
 
                 this.IsTwiEmoji = Properties.Settings.Default.IsTwiEmoji;
                 this.TwiEmojiMode = Properties.Settings.Default.TwiEmojiMode;
@@ -162,6 +168,8 @@ namespace comeconv.Prop
                 Properties.Settings.Default.SacNGLists = this.SacNGLists;
                 Properties.Settings.Default.SacVideoMode = this.SacVideoMode;
                 Properties.Settings.Default.IsLogging = this.IsLogging;
+                Properties.Settings.Default.IsSaveData = this.IsSaveData;
+                Properties.Settings.Default.DispTab = this.DispTab;
 
                 Properties.Settings.Default.IsTwiEmoji = this.IsTwiEmoji;
                 Properties.Settings.Default.TwiEmojiMode = this.TwiEmojiMode;

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 using comeconv.Prop;
 using comeconv.Proc;
@@ -102,6 +103,13 @@ namespace comeconv
                 textBox3.Text = props.ExecFile;
                 textBox4.Text = props.BreakCommand;
                 checkBox8.Checked = props.IsLogging;
+                checkBox12.Checked = props.IsSaveData;
+
+                for (var i = 0; i < tabControl1.TabPages.Count - 1; i++)
+                    props.DispTabList[tabControl1.TabPages[i].Name] = tabControl1.TabPages[i].Text;
+                foreach (var item in props.DispTabList.Values)
+                    comboBox2.Items.Add(item);
+                comboBox2.SelectedItem = props.DispTabList[props.DispTab];
 
                 foreach (Control co in panel1.Controls)
                 {
@@ -166,7 +174,10 @@ namespace comeconv
             {
                 props.ExecFile = textBox3.Text;
                 props.BreakCommand = textBox4.Text;
-                props.IsLogging=  checkBox8.Checked;
+                props.IsLogging = checkBox8.Checked;
+                props.IsSaveData = checkBox12.Checked;
+                var pair = props.DispTabList.FirstOrDefault(c => c.Value == comboBox2.SelectedItem.ToString());
+                props.DispTab = pair.Key;
 
                 foreach (Control co in panel1.Controls)
                 {

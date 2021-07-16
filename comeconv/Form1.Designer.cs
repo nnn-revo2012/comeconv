@@ -36,7 +36,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.saccubus = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.twitch = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -81,7 +81,10 @@
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.setting = new System.Windows.Forms.TabPage();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -94,15 +97,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.saccubus.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.twitch.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.setting.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,9 +161,9 @@
             // tabControl1
             // 
             this.tabControl1.AllowDrop = true;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.saccubus);
+            this.tabControl1.Controls.Add(this.twitch);
+            this.tabControl1.Controls.Add(this.setting);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -168,21 +171,21 @@
             this.tabControl1.Size = new System.Drawing.Size(440, 384);
             this.tabControl1.TabIndex = 2;
             // 
-            // tabPage1
+            // saccubus
             // 
-            this.tabPage1.AllowDrop = true;
-            this.tabPage1.BackColor = System.Drawing.Color.Honeydew;
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(432, 358);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "さきゅばす変換";
-            this.tabPage1.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragDrop);
-            this.tabPage1.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragEnter);
+            this.saccubus.AllowDrop = true;
+            this.saccubus.BackColor = System.Drawing.Color.Honeydew;
+            this.saccubus.Controls.Add(this.label13);
+            this.saccubus.Controls.Add(this.groupBox2);
+            this.saccubus.Controls.Add(this.groupBox1);
+            this.saccubus.Location = new System.Drawing.Point(4, 22);
+            this.saccubus.Name = "saccubus";
+            this.saccubus.Padding = new System.Windows.Forms.Padding(3);
+            this.saccubus.Size = new System.Drawing.Size(432, 358);
+            this.saccubus.TabIndex = 0;
+            this.saccubus.Text = "さきゅばす変換";
+            this.saccubus.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragDrop);
+            this.saccubus.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage1_DragEnter);
             // 
             // label13
             // 
@@ -230,6 +233,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(78, 15);
             this.comboBox1.Name = "comboBox1";
@@ -489,22 +493,22 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // tabPage3
+            // twitch
             // 
-            this.tabPage3.AllowDrop = true;
-            this.tabPage3.BackColor = System.Drawing.Color.Honeydew;
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.groupBox4);
-            this.tabPage3.Controls.Add(this.label14);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(432, 358);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Twitch変換";
-            this.tabPage3.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragDrop);
-            this.tabPage3.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragEnter);
+            this.twitch.AllowDrop = true;
+            this.twitch.BackColor = System.Drawing.Color.Honeydew;
+            this.twitch.Controls.Add(this.label19);
+            this.twitch.Controls.Add(this.label18);
+            this.twitch.Controls.Add(this.groupBox4);
+            this.twitch.Controls.Add(this.label14);
+            this.twitch.Location = new System.Drawing.Point(4, 22);
+            this.twitch.Name = "twitch";
+            this.twitch.Padding = new System.Windows.Forms.Padding(3);
+            this.twitch.Size = new System.Drawing.Size(432, 358);
+            this.twitch.TabIndex = 2;
+            this.twitch.Text = "Twitch変換";
+            this.twitch.DragDrop += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragDrop);
+            this.twitch.DragEnter += new System.Windows.Forms.DragEventHandler(this.tabPage3_DragEnter);
             // 
             // label19
             // 
@@ -670,17 +674,51 @@
             this.label14.TabIndex = 3;
             this.label14.Text = "Twitchのコメントファイルをニコ動コメント形式(xml)に変換します\r\nさきゅばす用にも変換できます。";
             // 
-            // tabPage2
+            // setting
             // 
-            this.tabPage2.Controls.Add(this.checkBox8);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(432, 358);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "設定";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.setting.Controls.Add(this.checkBox12);
+            this.setting.Controls.Add(this.comboBox2);
+            this.setting.Controls.Add(this.label20);
+            this.setting.Controls.Add(this.checkBox8);
+            this.setting.Controls.Add(this.groupBox3);
+            this.setting.Location = new System.Drawing.Point(4, 22);
+            this.setting.Name = "setting";
+            this.setting.Padding = new System.Windows.Forms.Padding(3);
+            this.setting.Size = new System.Drawing.Size(432, 358);
+            this.setting.TabIndex = 1;
+            this.setting.Text = "設定";
+            this.setting.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(11, 138);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(145, 16);
+            this.checkBox12.TabIndex = 4;
+            this.checkBox12.Text = "終了時に設定を保存する";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(85, 102);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(9, 105);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(70, 12);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "初期表示タブ";
             // 
             // checkBox8
             // 
@@ -807,11 +845,12 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "comeconv";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.saccubus.ResumeLayout(false);
+            this.saccubus.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -820,14 +859,14 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.twitch.ResumeLayout(false);
+            this.twitch.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.setting.ResumeLayout(false);
+            this.setting.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -840,8 +879,8 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage saccubus;
+        private System.Windows.Forms.TabPage setting;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rB_pdel;
@@ -883,7 +922,7 @@
         private System.Windows.Forms.ToolStripMenuItem 設定フォルダーを開くOToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage twitch;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label15;
@@ -900,6 +939,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label20;
     }
 }
 

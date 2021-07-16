@@ -312,5 +312,29 @@ namespace comeconv.Properties {
                 this["TwiVpos"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSaveData {
+            get {
+                return ((bool)(this["IsSaveData"]));
+            }
+            set {
+                this["IsSaveData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("saccubus")]
+        public string DispTab {
+            get {
+                return ((string)(this["DispTab"]));
+            }
+            set {
+                this["DispTab"] = value;
+            }
+        }
     }
 }
