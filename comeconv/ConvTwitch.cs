@@ -69,7 +69,7 @@ namespace comeconv
                         result = TwitchConvertChatDownloader(sfile, dfile);
                         break;
                     case 1:
-                        //result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
+                        result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
                         break;
                     case 2:
                         result = TwitchConvertTwitchDownloaderText(sfile, dfile);
@@ -142,6 +142,7 @@ namespace comeconv
                 using (var sw = new StreamWriter(dfile, true, enc))
                 {
                     string line;
+                    int count = 0;
                     ConvComment.BeginXmlDoc(sw);
                     while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
                     {
@@ -168,6 +169,7 @@ namespace comeconv
                                 data.Add("content", jo["message"].ToString());
                                 if (data.Count() > 0)
                                 {
+                                    count++;
                                     var ttt = ConvChatData(data, _props).TrimEnd();
                                     if (!string.IsNullOrEmpty(ttt))
                                         sw.WriteLine(ttt);
@@ -177,6 +179,7 @@ namespace comeconv
                             }
                         }
                     }
+                    _form.AddLog("コメント数: " + count, 1);
                     ConvComment.EndXmlDoc(sw);
                 }
             }
@@ -217,6 +220,7 @@ namespace comeconv
                     string line;
                     long last_vpos = 0;
                     long last_unixtime = 0;
+                    int count = 0;
                     ConvComment.BeginXmlDoc(sw);
                     while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
                     {
@@ -260,6 +264,7 @@ namespace comeconv
                                 }
                                 if (data.Count() > 0)
                                 {
+                                    count++;
                                     var ttt = ConvChatData(data, _props).TrimEnd();
                                     if (!string.IsNullOrEmpty(ttt))
                                         sw.WriteLine(ttt);
@@ -269,12 +274,70 @@ namespace comeconv
                             }
                         }
                     }
+                    _form.AddLog("コメント数: " + count, 1);
                     ConvComment.EndXmlDoc(sw);
+                
                 }
             }
             catch (Exception Ex)
             {
                 DebugWrite.Writeln(nameof(TwitchConvertTwitchDownloaderText), Ex);
+                return false;
+            }
+            return true;
+        }
+
+        public bool TwitchConvertTwitchDownloaderJson(string sfile, string dfile)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+            long starttime = 0L;
+
+            try
+            {
+                var json = JObject.Parse(File.ReadAllText(sfile));
+                if (json["video"]["start"] != null)
+                {
+                    if (double.TryParse(json["video"]["start"].ToString(), out var dbl))
+                        starttime = (long)(dbl * 100D);
+                }
+                var comments = (JArray)json["comments"];
+                if (comments.Count() < 1)
+                    return false;
+                _form.AddLog("コメント数: " + comments.Count(), 1);
+                using (var sw = new StreamWriter(dfile, true, enc))
+                {
+                    ConvComment.BeginXmlDoc(sw);
+                    foreach (var item in comments)
+                    {
+                        //チャットの処理
+                        var data = new Dictionary<string, string>();
+                        data.Add("threadid", item["_id"].ToString());
+                        var vpos = (long)((double)item["content_offset_seconds"] * 100D);
+                        data.Add("vpos", (vpos - starttime).ToString());
+                        var localtime = DateTime.Parse(item["created_at"].ToString());
+                        data.Add("date", Utils.GetUnixTime(localtime).ToString());
+                        data.Add("date_usec", "0");
+                        if (!string.IsNullOrEmpty(item["message"]["user_color"].ToString()))
+                            data.Add("color", item["message"]["user_color"].ToString());
+                        data.Add("user_id", item["commenter"]["name"].ToString());
+                        data.Add("name", item["commenter"]["display_name"].ToString());
+                        data.Add("content", item["message"]["body"].ToString());
+                        if (data.Count() > 0)
+                        {
+                            var ttt = ConvChatData(data, _props).TrimEnd();
+                            if (!string.IsNullOrEmpty(ttt))
+                                sw.WriteLine(ttt);
+                            //else
+                            //_form.AddLog("deleted:" + line, 9);
+                        }
+                    }
+                    ConvComment.EndXmlDoc(sw);
+                }
+                json = null;
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(TwitchConvertTwitchDownloaderJson), Ex);
                 return false;
             }
             return true;
