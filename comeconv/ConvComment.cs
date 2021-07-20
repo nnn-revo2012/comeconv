@@ -169,6 +169,8 @@ namespace comeconv
                             ttt = ttt.Substring(9);
                             if (ttt.Contains("🍀"))
                                 ttt = ttt.Replace("🍀", "クローバー");
+                            if (ttt.Contains("🌻"))
+                                ttt = ttt.Replace("🌻", "ひまわり");
                             data["mail"] = data["mail"] + " white shita medium";
                             data["premium"] = "1";
                         }
@@ -194,6 +196,18 @@ namespace comeconv
                             del_flg = true;
                         }
                     }
+                    if (ttt.StartsWith("/cruise "))
+                    {
+                        ttt = ttt.Substring(8).Trim('"');
+                        data["mail"] = "184 white shita small";
+                        data["premium"] = "1";
+                    }
+                    if (ttt.StartsWith("/quote "))
+                    {
+                        ttt = ttt.Substring(7).Trim('"');
+                        data["mail"] = "184 white shita small";
+                        data["premium"] = "1";
+                    }
                 }
                 else
                 {
@@ -203,18 +217,20 @@ namespace comeconv
                         if (ttt.Length > props.SacCommLen)
                             del_flg = true;
                     }
-                    //絵文字処理
-                    if (props.IsSacEmoji)
+                }
+
+                //絵文字処理
+                if (props.IsSacEmoji)
+                {
+                    if (Utils.IsSurrogatePair(ttt))
                     {
-                        if (Utils.IsSurrogatePair(ttt))
-                        {
-                            if (props.SacEmojiMode == "edel")
-                                del_flg = true;
-                            else
-                                ttt = Utils.DelEmoji(ttt, "　");
-                        }
+                        if (props.SacEmojiMode == "edel")
+                            del_flg = true;
+                        else
+                            ttt = Utils.DelEmoji(ttt, "　");
                     }
                 }
+
                 //SacNGWordsの処理
                 foreach (var ngword in props.SacNGWords)
                 {

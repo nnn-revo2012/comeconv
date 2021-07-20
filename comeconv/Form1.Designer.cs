@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -95,6 +96,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.saccubus.SuspendLayout();
@@ -239,6 +241,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(123, 20);
             this.comboBox1.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.comboBox1, "動画変換を指定します\r\n拡張子tsのファイルはmp4またはflvに変換可能です\r\n拡張子flvはflv以外にはうまく変換できないようです");
             // 
             // label4
             // 
@@ -369,6 +372,7 @@
             this.checkBox7.Size = new System.Drawing.Size(72, 16);
             this.checkBox7.TabIndex = 16;
             this.checkBox7.Text = "広告表示";
+            this.toolTip1.SetToolTip(this.checkBox7, "チェックすると広告を下に小さい文字で表示します");
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // checkBox6
@@ -379,6 +383,7 @@
             this.checkBox6.Size = new System.Drawing.Size(101, 16);
             this.checkBox6.TabIndex = 15;
             this.checkBox6.Text = "エモーション表示";
+            this.toolTip1.SetToolTip(this.checkBox6, "チェックするとエモーションを下に文字として表示します");
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -397,6 +402,7 @@
             this.button2.Size = new System.Drawing.Size(56, 23);
             this.button2.TabIndex = 13;
             this.button2.Text = "編集";
+            this.toolTip1.SetToolTip(this.button2, "NGワードを編集します");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -408,6 +414,7 @@
             this.checkBox5.Size = new System.Drawing.Size(74, 16);
             this.checkBox5.TabIndex = 12;
             this.checkBox5.Text = "ギフト表示";
+            this.toolTip1.SetToolTip(this.checkBox5, "チェックするとギフトを下に文字として表示します");
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -438,6 +445,7 @@
             this.checkBox4.Size = new System.Drawing.Size(96, 16);
             this.checkBox4.TabIndex = 9;
             this.checkBox4.Text = "表示位置調整";
+            this.toolTip1.SetToolTip(this.checkBox4, "チェックすると画面に表示される時間(vpos)を早くしたり遅くします");
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
@@ -468,6 +476,7 @@
             this.checkBox3.Size = new System.Drawing.Size(117, 16);
             this.checkBox3.TabIndex = 6;
             this.checkBox3.Text = "コメント文字数制限";
+            this.toolTip1.SetToolTip(this.checkBox3, "チェックすると指定された文字以上のコメントは削除されます");
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
@@ -479,6 +488,7 @@
             this.checkBox2.Size = new System.Drawing.Size(279, 16);
             this.checkBox2.TabIndex = 3;
             this.checkBox2.Text = "半透明コメント (コメントが多いときに半透明になるもの)";
+            this.toolTip1.SetToolTip(this.checkBox2, "チェックすると半透明コメントを通常文字として表示または行削除します");
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
@@ -490,6 +500,7 @@
             this.checkBox1.Size = new System.Drawing.Size(238, 16);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "絵文字 (動画結合時に□□のようになるもの)";
+            this.toolTip1.SetToolTip(this.checkBox1, "チェックすると動画結合時に□□となる絵文字を変換または行削除します");
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -618,6 +629,7 @@
             this.checkBox10.Size = new System.Drawing.Size(96, 16);
             this.checkBox10.TabIndex = 9;
             this.checkBox10.Text = "表示位置調整";
+            this.toolTip1.SetToolTip(this.checkBox10, "チェックすると画面に表示される時間(vpos)を早くしたり遅くします");
             this.checkBox10.UseVisualStyleBackColor = true;
             this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
             // 
@@ -648,6 +660,7 @@
             this.checkBox11.Size = new System.Drawing.Size(117, 16);
             this.checkBox11.TabIndex = 6;
             this.checkBox11.Text = "コメント文字数制限";
+            this.toolTip1.SetToolTip(this.checkBox11, "チェックすると指定された文字以上のコメントは削除されます");
             this.checkBox11.UseVisualStyleBackColor = true;
             this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
             // 
@@ -659,6 +672,7 @@
             this.checkBox9.Size = new System.Drawing.Size(238, 16);
             this.checkBox9.TabIndex = 0;
             this.checkBox9.Text = "絵文字 (動画結合時に□□のようになるもの)";
+            this.toolTip1.SetToolTip(this.checkBox9, "チェックすると動画結合時に□□となる絵文字を変換または行削除します");
             this.checkBox9.UseVisualStyleBackColor = true;
             this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
             // 
@@ -698,6 +712,7 @@
             this.checkBox12.Size = new System.Drawing.Size(145, 16);
             this.checkBox12.TabIndex = 4;
             this.checkBox12.Text = "終了時に設定を保存する";
+            this.toolTip1.SetToolTip(this.checkBox12, "comeconv終了時に全てのタブの設定を保存します");
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // comboBox2
@@ -709,6 +724,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 20);
             this.comboBox2.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.comboBox2, "comecomv.exeを起動した際に表示されるタブを指定します");
             // 
             // label20
             // 
@@ -765,6 +781,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(45, 19);
             this.textBox4.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.textBox4, "FFmpegを中断するキーを指定します\r\n※空白の場合はctrl-Cを送ります");
             // 
             // label5
             // 
@@ -794,6 +811,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(326, 19);
             this.textBox3.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.textBox3, "comeconv添付以外のFFmpegを使用したい場合だけ指定してください");
             // 
             // button1
             // 
@@ -803,6 +821,7 @@
             this.button1.Size = new System.Drawing.Size(99, 22);
             this.button1.TabIndex = 4;
             this.button1.Text = "Save";
+            this.toolTip1.SetToolTip(this.button1, "全てのタブの設定を保存します");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -942,6 +961,7 @@
         private System.Windows.Forms.CheckBox checkBox12;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
