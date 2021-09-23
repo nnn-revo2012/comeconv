@@ -14,6 +14,8 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using System.Web;
 using System.Globalization;
+using System.Text.RegularExpressions;
+
 
 namespace comeconv.Util
 {
@@ -113,7 +115,7 @@ namespace comeconv.Util
             var result = -1;
 
             var ext = Path.GetExtension(filename);
-            if (ext == ".xml" || ext == ".json" || ext == ".txt")
+            if (ext == ".xml" || ext == ".json" || ext == ".jsonl" || ext == ".txt")
                 result = 0;
             else if (ext == ".ts" || ext == ".flv" || ext == ".mp4")
                 result = 1;
@@ -121,6 +123,8 @@ namespace comeconv.Util
             return result;
         }
 
+        public static readonly Regex RgxCDJsonl = new Regex("^\\{(\'|\").*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
+        private static readonly Regex RgxCDJson = new Regex("^\\[\n +\\{\n", RegexOptions.Compiled | RegexOptions.Singleline);
         private static char[] _read_buf = new char[32];
         //ファイルの種類を返す
         public static int IsTwitchFileType(string filename)
@@ -134,12 +138,14 @@ namespace comeconv.Util
                 if (len > 0)
                 {
                     var str = new string(_read_buf);
-                    if (str.StartsWith("{'message_id': "))
+                    if (RgxCDJsonl.IsMatch(str))
                         result = 0;
-                    else if (str.StartsWith("{\"streamer\":{\"name\":"))
+                    else if (RgxCDJson.IsMatch(str))
                         result = 1;
+                    else if (str.StartsWith("{\"streamer\":{\"name\":"))
+                        result = 5;
                     else
-                        result = 2;
+                        result = 10;
                 }
             }
 

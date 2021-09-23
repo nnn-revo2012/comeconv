@@ -69,9 +69,12 @@ namespace comeconv
                         result = TwitchConvertChatDownloader(sfile, dfile);
                         break;
                     case 1:
+                        result = TwitchConvertChatDownloader(sfile, dfile);
+                        break;
+                    case 5:
                         result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
                         break;
-                    case 2:
+                    case 10:
                         result = TwitchConvertTwitchDownloaderText(sfile, dfile);
                         break;
                 }
@@ -141,13 +144,27 @@ namespace comeconv
                 using (var sr = new StreamReader(sfile, enc))
                 using (var sw = new StreamWriter(dfile, true, enc))
                 {
+                    StringBuilder sb = new StringBuilder();
                     string line;
                     int count = 0;
                     ConvComment.BeginXmlDoc(sw);
                     while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
                     {
                         line = sr.ReadLine();
-                        if (line.TrimStart().StartsWith("{'message_id':"))
+                        if (line == "[" || line == "]") continue;
+                        else if (line.StartsWith("    {"))
+                        {
+                            sb.Clear();
+                            sb.Append(line.TrimStart());
+                            while (!line.StartsWith("    }"))
+                            {
+                                line = sr.ReadLine();
+                                sb.Append(line.TrimStart());
+                            }
+                            line = sb.ToString();
+                            line = line.TrimEnd().TrimEnd(',');
+                        }
+                        if (Utils.RgxCDJsonl.IsMatch(line.TrimStart()))
                         {
                             //チャットの処理
                             {
@@ -165,7 +182,8 @@ namespace comeconv
                                 if (jo["author"]["colour"] != null)
                                     data.Add("color", jo["author"]["colour"].ToString());
                                 data.Add("user_id", jo["author"]["name"].ToString());
-                                data.Add("name", jo["author"]["display_name"].ToString());
+                                if (jo["author"]["display_name"] != null)
+                                    data.Add("name", jo["author"]["display_name"].ToString());
                                 data.Add("content", jo["message"].ToString());
                                 if (data.Count() > 0)
                                 {
