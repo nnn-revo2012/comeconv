@@ -526,9 +526,9 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(91, 53);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(151, 24);
+            this.label19.Size = new System.Drawing.Size(161, 24);
             this.label19.TabIndex = 6;
-            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader(json)";
+            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader   (json/jsonl)";
             // 
             // label18
             // 
@@ -552,7 +552,7 @@
             this.groupBox4.Controls.Add(this.textBox6);
             this.groupBox4.Controls.Add(this.checkBox11);
             this.groupBox4.Controls.Add(this.checkBox9);
-            this.groupBox4.Location = new System.Drawing.Point(6, 89);
+            this.groupBox4.Location = new System.Drawing.Point(6, 114);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(421, 165);
             this.groupBox4.TabIndex = 4;

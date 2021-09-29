@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/07/20
+【作成月日】 2021/09/29
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -74,7 +74,7 @@ https://blog.nicovideo.jp/niconews/127212.html
 ★Twitchのコメント変換
 現在対応してるのは以下です
 1)TwitchDownloader *1 の Simple Text形式(UTCおよびRelative)、JSON形式 *2
-2)chat-downloader
+2)chat-downloader の *.json/*.jsonl形式
 *1 コメント数が多い(数万件以上)の場合ダウンロード毎にコメ数が１０件ぐらい前後するようです(調査中)
 *2 コメント数が多いとメモリーを500～1GBくらい消費します。
 
@@ -128,4 +128,7 @@ GNU General Public License v3.0
 　エモーション　ひまわり絵文字を変換
 　クルーズコメントを下に小文字表示するように修正
 　ギフト、広告、クルーズも絵文字変換するように修正
-
+2021/09/29　Version 0.0.1.10
+　Twitch変換
+　・chat-downloader最新版(2021/7～)のファイル形式に対応
+    json/jsonl形式
