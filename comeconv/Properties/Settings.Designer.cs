@@ -336,5 +336,17 @@ namespace comeconv.Properties {
                 this["DispTab"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSimpleVote {
+            get {
+                return ((bool)(this["IsSimpleVote"]));
+            }
+            set {
+                this["IsSimpleVote"] = value;
+            }
+        }
     }
 }

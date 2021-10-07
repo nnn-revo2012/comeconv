@@ -80,5 +80,8 @@
     <Setting Name="DispTab" Type="System.String" Scope="User">
       <Value Profile="(Default)">saccubus</Value>
     </Setting>
+    <Setting Name="IsSimpleVote" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
