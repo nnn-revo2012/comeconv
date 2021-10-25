@@ -85,6 +85,7 @@ namespace comeconv.Prop
         public bool IsLogging { get; set; }
         public bool IsSaveData { get; set; }
         public string DispTab { get; set; }
+        public bool IsSimpleVote { get; set; }
 
         public bool IsTwiEmoji { get; set; }
         public string TwiEmojiMode { get; set; }
@@ -129,6 +130,7 @@ namespace comeconv.Prop
                 this.IsLogging = Properties.Settings.Default.IsLogging;
                 this.IsSaveData = Properties.Settings.Default.IsSaveData;
                 this.DispTab = Properties.Settings.Default.DispTab;
+                this.IsSimpleVote = Properties.Settings.Default.IsSimpleVote;
 
                 this.IsTwiEmoji = Properties.Settings.Default.IsTwiEmoji;
                 this.TwiEmojiMode = Properties.Settings.Default.TwiEmojiMode;
@@ -170,6 +172,7 @@ namespace comeconv.Prop
                 Properties.Settings.Default.IsLogging = this.IsLogging;
                 Properties.Settings.Default.IsSaveData = this.IsSaveData;
                 Properties.Settings.Default.DispTab = this.DispTab;
+                Properties.Settings.Default.IsSimpleVote = this.IsSimpleVote;
 
                 Properties.Settings.Default.IsTwiEmoji = this.IsTwiEmoji;
                 Properties.Settings.Default.TwiEmojiMode = this.TwiEmojiMode;

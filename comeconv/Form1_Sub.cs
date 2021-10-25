@@ -134,6 +134,7 @@ namespace comeconv
                 checkBox5.Checked = props.IsSacGift;
                 checkBox6.Checked = props.IsSacEmotion;
                 checkBox7.Checked = props.IsSacNicoAd;
+                checkBox13.Checked = props.IsSimpleVote;
 
                 textBox1.Text = props.SacCommLen.ToString();
                 textBox2.Text = ((double)props.SacVpos / 100D).ToString("0.00");
@@ -203,6 +204,7 @@ namespace comeconv
                 props.IsSacGift = checkBox5.Checked;
                 props.IsSacEmotion = checkBox6.Checked;
                 props.IsSacNicoAd = checkBox7.Checked;
+                props.IsSimpleVote = checkBox13.Checked; 
 
                 if (int.TryParse(textBox1.Text, out var i))
                     props.SacCommLen = i;

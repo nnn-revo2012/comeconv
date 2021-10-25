@@ -175,21 +175,26 @@ namespace comeconv
                     result += "　" + data[3];
                 result += "\r\n";
 
-                if (count == 4)
-                    result += data[3] + "　" + data[4];
-                if (count >= 5)
-                    result += data[4] + "　" + data[5];
-                if (count >= 6)
-                    result += "　" + data[6];
-                result += "\r\n";
+                if (count >= 4)
+                {
+                    if (count == 4)
+                        result += data[3] + "　" + data[4];
+                    if (count >= 5)
+                        result += data[4] + "　" + data[5];
+                    if (count >= 6)
+                        result += "　" + data[6];
+                    result += "\r\n";
+                }
 
                 if (count >= 7)
+                {
                     result += data[7];
-                if (count >= 8)
-                    result += "　" + data[8];
-                if (count >= 9)
-                    result += "　" + data[9];
-                result += "\r\n";
+                    if (count >= 8)
+                        result += "　" + data[8];
+                    if (count >= 9)
+                        result += "　" + data[9];
+                    result += "\r\n";
+                }
 
                 return result;
             }

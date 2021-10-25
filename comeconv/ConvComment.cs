@@ -202,6 +202,13 @@ namespace comeconv
                         data["mail"] = "184 white shita small";
                         data["premium"] = "1";
                     }
+                    if (ttt.StartsWith("/vote ") && props.IsSimpleVote)
+                    {
+                        if (SimpleVote.SetVote(ttt))
+                        {
+                            ttt = SimpleVote.ShowVote();
+                        }
+                    }
                     if (ttt.StartsWith("/quote "))
                     {
                         ttt = ttt.Substring(7).Trim('"');
