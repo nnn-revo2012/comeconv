@@ -166,13 +166,16 @@ namespace comeconv
                     {
                         if (props.IsSacEmotion)
                         {
-                            ttt = ttt.Substring(9);
-                            if (ttt.Contains("🍀"))
-                                ttt = ttt.Replace("🍀", "クローバー");
-                            if (ttt.Contains("🌻"))
-                                ttt = ttt.Replace("🌻", "ひまわり");
-                            data["mail"] = data["mail"] + " white shita medium";
-                            data["premium"] = "1";
+                            if (props.IsSacEmoji)
+                            {
+                                ttt = ttt.Substring(9);
+                                if (ttt.Contains("🍀"))
+                                    ttt = ttt.Replace("🍀", "クローバー");
+                                if (ttt.Contains("🌻"))
+                                    ttt = ttt.Replace("🌻", "ひまわり");
+                                data["mail"] = data["mail"] + " white shita medium";
+                                data["premium"] = "1";
+                            }
                         }
                         else
                         {
@@ -202,18 +205,28 @@ namespace comeconv
                         data["mail"] = "184 white shita small";
                         data["premium"] = "1";
                     }
-                    if (ttt.StartsWith("/vote ") && props.IsSimpleVote)
-                    {
-                        if (SimpleVote.SetVote(ttt))
-                        {
-                            ttt = SimpleVote.ShowVote();
-                        }
-                    }
                     if (ttt.StartsWith("/quote "))
                     {
                         ttt = ttt.Substring(7).Trim('"');
                         data["mail"] = "184 white shita small";
                         data["premium"] = "1";
+                    }
+                    if (ttt.StartsWith("/vote ") && props.IsSimpleVote)
+                    {
+                        switch (SimpleVote.IsVote(ttt))
+                        {
+                            case "stop":
+                                del_flg = true;
+                                break;
+                            case "error":
+                                break;
+                            default:
+                                if (SimpleVote.SetVote(ttt))
+                                {
+                                    ttt = SimpleVote.ShowVote();
+                                }
+                                break;
+                        }
                     }
                 }
                 else

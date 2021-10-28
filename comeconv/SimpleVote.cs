@@ -27,7 +27,7 @@ namespace comeconv
 
     public static class SimpleVote
     {
-        private static readonly Regex _RegVote = new Regex("^\\/vote +(\\w+) +(.*)$", RegexOptions.Compiled);
+        private static readonly Regex _RegVote = new Regex("^\\/vote +(\\w+) *(.*)$", RegexOptions.Compiled);
         private static string status { get; set; }
         private static int count { get; set; }
         private static string[] vote { get; set; }
