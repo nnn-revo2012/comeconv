@@ -130,7 +130,8 @@ https://github.com/Saccubus/Saccubus1.x/releases
 ・TwitchDownloader
 https://github.com/lay295/TwitchDownloader/releases
 ・chat-downloader
-https://github.com/xenova/chat-downloader/releases
+https://github.com/xenova/chat-downloader
+パソコンにPythonをインストールした後、pipというコマンドでインストール
 
 ■免責事項
 本ソフトウェアを利用して発生した如何なる損害について著作者は一切の責任を負いません。
