@@ -173,6 +173,8 @@ namespace comeconv
                                     ttt = ttt.Replace("🍀", "クローバー");
                                 if (ttt.Contains("🌻"))
                                     ttt = ttt.Replace("🌻", "ひまわり");
+                                if (ttt.Contains("⛄"))
+                                    ttt = ttt.Replace("⛄", "雪");
                                 data["mail"] = data["mail"] + " white shita medium";
                                 data["premium"] = "1";
                             }

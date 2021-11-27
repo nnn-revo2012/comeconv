@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/10/28
+【作成月日】 2021/11/27
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -176,3 +176,6 @@ GNU General Public License v3.0
 2021/10/28　Version 0.0.1.12
 　簡易アンケートONの場合 /vote stop の行を削除するよう修正
 　絵文字変換OFFの場合にはエモーション絵文字を変換しないよう修正
+2021/11/27　Version 0.0.1.13
+　README.txtを追加・修正
+　エモーション　雪絵文字を変換
