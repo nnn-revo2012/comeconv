@@ -4,8 +4,8 @@ namespace comeconv.Prop
 {
     public class Ver
     {
-        public static readonly string Version = "0.0.1.13";
-        public static readonly string VerDate = "2021/1/27";
+        public static readonly string Version = "0.0.1.14";
+        public static readonly string VerDate = "2021/12/08";
 
         public static string GetFullVersion()
         {

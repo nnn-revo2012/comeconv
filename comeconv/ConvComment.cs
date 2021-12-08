@@ -166,18 +166,18 @@ namespace comeconv
                     {
                         if (props.IsSacEmotion)
                         {
+                            ttt = ttt.Substring(9);
                             if (props.IsSacEmoji)
                             {
-                                ttt = ttt.Substring(9);
                                 if (ttt.Contains("🍀"))
                                     ttt = ttt.Replace("🍀", "クローバー");
                                 if (ttt.Contains("🌻"))
                                     ttt = ttt.Replace("🌻", "ひまわり");
                                 if (ttt.Contains("⛄"))
                                     ttt = ttt.Replace("⛄", "雪");
-                                data["mail"] = data["mail"] + " white shita medium";
-                                data["premium"] = "1";
                             }
+                            data["mail"] = data["mail"] + " white shita medium";
+                            data["premium"] = "1";
                         }
                         else
                         {
@@ -316,7 +316,7 @@ namespace comeconv
                             break;
                         case "name":
                             if (value != "")
-                                result += " " + it.Key.ToString() + @"=""" + HttpUtility.HtmlEncode(value) + @"""";
+                                result += " " + it.Key.ToString() + @"=""" + Utils.HtmlEncode(value) + @"""";
                             break;
                         case "premium":
                             if (value != "0")
@@ -339,7 +339,7 @@ namespace comeconv
                                 result += " " + it.Key.ToString() + @"=""" + value + @"""";
                             break;
                         case "content":
-                            content = HttpUtility.HtmlEncode(value);
+                            content = Utils.HtmlEncode(value);
                             break;
                         default:
                             result += " " + it.Key.ToString() + @"=""" + value + @"""";
