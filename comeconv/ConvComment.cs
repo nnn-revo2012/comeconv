@@ -175,6 +175,8 @@ namespace comeconv
                                     ttt = ttt.Replace("🌻", "ひまわり");
                                 if (ttt.Contains("⛄"))
                                     ttt = ttt.Replace("⛄", "雪");
+                                if (ttt.Contains("❄"))
+                                    ttt = ttt.Replace("❄", "雪");
                             }
                             data["mail"] = data["mail"] + " white shita medium";
                             data["premium"] = "1";
@@ -316,7 +318,7 @@ namespace comeconv
                             break;
                         case "name":
                             if (value != "")
-                                result += " " + it.Key.ToString() + @"=""" + Utils.HtmlEncode(value) + @"""";
+                                result += " " + it.Key.ToString() + @"=""" + Utils.Encode(value) + @"""";
                             break;
                         case "premium":
                             if (value != "0")
@@ -339,7 +341,7 @@ namespace comeconv
                                 result += " " + it.Key.ToString() + @"=""" + value + @"""";
                             break;
                         case "content":
-                            content = Utils.HtmlEncode(value);
+                            content = Utils.Encode(value);
                             break;
                         default:
                             result += " " + it.Key.ToString() + @"=""" + value + @"""";

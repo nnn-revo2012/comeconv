@@ -152,7 +152,7 @@ namespace comeconv.Util
             return result;
         }
         //特殊文字をエンコードする
-        public static string HtmlEncode(string s)
+        public static string Encode(string s)
         {
             if (string.IsNullOrEmpty(s)) return null;
             s = s.Replace("<", "&lt;");
