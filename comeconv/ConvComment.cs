@@ -65,10 +65,22 @@ namespace comeconv
                 using (var sr = new StreamReader(sfile, enc))
                 using (var sw = new StreamWriter(dfile, true, enc))
                 {
+                    bool isfirst = true;
+                    bool needpacket = false; 
                     string line;
                     while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
                     {
                         line = sr.ReadLine();
+                        if (isfirst)
+                        {
+                            if (line.TrimStart().StartsWith("<chat ") ||
+                                line.TrimStart().StartsWith("<thread "))
+                            {
+                                BeginXmlDoc(sw);
+                                needpacket = true;
+                            }
+                            isfirst = false;
+                        }
                         if (line.TrimStart().StartsWith("<chat "))
                         {
                             while (!line.EndsWith("</chat>"))
@@ -84,7 +96,7 @@ namespace comeconv
                                 //_form.AddLog("deleted:" + line, 9);
                             }
                         }
-                        else if (line.StartsWith("<thread "))
+                        else if (line.TrimStart().StartsWith("<thread "))
                         {
                             sw.WriteLine(line);
                         }
@@ -92,6 +104,10 @@ namespace comeconv
                         {
                             sw.WriteLine(line);
                         }
+                    }
+                    if (needpacket)
+                    {
+                        EndXmlDoc(sw);
                     }
                 }
             }
