@@ -155,10 +155,10 @@ namespace comeconv.Util
         public static string Encode(string s)
         {
             if (string.IsNullOrEmpty(s)) return null;
+            s = s.Replace("&", "&amp;");
             s = s.Replace("<", "&lt;");
             s = s.Replace(">", "&gt;");
-            s = s.Replace("&", "&amp;");
-            s = s.Replace("\"", "&quot;");
+             s = s.Replace("\"", "&quot;");
 
             return s;
         }
