@@ -22,7 +22,7 @@ namespace comeconv.Util
     public class Utils
     {
 
-        //サロペートペア＆結合文字 検出＆文字除去
+        //サロゲートペア＆結合文字 検出＆文字除去
         //\ud83d\ude0a
         //か\u3099
         public static string DelEmoji(string s, string t = "")
@@ -36,8 +36,8 @@ namespace comeconv.Util
             while (tee.MoveNext())
             {
                 string te = tee.GetTextElement();
-                if (1 < te.Length)
-                    sb.Append(t); //サロペートペアまたは結合文字の場合
+                if (Char.IsSurrogate(te[0]))
+                    sb.Append(t); //サロゲートペアまたは結合文字の場合
                 else
                     sb.Append(te);
             }
@@ -158,7 +158,7 @@ namespace comeconv.Util
             s = s.Replace("&", "&amp;");
             s = s.Replace("<", "&lt;");
             s = s.Replace(">", "&gt;");
-             s = s.Replace("\"", "&quot;");
+            s = s.Replace("\"", "&quot;");
 
             return s;
         }
