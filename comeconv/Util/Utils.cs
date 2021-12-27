@@ -125,8 +125,8 @@ namespace comeconv.Util
 
         public static readonly Regex RgxCDJsonl = new Regex("^\\{(\'|\").*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
         private static readonly Regex RgxCDJson = new Regex("^\\[\n +\\{\n", RegexOptions.Compiled | RegexOptions.Singleline);
-        private static char[] _read_buf = new char[32];
-        //ファイルの種類を返す
+        private static char[] _read_buf = new char[256];
+        //Twitchのコメントファイルの種類を返す
         public static int IsTwitchFileType(string filename)
         {
             var enc = new System.Text.UTF8Encoding(false);
@@ -151,6 +151,28 @@ namespace comeconv.Util
 
             return result;
         }
+        //ニコニコのXmlファイルの形式を返す
+        public static int IsXmlFileType(string filename)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+            var result = -1;
+
+            using (var sr = new StreamReader(filename, enc))
+            {
+                var len = sr.ReadBlock(_read_buf, 0, 256);
+                if (len > 0)
+                {
+                    var str = new string(_read_buf);
+                    if (str.IndexOf("youtube_icon_url=") > -1)
+                        result = 10;    //jkcommentviewerのyoutubeライブ
+                    else
+                        result = 0;
+                }
+            }
+
+            return result;
+        }
+
         //特殊文字をエンコードする
         public static string Encode(string s)
         {
@@ -159,6 +181,17 @@ namespace comeconv.Util
             s = s.Replace("<", "&lt;");
             s = s.Replace(">", "&gt;");
             s = s.Replace("\"", "&quot;");
+
+            return s;
+        }
+        //特殊文字をデコードする
+        public static string Decode(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return null;
+            s = s.Replace("&lt;", "<");
+            s = s.Replace("&gt;", ">");
+            s = s.Replace("&quot;", "\"");
+            s = s.Replace("&amp;", "&");
 
             return s;
         }

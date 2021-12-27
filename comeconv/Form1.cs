@@ -92,7 +92,15 @@ namespace comeconv
                 {
                     var filetype = Utils.IsFileType(files[i]);
                     if (filetype == 0)
-                        await Task.Run(() => ConvXml(files[i]));
+                    {
+                        if (Utils.IsXmlFileType(files[i]) >= 10)
+                        {
+                            AddLog("jkcommentviewerのyoutubeコメントファイルは変換の必要ありません。", 1);
+                            continue;
+                        }
+                        else
+                            await Task.Run(() => ConvXml(files[i]));
+                    }
                     else if (filetype == 1)
                         await Task.Run(() => ConvVideo(files[i]));
                 }

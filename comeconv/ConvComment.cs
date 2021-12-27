@@ -360,7 +360,7 @@ namespace comeconv
                             content = Utils.Encode(value);
                             break;
                         default:
-                            result += " " + it.Key.ToString() + @"=""" + value + @"""";
+                            result += " " + it.Key.ToString() + @"=""" + Utils.Encode(value) + @"""";
                             break;
                     }
                 }
