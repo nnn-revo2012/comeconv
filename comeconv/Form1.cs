@@ -98,7 +98,17 @@ namespace comeconv
                             AddLog("jkcommentviewerのyoutubeコメントファイルは変換の必要ありません。", 1);
                         }
                         else
-                            await Task.Run(() => ConvXml(files[i]));
+                        {
+                            if (!Utils.CanXmlRead(files[i]))
+                            {
+                                AddLog("このxmlファイルは読み込めません。", 1);
+                                AddLog("変換中止します。", 1);
+                            }
+                            else
+                            {
+                                await Task.Run(() => ConvXml(files[i]));
+                            }
+                        }
                     }
                     else if (filetype == 1)
                         await Task.Run(() => ConvVideo(files[i]));
@@ -406,10 +416,18 @@ namespace comeconv
                         if (Utils.IsXmlFileType(files[i]) != 10)
                         {
                             AddLog("jkcommentviewerのyoutubeコメントファイル以外は処理できません。", 1);
-                            AddLog("また、一度修復したyoutubeコメントファイルは処理できません。", 1);
                         }
                         else
-                            await Task.Run(() => RepairXml(files[i]));
+                        {
+                            if (Utils.CanXmlRead(files[i]))
+                            {
+                                AddLog("このyoutubeコメントファイルは壊れていません。", 1);
+                            }
+                            else
+                            {
+                                await Task.Run(() => RepairXml(files[i]));
+                            }
+                        }
                     }
                 }
                 ProgramStatus = 0;

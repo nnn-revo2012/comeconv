@@ -5,14 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Linq;
 using System.Diagnostics;
-using System.Web;
+using System.Net;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -55,10 +53,6 @@ namespace comeconv
 
             try
             {
-                if (!File.Exists(sfile))
-                {
-                    return false;
-                }
                 using (var sr = new StreamReader(sfile, enc))
                 using (var sw = new StreamWriter(dfile, true, enc))
                 {
@@ -102,14 +96,13 @@ namespace comeconv
 
         private string RepairChatData(string chat, Props props)
         {
-            var data = new Dictionary<string, string>();
             if (string.IsNullOrEmpty(chat))
                 return "";
 
             try
             {
                 var ttt = chat.Replace("&amp;lt;", "&lt;").Replace("&amp;gt;", "&gt;");
-                ttt = Utils.Encode(Utils.Decode(ttt));
+                ttt = Utils.Encode(WebUtility.HtmlDecode(ttt));
                 ttt = ttt.Replace("=&quot;", "=\"").Replace("&quot; ", "\" ");
                 ttt = ttt.Replace("&quot;&gt;", "\">");
                 ttt = ttt.Replace("&lt;chat ", "<chat ").Replace("&lt;/chat&gt;", "</chat>");

@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2021/12/28
+【作成月日】 2022/01/01
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2017
@@ -190,3 +190,10 @@ GNU General Public License v3.0
 　ニコ動・ニコ生以外のチャットのタグ要素は全てエンコードするように修正
 　xmlファイル出力時 < > が正しくエンコードされなかったのを修正
 　サロゲートペア文字判定条件を文字数から Char.IsSurrogate() で判定するよう修正
+2022/01/01　Version 0.0.1.16
+　壊れたyoutubeのコメントファイル修復タブ作成
+　- Version0.0.1.14以前のさきゅばす変換でjkcommentviewerのyoutubeコメントファイルを変換すると
+　　xmlファイルとして読み込めなくなる場合があった。そのファイルを修復します。
+　- jkcommentviewerのyoutubeコメントファイル以外は処理できません。
+　- jkcommentviewerのyoutubeコメントファイルで壊れていない場合は処理しません。
+　さきゅばす変換の際、xmlが壊れていたら変換中止するように修正。

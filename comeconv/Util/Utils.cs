@@ -5,8 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
@@ -151,6 +149,26 @@ namespace comeconv.Util
 
             return result;
         }
+
+        //Xmlファイルが壊れてないか調べる
+        public static bool CanXmlRead(string file)
+        {
+            try
+            {
+                if (!File.Exists(file))
+                {
+                    return false;
+                }
+                XDocument xdoc = XDocument.Load(file);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         //ニコニコのXmlファイルの形式を返す
         public static int IsXmlFileType(string filename)
         {

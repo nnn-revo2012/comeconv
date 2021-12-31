@@ -349,7 +349,7 @@ namespace comeconv
                 File.Move(filename, backupfile);
                 newfile = filename;
 
-                AddLog("コメント修復します。", 1);
+                AddLog("コメント修復開始します。", 1);
                 AddLog("元ファイル: " + Path.GetFileName(backupfile), 1);
                 AddLog("修復ファイル: " + Path.GetFileName(newfile), 1);
                 {
@@ -361,7 +361,7 @@ namespace comeconv
                     }
                     else
                     {
-                        AddLog("コメント変換に失敗しました。", 1);
+                        AddLog("コメント修復に失敗しました。", 1);
                     }
                 }
                 return;

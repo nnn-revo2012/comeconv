@@ -12,7 +12,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Linq;
 using System.Diagnostics;
-using System.Web;
+using System.Net;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -147,7 +147,7 @@ namespace comeconv
                     }
                     data[ele.Name.ToString()] = ele.Value.ToString();
                 }
-                var ttt = HttpUtility.HtmlDecode(xdoc.Element("chat").Value.ToString());
+                var ttt = WebUtility.HtmlDecode(xdoc.Element("chat").Value.ToString());
                 if (!data.ContainsKey("vpos"))
                     data["vpos"] = "0";
                 if (!data.ContainsKey("date_usec"))
