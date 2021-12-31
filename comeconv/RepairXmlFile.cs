@@ -100,10 +100,6 @@ namespace comeconv
             return true;
         }
 
-        //private static Regex _RegGift = new Regex("\"([^\"]+)\" (\\d+) \"([^\"]*)\" \"([^\"]+)\" ?(\\d*)", RegexOptions.Compiled);
-        private static Regex _RegVpos = new Regex("vpos=\"(\\d+)\"", RegexOptions.Compiled);
-        private static Regex _RegDate = new Regex("date=\"(\\d+)\"", RegexOptions.Compiled);
-        private static Regex _RegComment = new Regex("date_usec=\"0\">(.*)</chat>", RegexOptions.Compiled);
         private string RepairChatData(string chat, Props props)
         {
             var data = new Dictionary<string, string>();
@@ -112,15 +108,12 @@ namespace comeconv
 
             try
             {
-                data["vpos"] = _RegVpos.Match(chat).Groups[1].ToString();
-                data["date"] = _RegDate.Match(chat).Groups[1].ToString();
-                //data["mail"] = "";
-                //data["premium"] = "";
-                var ttt = _RegComment.Match(chat).Groups[1].ToString();
-                ttt= ttt.Replace("&amp;lt;", "&lt;");
-                ttt = ttt.Replace("&amp;gt;", "&gt;");
-                data["content"] = Utils.Decode(ttt);
-                return ConvComment.Table2Xml(data);
+                var ttt = chat.Replace("&amp;lt;", "&lt;").Replace("&amp;gt;", "&gt;");
+                ttt = Utils.Encode(Utils.Decode(ttt));
+                ttt = ttt.Replace("=&quot;", "=\"").Replace("&quot; ", "\" ");
+                ttt = ttt.Replace("&quot;&gt;", "\">");
+                ttt = ttt.Replace("&lt;chat ", "<chat ").Replace("&lt;/chat&gt;", "</chat>");
+                return ttt;
             }
             catch (Exception Ex)
             {

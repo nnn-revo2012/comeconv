@@ -405,8 +405,8 @@ namespace comeconv
                     {
                         if (Utils.IsXmlFileType(files[i]) != 10)
                         {
-                            AddLog("jkcommentviewerのyoutubeコメントファイル以外は修復できません。", 1);
-                            AddLog("また、一度修復したyoutubeコメントファイル以外は修復できません。", 1);
+                            AddLog("jkcommentviewerのyoutubeコメントファイル以外は処理できません。", 1);
+                            AddLog("また、一度修復したyoutubeコメントファイルは処理できません。", 1);
                         }
                         else
                             await Task.Run(() => RepairXml(files[i]));
