@@ -337,6 +337,42 @@ namespace comeconv
             }
         }
 
+        //コメントファイルを修復
+        private void RepairXml(string filename, string mode = "repair")
+        {
+            var result = false;
+            var backupfile = "";
+            var newfile = "";
+            try
+            {
+                backupfile = Utils.GetBackupFileName(filename, ".org");
+                File.Move(filename, backupfile);
+                newfile = filename;
+
+                AddLog("コメント修復します。", 1);
+                AddLog("元ファイル: " + Path.GetFileName(backupfile), 1);
+                AddLog("修復ファイル: " + Path.GetFileName(newfile), 1);
+                {
+                    using (var conv = new RepairXmlFile(this, props))
+                        result = conv.XmlRepair(backupfile, newfile);
+                    if (result)
+                    {
+                        AddLog("コメント修復終了しました。", 1);
+                    }
+                    else
+                    {
+                        AddLog("コメント変換に失敗しました。", 1);
+                    }
+                }
+                return;
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(RepairXml), Ex);
+                return;
+            }
+        }
+
         public bool ExecFFmpeg(ExecPsInfo epi)
         {
             ExecConvert ecv = null;

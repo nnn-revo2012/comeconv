@@ -96,7 +96,6 @@ namespace comeconv
                         if (Utils.IsXmlFileType(files[i]) >= 10)
                         {
                             AddLog("jkcommentviewerのyoutubeコメントファイルは変換の必要ありません。", 1);
-                            continue;
                         }
                         else
                             await Task.Run(() => ConvXml(files[i]));
@@ -374,6 +373,66 @@ namespace comeconv
                 GetForm();
                 props.SaveData();
             }
+        }
+
+        private async void repair_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
+            try
+            {
+                if (ProgramStatus == 1) return;
+
+                GetForm();
+                ClearLog();
+
+                var exec_file = props.ExecFile;
+                if (!File.Exists(exec_file))
+                {
+                    exec_file = GetExecFile(exec_file);
+                    if (!File.Exists(exec_file))
+                        AddLog("FFmpeg.exe がありません。", 2);
+                }
+                props.ExecFile = exec_file;
+                LogFile = null;
+
+                ProgramStatus = 1;
+                //1ファイルずつ順次実行する
+                for (int i = 0; i < files.Length; i++)
+                {
+                    var filetype = Utils.IsFileType(files[i]);
+                    if (filetype == 0)
+                    {
+                        if (Utils.IsXmlFileType(files[i]) != 10)
+                        {
+                            AddLog("jkcommentviewerのyoutubeコメントファイル以外は修復できません。", 1);
+                            AddLog("また、一度修復したyoutubeコメントファイル以外は修復できません。", 1);
+                        }
+                        else
+                            await Task.Run(() => RepairXml(files[i]));
+                    }
+                }
+                ProgramStatus = 0;
+
+            }
+            catch (Exception Ex)
+            {
+                //if (_ndb != null)
+                //{
+                //    _ndb.Dispose();
+                //}
+                AddLog("ドラッグ＆ドロップできません。\r\n" + Ex.Message, 2);
+            }
+
+        }
+
+        private void repair_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.All;
+            else
+                e.Effect = DragDropEffects.None;
+
         }
     }
 }

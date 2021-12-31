@@ -163,8 +163,11 @@ namespace comeconv.Util
                 if (len > 0)
                 {
                     var str = new string(_read_buf);
-                    if (str.IndexOf("youtube_icon_url=") > -1)
-                        result = 10;    //jkcommentviewerのyoutubeライブ
+                    if (str.IndexOf("user_name=") > -1)
+                    {
+                        //10 ファイル修復機能で修正してない 11 修正済
+                        result = str.IndexOf("youtube_icon_url=") > -1 ? 10 : 11;
+                    }
                     else
                         result = 0;
                 }

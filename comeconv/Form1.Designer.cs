@@ -94,6 +94,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.repair = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -110,6 +113,7 @@
             this.panel4.SuspendLayout();
             this.setting.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.repair.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -166,6 +170,7 @@
             this.tabControl1.AllowDrop = true;
             this.tabControl1.Controls.Add(this.saccubus);
             this.tabControl1.Controls.Add(this.twitch);
+            this.tabControl1.Controls.Add(this.repair);
             this.tabControl1.Controls.Add(this.setting);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
@@ -826,6 +831,41 @@
             this.textBox3.TabIndex = 0;
             this.toolTip1.SetToolTip(this.textBox3, "comeconv添付以外のFFmpegを使用したい場合だけ指定してください");
             // 
+            // repair
+            // 
+            this.repair.AllowDrop = true;
+            this.repair.BackColor = System.Drawing.Color.Honeydew;
+            this.repair.Controls.Add(this.label22);
+            this.repair.Controls.Add(this.label21);
+            this.repair.Location = new System.Drawing.Point(4, 22);
+            this.repair.Name = "repair";
+            this.repair.Padding = new System.Windows.Forms.Padding(3);
+            this.repair.Size = new System.Drawing.Size(432, 396);
+            this.repair.TabIndex = 3;
+            this.repair.Text = "ファイル修復";
+            this.repair.DragDrop += new System.Windows.Forms.DragEventHandler(this.repair_DragDrop);
+            this.repair.DragEnter += new System.Windows.Forms.DragEventHandler(this.repair_DragEnter);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 130);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 12);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "label22";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label21.Location = new System.Drawing.Point(11, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(413, 64);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "jkcommentviewerで取得したyoutubeコメントファイルを\r\ncomeconv 0.0.1.15より古いバージョンでさきゅばす用に変換\r\nした場合、" +
+    "xmlファイルが読み込めなくなる場合があります。\r\nそれを修正します。";
+            // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -901,6 +941,8 @@
             this.setting.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.repair.ResumeLayout(false);
+            this.repair.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -976,6 +1018,9 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.TabPage repair;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
     }
 }
 
