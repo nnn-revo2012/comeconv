@@ -1,10 +1,10 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2022/01/01
+【作成月日】 2022/08/12
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
-             Microsoft Visual Studio Community 2017
+             Microsoft Visual Studio Community 2019
 【動作環境】 Microsoft Windows 10 / Windows 8.1 / Windows 7
              .NET Framework 4.7.2
 【推奨環境】 Microsoft Windows 10
@@ -128,7 +128,6 @@ https://github.com/Saccubus/Saccubus1.x/releases
   - ニコ生新配信録画ツール（仮
   - livedl
   - NCV (コメントファイルのみ)
-  ※ニコニコ動画の動画ファイル、コメントファイルは未検証です
 ・TwitchDownloader
 https://github.com/lay295/TwitchDownloader/releases
 ・chat-downloader
@@ -199,3 +198,7 @@ GNU General Public License v3.0
 　- jkcommentviewerのyoutubeコメントファイル以外は処理できません。
 　- jkcommentviewerのyoutubeコメントファイルで壊れていない場合は処理しません。
 　さきゅばす変換の際、xmlが壊れていたら変換中止するように修正。
+2022/08/12　Version 0.0.1.17
+　エモーション　さくら絵文字を変換
+　README.md、README.txtを現状に合わせて修正
+　コンパイラを Microsoft Visual Studio Community 2019 に変更
