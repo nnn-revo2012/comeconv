@@ -17,7 +17,6 @@ namespace comeconv
     {
         private static Regex rbRegex = new Regex("^rB_(.+)$", RegexOptions.Compiled);
 
-
         //ログウインドウ初期化
         private void ClearLog()
         {
@@ -94,12 +93,16 @@ namespace comeconv
                 */
             }));
         }
- 
+
         //変数→フォーム
         private void SetForm()
         {
             try
             {
+                foreach (var item in props.SacAppList.Values)
+                    comboBox3.Items.Add(item);
+                comboBox3.SelectedIndex = props.SacConvApp;
+
                 textBox3.Text = props.ExecFile;
                 textBox4.Text = props.BreakCommand;
                 checkBox8.Checked = props.IsLogging;
@@ -134,6 +137,9 @@ namespace comeconv
                 checkBox5.Checked = props.IsSacGift;
                 checkBox6.Checked = props.IsSacEmotion;
                 checkBox7.Checked = props.IsSacNicoAd;
+                checkBox16.Checked = props.IsSacCruise;
+                checkBox15.Checked = props.IsSacInfo;
+                checkBox14.Checked = props.IsSacSystem;
                 checkBox13.Checked = props.IsSimpleVote;
 
                 textBox1.Text = props.SacCommLen.ToString();
@@ -141,6 +147,7 @@ namespace comeconv
                 foreach (var item in props.SacVideoList.Keys)
                     comboBox1.Items.Add(item);
                 comboBox1.SelectedItem = props.SacVideoMode;
+
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
                 props.SacNGWords = props.ReadNGList(ngfile);
 
@@ -204,6 +211,9 @@ namespace comeconv
                 props.IsSacGift = checkBox5.Checked;
                 props.IsSacEmotion = checkBox6.Checked;
                 props.IsSacNicoAd = checkBox7.Checked;
+                props.IsSacCruise = checkBox16.Checked;
+                props.IsSacInfo = checkBox15.Checked;
+                props.IsSacSystem = checkBox14.Checked;
                 props.IsSimpleVote = checkBox13.Checked; 
 
                 if (int.TryParse(textBox1.Text, out var i))
@@ -216,6 +226,7 @@ namespace comeconv
                     props.SacVpos = Properties.Settings.Default.SacVpos;
 
                 props.SacVideoMode = comboBox1.SelectedItem.ToString();
+                props.SacConvApp = comboBox3.SelectedIndex;
                 var ngfile = Path.Combine(Props.GetSettingDirectory(), props.SacNGLists);
                 props.SacNGWords = props.ReadNGList(ngfile);
 

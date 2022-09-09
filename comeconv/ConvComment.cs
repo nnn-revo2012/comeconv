@@ -34,6 +34,7 @@ namespace comeconv
         private Form1 _form = null;
         private Props _props = null;
         private static Regex _RegGift = new Regex("\"([^\"]+)\" (\\d+) \"([^\"]*)\" \"([^\"]+)\" ?(\\d*)", RegexOptions.Compiled);
+        private static Regex _RegInfo = new Regex("(\\d+) (.+)$", RegexOptions.Compiled);
 
         //Debug
         public bool IsDebug { get; set; }
@@ -167,48 +168,12 @@ namespace comeconv
                     {
                         if (props.IsSacGift)
                         {
-                            ttt = _RegGift.Match(ttt).Groups[1] + "さん:"
-                                + _RegGift.Match(ttt).Groups[4]
-                                + "(+" + _RegGift.Match(ttt).Groups[2] + ")";
-                            data["mail"] = "184 white shita medium";
-                            data["premium"] = "1";
-                        }
-                        else
-                        {
-                            del_flg = true;
-                        }
-                    }
-                    if (ttt.StartsWith("/emotion "))
-                    {
-                        if (props.IsSacEmotion)
-                        {
-                            ttt = ttt.Substring(9);
-                            if (props.IsSacEmoji)
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
                             {
-                                if (ttt.Contains("🍀"))
-                                    ttt = ttt.Replace("🍀", "クローバー");
-                                if (ttt.Contains("🌻"))
-                                    ttt = ttt.Replace("🌻", "ひまわり");
-                                if (ttt.Contains("🌸"))
-                                    ttt = ttt.Replace("🌸", "さくら");
-                            }
-                            data["mail"] = data["mail"] + " white shita medium";
-                            data["premium"] = "1";
-                        }
-                        else
-                        {
-                            del_flg = true;
-                        }
-                    }
-                    if (ttt.StartsWith("/nicoad "))
-                    {
-                        if (props.IsSacNicoAd)
-                        {
-                            var jo = JObject.Parse(ttt.Substring(8));
-                            if (jo["message"] != null)
-                            {
-                                ttt = jo["message"].ToString();
-                                data["mail"] = data["mail"] + " white shita small";
+                                ttt = _RegGift.Match(ttt).Groups[1].Value + "さん:"
+                                    + _RegGift.Match(ttt).Groups[4].Value
+                                    + "(+" + _RegGift.Match(ttt).Groups[2].Value + ")";
+                                data["mail"] = "184 white shita medium";
                                 data["premium"] = "1";
                             }
                         }
@@ -217,19 +182,117 @@ namespace comeconv
                             del_flg = true;
                         }
                     }
-                    if (ttt.StartsWith("/cruise "))
+                    else if (ttt.StartsWith("/emotion "))
                     {
-                        ttt = ttt.Substring(8).Trim('"');
-                        data["mail"] = "184 white shita small";
-                        data["premium"] = "1";
+                        if (props.IsSacEmotion)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                ttt = ttt.Substring(9);
+                                if (props.IsSacEmoji)
+                                {
+                                    if (ttt.Contains("🍀"))
+                                        ttt = ttt.Replace("🍀", "クローバー");
+                                    if (ttt.Contains("🌻"))
+                                        ttt = ttt.Replace("🌻", "ひまわり");
+                                    if (ttt.Contains("🌸"))
+                                        ttt = ttt.Replace("🌸", "さくら");
+                                }
+                                data["mail"] = data["mail"] + " white shita medium";
+                                data["premium"] = "1";
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
                     }
-                    if (ttt.StartsWith("/quote "))
+                    else if (ttt.StartsWith("/nicoad "))
                     {
-                        ttt = ttt.Substring(7).Trim('"');
-                        data["mail"] = "184 white shita small";
-                        data["premium"] = "1";
+                        if (props.IsSacNicoAd)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                var jo = JObject.Parse(ttt.Substring(8));
+                                if (jo["message"] != null)
+                                {
+                                    ttt = jo["message"].ToString();
+                                    data["mail"] = data["mail"] + " white shita small";
+                                    data["premium"] = "1";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
                     }
-                    if (ttt.StartsWith("/vote ") && props.IsSimpleVote)
+                    else if (ttt.StartsWith("/cruise "))
+                    {
+                        if (props.IsSacCruise)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                ttt = ttt.Substring(8).Trim('"');
+                                data["mail"] = "184 white shita small";
+                                data["premium"] = "1";
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
+                    }
+                    else if (ttt.StartsWith("/quote "))
+                    {
+                        if (props.IsSacCruise)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                ttt = ttt.Substring(7).Trim('"');
+                                data["mail"] = "184 white shita small";
+                                data["premium"] = "1";
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
+                    }
+                    else if (ttt.StartsWith("/info "))
+                    {
+                        if (props.IsSacInfo)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                ttt = _RegInfo.Match(ttt.Substring(6)).Groups[2].Value;
+
+                                data["mail"] = "184 white shita small";
+                                data["premium"] = "1";
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
+                    }
+                    else if (ttt.StartsWith("/spi "))
+                    {
+                        if (props.IsSacInfo)
+                        {
+                            if (props.SacConvApp < 1 || props.SacConvApp > 2)
+                            {
+                                ttt = ttt.Substring(5).Trim('"');
+                                data["mail"] = "184 white shita small";
+                                data["premium"] = "1";
+                            }
+                        }
+                        else
+                        {
+                            del_flg = true;
+                        }
+                    }
+                    else if (ttt.StartsWith("/vote ") && props.IsSimpleVote)
                     {
                         switch (SimpleVote.IsVote(ttt))
                         {
@@ -244,6 +307,13 @@ namespace comeconv
                                     ttt = SimpleVote.ShowVote();
                                 }
                                 break;
+                        }
+                    }
+                    if (ttt.StartsWith("/"))
+                    {
+                        if (!props.IsSacSystem)
+                        {
+                            del_flg = true;
                         }
                     }
                 }

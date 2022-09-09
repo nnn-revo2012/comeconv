@@ -83,5 +83,20 @@
     <Setting Name="IsSimpleVote" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="IsSacCruise" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsSacInfo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsSacSystem" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SacConvApp" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SacAppList" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0	さきゅばす(～1.67.7.11);1	さきゅばす(1.67.8.01～);2	commeon、commein;3	こめたん</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -80,8 +80,13 @@ namespace comeconv.Prop
         public bool IsSacGift { get; set; }
         public bool IsSacEmotion { get; set; }
         public bool IsSacNicoAd { get; set; }
+        public bool IsSacCruise { get; set; }
+        public bool IsSacInfo { get; set; }
+        public bool IsSacSystem { get; set; }
+
         public string SacNGLists { get; set; }
         public string SacVideoMode { get; set; }
+        public int SacConvApp { get; set; }
         public bool IsLogging { get; set; }
         public bool IsSaveData { get; set; }
         public string DispTab { get; set; }
@@ -95,12 +100,14 @@ namespace comeconv.Prop
         public long TwiVpos { get; set; }
 
         public IDictionary<string, string> SacVideoList;
+        public IDictionary<string, string> SacAppList;
         public IList<string> SacNGWords;
         public IDictionary<string, string> DispTabList;
 
         public Props()
         {
             SacVideoList = new Dictionary<string, string>();
+            SacAppList = new Dictionary<string, string>();
             SacNGWords = new List<string>();
             DispTabList = new Dictionary<string, string>();
         }
@@ -124,9 +131,14 @@ namespace comeconv.Prop
                 this.IsSacGift = Properties.Settings.Default.IsSacGift;
                 this.IsSacEmotion = Properties.Settings.Default.IsSacEmotion;
                 this.IsSacNicoAd = Properties.Settings.Default.IsSacNicoAd;
+                this.IsSacCruise = Properties.Settings.Default.IsSacCruise;
+                this.IsSacInfo = Properties.Settings.Default.IsSacInfo;
+                this.IsSacSystem = Properties.Settings.Default.IsSacSystem;
                 this.SacNGLists = Properties.Settings.Default.SacNGLists;
                 this.SacVideoMode = Properties.Settings.Default.SacVideoMode;
                 SacVideoList = ReadVideoList(Properties.Settings.Default.SacVideoList);
+                this.SacConvApp = Properties.Settings.Default.SacConvApp;
+                SacAppList = ReadVideoList(Properties.Settings.Default.SacAppList);
                 this.IsLogging = Properties.Settings.Default.IsLogging;
                 this.IsSaveData = Properties.Settings.Default.IsSaveData;
                 this.DispTab = Properties.Settings.Default.DispTab;
@@ -167,8 +179,12 @@ namespace comeconv.Prop
                 Properties.Settings.Default.IsSacGift = this.IsSacGift;
                 Properties.Settings.Default.IsSacEmotion = this.IsSacEmotion;
                 Properties.Settings.Default.IsSacNicoAd = this.IsSacNicoAd;
+                Properties.Settings.Default.IsSacCruise = this.IsSacCruise;
+                Properties.Settings.Default.IsSacInfo = this.IsSacInfo;
+                Properties.Settings.Default.IsSacSystem = this.IsSacSystem;
                 Properties.Settings.Default.SacNGLists = this.SacNGLists;
                 Properties.Settings.Default.SacVideoMode = this.SacVideoMode;
+                Properties.Settings.Default.SacConvApp = this.SacConvApp;
                 Properties.Settings.Default.IsLogging = this.IsLogging;
                 Properties.Settings.Default.IsSaveData = this.IsSaveData;
                 Properties.Settings.Default.DispTab = this.DispTab;
@@ -246,7 +262,10 @@ namespace comeconv.Prop
                     {
                         line = sr.ReadLine();
 
-                        if (!string.IsNullOrEmpty(line) && !line.StartsWith("//"))
+                        if (string.IsNullOrEmpty(line) || line.StartsWith("//") ||
+                            line.StartsWith("/info") || line.StartsWith("/spi"))
+                            continue;
+                        else
                             lists.Add(line);
                     }
                 }

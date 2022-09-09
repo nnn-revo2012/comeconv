@@ -452,5 +452,32 @@ namespace comeconv
                 e.Effect = DragDropEffects.None;
 
         }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = comboBox3.SelectedIndex;
+            if (index < 1 || index > 2)
+            {
+                checkBox1.Checked = true;
+                checkBox1.Enabled = true;
+                checkBox2.Checked = true;
+                checkBox2.Enabled = true;
+                checkBox13.Checked = true;
+                checkBox13.Enabled = true;
+            }
+            else
+            {
+                checkBox1.Checked = false;
+                checkBox1.Enabled = false;
+                checkBox2.Checked = false;
+                checkBox13.Checked = false;
+                checkBox13.Enabled = false;
+                if (index == 1)
+                    checkBox2.Enabled = false;
+                else
+                    checkBox2.Enabled = true;
+            }
+
+        }
     }
 }
