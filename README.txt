@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2022/09/09
+【作成月日】 2022/09/11
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -209,7 +209,7 @@ GNU General Public License v3.0
 　エモーション　さくら絵文字を変換
 　README.md、README.txtを現状に合わせて修正
 　コンパイラを Microsoft Visual Studio Community 2019 に変更
-2022/09/09　Version 0.0.1.19
+2022/09/11　Version 0.0.1.18
 　運営コメントのクルーズ、インフォ、その他の表示する／しないを変更するチェックボックス追加
 　出力先アプリ選択のコンボボックス追加
 　　- 選択されたアプリに応じたチェックボックスON/OFF、運営コメント変換などを行う
