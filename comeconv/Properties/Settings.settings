@@ -96,7 +96,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="SacAppList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0	さきゅばす(～1.67.7.11);1	さきゅばす(1.67.8.01～);2	commeon、commein;3	こめたん</Value>
+      <Value Profile="(Default)">0	さきゅばす(～1.67.7.11);1	さきゅばす(1.67.8.01～);2	commeon、commein;3	NicoConvAss;4	こめたん他ニコ動ソフト</Value>
     </Setting>
   </Settings>
 </SettingsFile>

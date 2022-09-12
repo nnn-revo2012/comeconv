@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2022/09/11
+【作成月日】 2022/09/12
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -131,6 +131,8 @@ https://support.microsoft.com/ja-jp/topic/windows-%E7%94%A8%E3%81%AE-microsoft-n
 ・Saccubus（さきゅばす）1.67.7.11、1.67.2.11、1.67.8.xx、1.70.0.xx
 https://github.com/Saccubus/Saccubus1.x/releases
 ・commeon、commein
+・こめたんぷれいや
+・NicoConvAss
 ・動画ファイルおよびコメントファイル
   - ニコ生新配信録画ツール（仮
   - livedl
@@ -209,7 +211,9 @@ GNU General Public License v3.0
 　エモーション　さくら絵文字を変換
 　README.md、README.txtを現状に合わせて修正
 　コンパイラを Microsoft Visual Studio Community 2019 に変更
-2022/09/11　Version 0.0.1.18
+2022/09/12　Version 0.0.1.18
 　運営コメントのクルーズ、インフォ、その他の表示する／しないを変更するチェックボックス追加
-　出力先アプリ選択のコンボボックス追加
-　　- 選択されたアプリに応じたチェックボックスON/OFF、運営コメント変換などを行う
+　変換先ソフト指定選択のコンボボックス追加
+　　- 選択されたソフトに応じたチェックボックスON/OFF、運営コメント変換などを行う
+　こめたんぷれいや、NicoConvAssなどのツールでニコ生のコメントがなるべく正しく表示されるように変換。
+　※NicoConvAssの場合、アンケ表示、アスキーアートの表示がされない場合があります

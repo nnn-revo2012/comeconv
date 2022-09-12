@@ -464,6 +464,8 @@ namespace comeconv
                 checkBox2.Enabled = true;
                 checkBox13.Checked = true;
                 checkBox13.Enabled = true;
+                if (index > 2)
+                    checkBox1.Checked = false;
             }
             else
             {

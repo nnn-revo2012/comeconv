@@ -399,7 +399,8 @@ namespace comeconv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0\tさきゅばす(～1.67.7.11);1\tさきゅばす(1.67.8.01～);2\tcommeon、commein;3\tこめたん")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0\tさきゅばす(～1.67.7.11);1\tさきゅばす(1.67.8.01～);2\tcommeon、commein;3\tNicoConvAss;4\tこめたん他ニコ" +
+            "動ソフト")]
         public string SacAppList {
             get {
                 return ((string)(this["SacAppList"]));

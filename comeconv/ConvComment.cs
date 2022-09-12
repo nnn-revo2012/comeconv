@@ -173,7 +173,7 @@ namespace comeconv
                                 ttt = _RegGift.Match(ttt).Groups[1].Value + "さん:"
                                     + _RegGift.Match(ttt).Groups[4].Value
                                     + "(+" + _RegGift.Match(ttt).Groups[2].Value + ")";
-                                data["mail"] = "184 white shita medium";
+                                data["mail"] = "184 white shita";
                                 data["premium"] = "1";
                             }
                         }
@@ -198,7 +198,7 @@ namespace comeconv
                                     if (ttt.Contains("🌸"))
                                         ttt = ttt.Replace("🌸", "さくら");
                                 }
-                                data["mail"] = data["mail"] + " white shita medium";
+                                data["mail"] = "184 white shita";
                                 data["premium"] = "1";
                             }
                         }
@@ -217,7 +217,7 @@ namespace comeconv
                                 if (jo["message"] != null)
                                 {
                                     ttt = jo["message"].ToString();
-                                    data["mail"] = data["mail"] + " white shita small";
+                                    data["mail"] = "184 white shita small";
                                     data["premium"] = "1";
                                 }
                             }
@@ -234,7 +234,10 @@ namespace comeconv
                             if (props.SacConvApp < 1 || props.SacConvApp > 2)
                             {
                                 ttt = ttt.Substring(8).Trim('"');
-                                data["mail"] = "184 white shita small";
+                                if (!data.ContainsKey("mail"))
+                                    data["mail"] = "white shita small";
+                                else
+                                    data["mail"] = data["mail"] + " white shita small";
                                 data["premium"] = "1";
                             }
                         }
@@ -250,7 +253,10 @@ namespace comeconv
                             if (props.SacConvApp < 1 || props.SacConvApp > 2)
                             {
                                 ttt = ttt.Substring(7).Trim('"');
-                                data["mail"] = "184 white shita small";
+                                if (!data.ContainsKey("mail"))
+                                    data["mail"] = "white shita small";
+                                else
+                                    data["mail"] = data["mail"] + " white shita small";
                                 data["premium"] = "1";
                             }
                         }
@@ -266,8 +272,10 @@ namespace comeconv
                             if (props.SacConvApp < 1 || props.SacConvApp > 2)
                             {
                                 ttt = _RegInfo.Match(ttt.Substring(6)).Groups[2].Value;
-
-                                data["mail"] = "184 white shita small";
+                                if (!data.ContainsKey("mail"))
+                                    data["mail"] = "white shita small";
+                                else
+                                    data["mail"] = data["mail"] + " white shita small";
                                 data["premium"] = "1";
                             }
                         }
@@ -283,7 +291,10 @@ namespace comeconv
                             if (props.SacConvApp < 1 || props.SacConvApp > 2)
                             {
                                 ttt = ttt.Substring(5).Trim('"');
-                                data["mail"] = "184 white shita small";
+                                if (!data.ContainsKey("mail"))
+                                    data["mail"] = "white shita small";
+                                else
+                                    data["mail"] = data["mail"] + " white shita small";
                                 data["premium"] = "1";
                             }
                         }
@@ -316,6 +327,17 @@ namespace comeconv
                             del_flg = true;
                         }
                     }
+                    // 運営コマンドはすべてpremium="1"
+                    if (props.SacConvApp > 2 
+                        && (data["premium"] == "2" || data["premium"] == "3") 
+                        && del_flg != true)
+                    {
+                        if (!data.ContainsKey("mail"))
+                            data["mail"] = "white ue";
+                        else
+                            data["mail"] = data["mail"] + " white ue";
+                        data["premium"] = "1";
+                    }
                 }
                 else
                 {
@@ -325,6 +347,12 @@ namespace comeconv
                         if (ttt.Length > props.SacCommLen)
                             del_flg = true;
                     }
+                }
+
+                // NicoConvAssの場合mail=のsmall,bigを削除
+                if (props.SacConvApp ==3 && data.ContainsKey("mail"))
+                {
+                    data["mail"] = data["mail"].Replace("small", "").Replace("big", "");
                 }
 
                 //絵文字処理
