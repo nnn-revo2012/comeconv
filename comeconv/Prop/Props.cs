@@ -98,6 +98,10 @@ namespace comeconv.Prop
         public int TwiCommLen { get; set; }
         public bool IsTwiVpos { get; set; }
         public long TwiVpos { get; set; }
+        public bool IsTwiCommType { get; set; }
+        public bool IsTwiGift { get; set; }
+        public bool IsTwiSystem { get; set; }
+
 
         public IDictionary<string, string> SacVideoList;
         public IDictionary<string, string> SacAppList;
@@ -150,6 +154,9 @@ namespace comeconv.Prop
                 this.TwiCommLen = Properties.Settings.Default.TwiCommLen;
                 this.IsTwiVpos = Properties.Settings.Default.IsTwiVpos;
                 this.TwiVpos = Properties.Settings.Default.TwiVpos;
+                this.IsTwiCommType = Properties.Settings.Default.IsTwiCommType;
+                this.IsTwiGift = Properties.Settings.Default.IsTwiGift;
+                this.IsTwiSystem = Properties.Settings.Default.IsTwiSystem;
 
             }
             catch (Exception Ex)
@@ -196,6 +203,9 @@ namespace comeconv.Prop
                 Properties.Settings.Default.TwiCommLen = this.TwiCommLen;
                 Properties.Settings.Default.IsTwiVpos = this.IsTwiVpos;
                 Properties.Settings.Default.TwiVpos = this.TwiVpos;
+                Properties.Settings.Default.IsTwiCommType = this.IsTwiCommType;
+                Properties.Settings.Default.IsTwiGift = this.IsTwiGift;
+                Properties.Settings.Default.IsTwiSystem = this.IsTwiSystem;
 
                 Properties.Settings.Default.Save();
              }

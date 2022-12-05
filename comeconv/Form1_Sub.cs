@@ -162,6 +162,9 @@ namespace comeconv
                 checkBox9.Checked = props.IsTwiEmoji;
                 checkBox11.Checked = props.IsTwiCommLen;
                 checkBox10.Checked = props.IsTwiVpos;
+                checkBox17.Checked = !props.IsTwiCommType;
+                checkBox18.Checked = props.IsTwiGift;
+                checkBox19.Checked = props.IsTwiSystem;
 
                 textBox6.Text = props.TwiCommLen.ToString();
                 textBox5.Text = ((double)props.TwiVpos / 100D).ToString("0.00");
@@ -241,6 +244,9 @@ namespace comeconv
                 props.IsTwiEmoji = checkBox9.Checked;
                 props.IsTwiCommLen = checkBox11.Checked;
                 props.IsTwiVpos = checkBox10.Checked;
+                props.IsTwiCommType = !checkBox17.Checked;
+                props.IsTwiGift = checkBox18.Checked;
+                props.IsTwiSystem = checkBox19.Checked;
 
                 if (int.TryParse(textBox6.Text, out i))
                     props.TwiCommLen = i;

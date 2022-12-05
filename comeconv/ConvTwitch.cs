@@ -184,7 +184,65 @@ namespace comeconv
                                 data.Add("user_id", jo["author"]["name"].ToString());
                                 if (jo["author"]["display_name"] != null)
                                     data.Add("name", jo["author"]["display_name"].ToString());
-                                data.Add("content", jo["message"].ToString());
+                                string message = jo["message"].ToString();
+                                if (!_props.IsTwiCommType)
+                                {
+                                    data.Add("content", message);
+                                }
+                                else
+                                {
+                                    if (jo["emotes"] != null)
+                                    {
+                                        if (jo["action_type"] != null)
+                                        {
+                                            foreach (var emt in jo["emotes"])
+                                            {
+                                                if (!(bool)emt["is_custom_emoji"])
+                                                    message = message.Replace(emt["name"].ToString(), emt["id"].ToString());
+                                                else
+                                                    message = message.Replace(emt["name"].ToString(), "");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var emt in jo["emotes"])
+                                            {
+                                                    message = message.Replace(emt["name"].ToString(), "");
+                                            }
+                                        }
+                                    }
+                                    if (jo["message_type"].ToString() == "paid_message")
+                                    {
+                                        if (_props.IsTwiGift)
+                                        {
+                                            message = jo["money"]["text"] + " " + message;
+                                            data.Add("mail", "shita");
+                                        }
+                                        else
+                                        {
+                                            message = "";
+                                        }
+                                    }
+                                    if (message.Length <= 0)
+                                        continue;
+                                    data.Add("content", message);
+                                    if (data["content"].Contains(" gifted ") ||
+                                    data["content"].Contains(" gifting "))
+                                    {
+                                        if (_props.IsTwiGift)
+                                            data.Add("mail", "shita");
+                                        else
+                                            continue;
+                                    }
+                                    if (data["content"].Contains(" subscribed ") ||
+                                        data["content"].Contains(" is now live!"))
+                                    {
+                                        if (_props.IsTwiSystem)
+                                            data.Add("mail", "shita");
+                                        else
+                                            continue;
+                                    }
+                                }
                                 if (data.Count() > 0)
                                 {
                                     count++;
@@ -339,7 +397,41 @@ namespace comeconv
                             data.Add("color", item["message"]["user_color"].ToString());
                         data.Add("user_id", item["commenter"]["name"].ToString());
                         data.Add("name", item["commenter"]["display_name"].ToString());
-                        data.Add("content", item["message"]["body"].ToString());
+                        if (!_props.IsTwiCommType)
+                            data.Add("content", item["message"]["body"].ToString());
+                        else
+                        {
+                            var ttt = "";
+                            var isText = false;
+                            foreach (var ddd in item["message"]["fragments"])
+                            {
+                                if (ddd["emoticon"].Count() <= 0)
+                                {
+                                    ttt += ddd["text"].ToString();
+                                    isText = true;
+                                }
+                            }
+                            if (isText)
+                                data.Add("content", ttt);
+                            else
+                                continue;
+                            if (data["content"].Contains(" gifted ") ||
+                            data["content"].Contains(" gifting "))
+                            {
+                                if (_props.IsTwiGift)
+                                    data.Add("mail", "shita");
+                                else
+                                    continue;
+                            }
+                            if (data["content"].Contains(" subscribed ") ||
+                                data["content"].Contains(" is now live!"))
+                            {
+                                if (_props.IsTwiSystem)
+                                    data.Add("mail", "shita");
+                                else
+                                    continue;
+                            }
+                        }
                         if (data.Count() > 0)
                         {
                             var ttt = ConvChatData(data, _props).TrimEnd();

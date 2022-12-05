@@ -76,6 +76,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.rB_tspace = new System.Windows.Forms.RadioButton();
@@ -612,9 +616,10 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(91, 45);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(161, 24);
+            this.label19.Size = new System.Drawing.Size(325, 48);
             this.label19.TabIndex = 6;
-            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader   (json/jsonl)";
+            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader   (json/jsonl)\r\n\r\nTwitchDownloader t" +
+    "xt形式のコメントは代替絵文字が表示されます";
             // 
             // label18
             // 
@@ -629,6 +634,10 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.checkBox19);
+            this.groupBox4.Controls.Add(this.checkBox18);
+            this.groupBox4.Controls.Add(this.checkBox17);
+            this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.panel4);
             this.groupBox4.Controls.Add(this.label16);
@@ -638,12 +647,52 @@
             this.groupBox4.Controls.Add(this.textBox6);
             this.groupBox4.Controls.Add(this.checkBox11);
             this.groupBox4.Controls.Add(this.checkBox9);
-            this.groupBox4.Location = new System.Drawing.Point(5, 81);
+            this.groupBox4.Location = new System.Drawing.Point(6, 107);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(421, 165);
+            this.groupBox4.Size = new System.Drawing.Size(421, 237);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "コメント設定(チェックすると変換します)";
+            // 
+            // checkBox19
+            // 
+            this.checkBox19.AutoSize = true;
+            this.checkBox19.Location = new System.Drawing.Point(145, 189);
+            this.checkBox19.Name = "checkBox19";
+            this.checkBox19.Size = new System.Drawing.Size(119, 16);
+            this.checkBox19.TabIndex = 24;
+            this.checkBox19.Text = "システムコメント表示";
+            this.checkBox19.UseVisualStyleBackColor = true;
+            // 
+            // checkBox18
+            // 
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.Location = new System.Drawing.Point(21, 189);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Size = new System.Drawing.Size(118, 16);
+            this.checkBox18.TabIndex = 23;
+            this.checkBox18.Text = "ギフト(スパチャ)表示";
+            this.checkBox18.UseVisualStyleBackColor = true;
+            // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(215, 215);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(197, 16);
+            this.checkBox17.TabIndex = 22;
+            this.checkBox17.Text = "コメントの代替絵文字をそのまま表示";
+            this.checkBox17.UseVisualStyleBackColor = true;
+            this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox17_CheckedChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(20, 164);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(253, 12);
+            this.label24.TabIndex = 21;
+            this.label24.Text = "ギフト(スパチャ)・システムコメント表示 (チェックで表示)";
             // 
             // label15
             // 
@@ -662,7 +711,7 @@
             this.panel4.Enabled = false;
             this.panel4.Location = new System.Drawing.Point(37, 41);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(313, 26);
+            this.panel4.Size = new System.Drawing.Size(313, 23);
             this.panel4.TabIndex = 17;
             // 
             // rB_tspace
@@ -736,7 +785,6 @@
             this.textBox6.Size = new System.Drawing.Size(38, 19);
             this.textBox6.TabIndex = 7;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox6.Validated += new System.EventHandler(this.textBox6_Validated);
             // 
             // checkBox11
             // 
@@ -770,9 +818,9 @@
             this.label14.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label14.Location = new System.Drawing.Point(6, 3);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(409, 30);
+            this.label14.Size = new System.Drawing.Size(419, 30);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Twitchのコメントファイルをニコ動コメント形式(xml)に変換します\r\nさきゅばす用ほかにも変換できます。";
+            this.label14.Text = "Twitch・YouTubeのコメントファイルをニコニココメント形式(xml)に\r\n変換します";
             // 
             // repair
             // 
@@ -1096,6 +1144,10 @@
         private System.Windows.Forms.CheckBox checkBox15;
         private System.Windows.Forms.CheckBox checkBox16;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox checkBox17;
+        private System.Windows.Forms.Label label24;
     }
 }
 

@@ -409,5 +409,41 @@ namespace comeconv.Properties {
                 this["SacAppList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsTwiCommType {
+            get {
+                return ((bool)(this["IsTwiCommType"]));
+            }
+            set {
+                this["IsTwiCommType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsTwiGift {
+            get {
+                return ((bool)(this["IsTwiGift"]));
+            }
+            set {
+                this["IsTwiGift"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsTwiSystem {
+            get {
+                return ((bool)(this["IsTwiSystem"]));
+            }
+            set {
+                this["IsTwiSystem"] = value;
+            }
+        }
     }
 }

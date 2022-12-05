@@ -347,17 +347,7 @@ namespace comeconv
 
         private void textBox6_Validated(object sender, EventArgs e)
         {
-            try
-            {
-                if (int.TryParse(textBox6.Text, out var i))
-                    textBox6.Text = i.ToString();
-                else
-                    textBox6.Text = props.TwiCommLen.ToString();
-            }
-            catch (Exception Ex)
-            {
-                DebugWrite.Writeln(nameof(textBox6_Validated), Ex);
-            }
+
         }
 
         private void textBox5_Validated(object sender, EventArgs e)
@@ -480,6 +470,20 @@ namespace comeconv
                     checkBox2.Enabled = true;
             }
 
+        }
+
+        private void checkBox17_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox17.Checked)
+            {
+                checkBox18.Enabled = false;
+                checkBox19.Enabled = false;
+            }
+            else
+            {
+                checkBox18.Enabled = true;
+                checkBox19.Enabled = true;
+            }
         }
     }
 }
