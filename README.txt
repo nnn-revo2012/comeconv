@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2022/09/12
+【作成月日】 2022/12/10
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -10,8 +10,7 @@
 【推奨環境】 Microsoft Windows 10
 【配布形態】 フリーウェア
 【Web Site】 https://github.com/nnn-revo2012/comeconv
-【 連絡先 】 要望やバグ報告等はgithubまで
-             その他　nnn_revo2012@yahoo.co.jp　
+【 連絡先 】 要望やバグ報告等はgithubもしくはhttps://twitter.com/nnn_revo2012まで　
 ===============================================================================
 
 ■説明
@@ -19,7 +18,7 @@
 ・GUI(Windows Forms)使用
 ・ニコ生新配信録画ツール（仮などでダウンロードした動画やコメントを古いさきゅばす(1.67.7.11)や古いニコ動のツールで
   結合・再生するための各種変換をおこないます
-・TwitchDownloaderおよびchat-downloaderでダウンロードしたTwitchのコメントをニコ動形式および
+・TwitchDownloaderおよびchat-downloaderでダウンロードしたTwitchの・YouTubeのコメントをニコ動形式および
 　さきゅばす結合用に変換します
 
 ※さきゅばすはこのツールを使わないで直接ニコ生の動画とコメントを結合できるようになりました。
@@ -117,11 +116,20 @@ https://blog.nicovideo.jp/niconews/127212.html
 10.問題なければさきゅばすで変換してください。
 
 ★Twitchのコメント変換
-現在対応してるのは以下です
-1)TwitchDownloader *1 の Simple Text形式(UTCおよびRelative)、JSON形式 *2
-2)chat-downloader の *.json/*.jsonl形式
-*1 コメント数が多い(数万件以上)の場合ダウンロード毎にコメ数が１０件ぐらい前後するようです(調査中)
-*2 コメント数が多いとメモリーを500～1GBくらい消費します。
+現在以下のツールに対応しています
+
+1.TwitchDownloader
+  Simple Text形式(UTCおよびRelative)、JSON形式
+  JSON形式の代替文字列は削除されます。Text形式の代替絵文字はそのまま表示されます
+  JSON形式の場合コメント数が多いとメモリーを500～1GBくらい消費します
+2.chat-downloader
+  *.json/*.jsonl形式
+  Twitch 代替絵文字は削除されます
+  YouTube 絵文字は絵文字として表示されます。代替絵文字は削除されます
+
+※chat-downloaderでYouTubeのスーパーチャットを動画開始00:00:00から取得する
+  (開始時間を指定しないと開始時間以前のチャットもすべて取得されます)
+chat_downloader --message_groups "messages superchat" -s 00:00:00 -o chatlog.json [URL]
 
 ■動作環境
 .Net Framework 4.7.2以降が必要です。Windows 10では標準でインストールされているので新たにインストールする必要はありません。
@@ -217,3 +225,12 @@ GNU General Public License v3.0
 　　- 選択されたソフトに応じたチェックボックスON/OFF、運営コメント変換などを行う
 　こめたんぷれいや、NicoConvAssなどのツールでニコ生のコメントがなるべく正しく表示されるように変換。
 　※NicoConvAssの場合、アンケ表示、アスキーアートの表示がされない場合があります
+2022/12/10 Version 0.0.1.19
+  Twitch変換機能追加
+  「ギフト(スパチャ)表示」「システムメッセージ表示」ON/OFFのチェックボックス追加
+  「コメントの代替絵文字をそのまま表示する」チェックボックス追加
+  TwitchDownloader JSON形式の代替絵文字を削除
+    *TEXT形式の代替絵文字はそのまま表示されます
+  chat-downloader
+    twitch json/jsonl形式の代替絵文字を削除
+    YouTube json/jsonl形式の絵文字を表示し、代替絵文字を削除
