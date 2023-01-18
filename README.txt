@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2022/12/10
+【作成月日】 2023/01/19
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -234,3 +234,7 @@ GNU General Public License v3.0
   chat-downloader
     twitch json/jsonl形式の代替絵文字を削除
     YouTube json/jsonl形式の絵文字を表示し、代替絵文字を削除
+2023/01/19 Version 0.0.1.20
+  Twitch変換機能修正
+  - TwitchDownloader 1.50.8以降のJSONフォーマットに対応
+  - Chat Downloader 0.2.3のjson/jsonlファイルを変換中エラーになるのを修正
