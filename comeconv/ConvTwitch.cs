@@ -135,6 +135,7 @@ namespace comeconv
             }
         }
 
+        private static Regex _RegLocations = new Regex("^(\\d+)\\-(\\d+)", RegexOptions.Compiled);
         public bool TwitchConvertChatDownloader(string sfile, string dfile)
         {
             var enc = new System.Text.UTF8Encoding(false);
@@ -207,7 +208,18 @@ namespace comeconv
                                         {
                                             foreach (var emt in jo["emotes"])
                                             {
-                                                    message = message.Replace(emt["name"].ToString(), "");
+                                                string name = emt["name"].ToString();
+                                                if (string.IsNullOrEmpty(name))
+                                                {
+                                                    var msg = jo["message"].ToString();
+                                                    var loc = emt["locations"].ToString();
+                                                    int start = Int32.Parse(_RegLocations.Match(loc).Groups[1].ToString());
+                                                    int end = Int32.Parse(_RegLocations.Match(loc).Groups[2].ToString());
+                                                    System.Text.Encoding hEncoding = System.Text.Encoding.GetEncoding("UTF-8");
+                                                    byte[] btBytes = hEncoding.GetBytes(msg);
+                                                    name = hEncoding.GetString(btBytes, start, end-start+1);
+                                                }
+                                                message = message.Replace(name, "");
                                             }
                                         }
                                     }

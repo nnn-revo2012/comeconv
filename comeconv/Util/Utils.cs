@@ -140,7 +140,7 @@ namespace comeconv.Util
                         result = 0;
                     else if (RgxCDJson.IsMatch(str))
                         result = 1;
-                    else if (str.StartsWith("{\"streamer\":{\"name\":"))
+                    else if (str.StartsWith("{\"streamer\":{\"name\":")|| str.StartsWith("{\"FileInfo\":{\"Version\":"))
                         result = 5;
                     else
                         result = 10;
