@@ -171,6 +171,11 @@ namespace comeconv
                             {
                                 var data = new Dictionary<string, string>();
                                 var jo = JObject.Parse(line.Replace(": None", ": 'None'"));
+                                if (jo["author"] != null)
+                                {
+                                    if (jo["author"].Count() <= 0)
+                                        continue;
+                                }
                                 data.Add("threadid", jo["message_id"].ToString());
                                 data.Add("vpos", ((long)((double)jo["time_in_seconds"] * 100D)).ToString());
                                 var utime = jo["timestamp"].ToString();
