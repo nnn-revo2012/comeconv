@@ -1,12 +1,12 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2023/01/19
+【作成月日】 2023/04/17
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
 【動作環境】 Microsoft Windows 10 / Windows 8.1 / Windows 7
-             .NET Framework 4.7.2
+             .NET Framework 4.8
 【推奨環境】 Microsoft Windows 10
 【配布形態】 フリーウェア
 【Web Site】 https://github.com/nnn-revo2012/comeconv
@@ -132,8 +132,8 @@ https://blog.nicovideo.jp/niconews/127212.html
 chat_downloader --message_groups "messages superchat" -s 00:00:00 -o chatlog.json [URL]
 
 ■動作環境
-.Net Framework 4.7.2以降が必要です。Windows 10では標準でインストールされているので新たにインストールする必要はありません。
-https://support.microsoft.com/ja-jp/topic/windows-%E7%94%A8%E3%81%AE-microsoft-net-framework-4-7-2-web-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A9%E3%83%BC-dda5cddc-b85e-545d-8d4a-d213349b7775
+.Net Framework 4.8が必要です。Windows 10では標準でインストールされているので新たにインストールする必要はありません。
+https://dotnet.microsoft.com/ja-jp/download/dotnet-framework/thank-you/net48-web-installer
 
 ■動作確認ソフト
 ・Saccubus（さきゅばす）1.67.7.11、1.67.2.11、1.67.8.xx、1.70.0.xx
@@ -238,3 +238,9 @@ GNU General Public License v3.0
   Twitch変換機能修正
   - TwitchDownloader 1.50.8以降のJSONフォーマットに対応
   - Chat Downloader 0.2.3のjson/jsonlファイルを変換中エラーになるのを修正
+2023/04/17 Version 0.0.1.21
+  Twitch変換機能修正
+  - Chat Downloader 0.2.4のTwitchのjson/jsonlファイルを変換中エラーになるのを修正
+  .NET Framework 4.8 にアップデート
+  Json.NET 13.0.3 にアップデート
+

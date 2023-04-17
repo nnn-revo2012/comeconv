@@ -17,9 +17,9 @@
 
 # 開発環境
 
-- Windows 7以降  
+- Windows 10  
 - Visual Studio Community 2019  
-- .NET 4.7.2  
+- .NET 4.8  
 
 # パッケージ
 
