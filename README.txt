@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2023/04/17
+【作成月日】 2023/04/30
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -18,7 +18,7 @@
 ・GUI(Windows Forms)使用
 ・ニコ生新配信録画ツール（仮などでダウンロードした動画やコメントを古いさきゅばす(1.67.7.11)や古いニコ動のツールで
   結合・再生するための各種変換をおこないます
-・TwitchDownloaderおよびchat-downloaderでダウンロードしたTwitchの・YouTubeのコメントをニコ動形式および
+・TwitchDownloader、Chat Downloader、yt-dlpでダウンロードしたTwitchの・YouTubeのコメントをニコ動形式および
 　さきゅばす結合用に変換します
 
 ※さきゅばすはこのツールを使わないで直接ニコ生の動画とコメントを結合できるようになりました。
@@ -122,14 +122,18 @@ https://blog.nicovideo.jp/niconews/127212.html
   Simple Text形式(UTCおよびRelative)、JSON形式
   JSON形式の代替文字列は削除されます。Text形式の代替絵文字はそのまま表示されます
   JSON形式の場合コメント数が多いとメモリーを500～1GBくらい消費します
-2.chat-downloader
+2.Chat Downloader
   *.json/*.jsonl形式
   Twitch 代替絵文字は削除されます
   YouTube 絵文字は絵文字として表示されます。代替絵文字は削除されます
+3.yt-dlp
+  youtubeのみ対応
 
-※chat-downloaderでYouTubeのスーパーチャットを動画開始00:00:00から取得する
+※Chat DownloaderでYouTubeのスーパーチャットを動画開始00:00:00から取得する
   (開始時間を指定しないと開始時間以前のチャットもすべて取得されます)
 chat_downloader --message_groups "messages superchat" -s 00:00:00 -o chatlog.json [URL]
+※yt-dlpでのコメント取得(--write-subs以外のオプションは各自適宜に追加してください)
+yt-dlp --write-subs [youtubeのURL]
 
 ■動作環境
 .Net Framework 4.8が必要です。Windows 10では標準でインストールされているので新たにインストールする必要はありません。
@@ -147,9 +151,11 @@ https://github.com/Saccubus/Saccubus1.x/releases
   - NCV (コメントファイルのみ)
 ・TwitchDownloader
 https://github.com/lay295/TwitchDownloader/releases
-・chat-downloader
+・Chat Downloader
 https://github.com/xenova/chat-downloader
 パソコンにPythonをインストールした後、pipというコマンドでインストール
+・yt-dlp
+https://github.com/yt-dlp/yt-dlp/releases
 
 ■免責事項
 本ソフトウェアを利用して発生した如何なる損害について著作者は一切の責任を負いません。
@@ -243,4 +249,8 @@ GNU General Public License v3.0
   - Chat Downloader 0.2.4のTwitchのjson/jsonlファイルを変換中エラーになるのを修正
   .NET Framework 4.8 にアップデート
   Json.NET 13.0.3 にアップデート
+2023/04/30 Version 0.0.1.22
+  Twitch変換機能追加
+  - yt-dlp(Youtube)の --write-subs に対応
+  Json.NET 13.0.3 のDLLが更新されていなかったので追加
 

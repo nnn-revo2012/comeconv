@@ -616,10 +616,10 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(91, 45);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(325, 48);
+            this.label19.Size = new System.Drawing.Size(331, 48);
             this.label19.TabIndex = 6;
-            this.label19.Text = "TwitchDownloader (txt/json)\r\nchat-downloader   (json/jsonl)\r\n\r\nTwitchDownloader t" +
-    "xt形式のコメントは代替絵文字が表示されます";
+            this.label19.Text = "TwitchDownloader (text/json)\r\nChat Downloader   (json/jsonl)\r\nyt-dlp (Youtube)\r\nT" +
+    "witchDownloader text形式のコメントは代替絵文字が表示されます";
             // 
             // label18
             // 

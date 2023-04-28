@@ -65,17 +65,32 @@ namespace comeconv
 
                 switch (filetype)
                 {
-                    case 0:
+                    case 0: //Chat Downloader
+                        _form.AddLog("Chat Downloader(jsonl)", 1);
                         result = TwitchConvertChatDownloader(sfile, dfile);
                         break;
-                    case 1:
+                    case 1: //Chat Downloader
+                        _form.AddLog("Chat Downloader(json)", 1);
                         result = TwitchConvertChatDownloader(sfile, dfile);
                         break;
-                    case 5:
+                    case 5: //TwitchDownloader (json)
+                        _form.AddLog("TwitchDownloader(json)", 1);
                         result = TwitchConvertTwitchDownloaderJson(sfile, dfile);
                         break;
-                    case 10:
+                    case 6: //TwitchDownloader (text)
+                        _form.AddLog("TwitchDownloader(text)", 1);
                         result = TwitchConvertTwitchDownloaderText(sfile, dfile);
+                        break;
+                    case 10: //yt-dlp (Youtube)
+                        _form.AddLog("yt-dlp(Youtube)", 1);
+                        result = TwitchConvertYtDlpYoutube(sfile, dfile);
+                        break;
+                    case 11: //yt-dlp (Youtube)
+                        _form.AddLog("yt-dlp(Twitch)", 1);
+                        //result = TwitchConvertYtDlpTwitch(sfile, dfile);
+                        break;
+                    default:
+                        _form.AddLog("ファイルの型式が違います", 2);
                         break;
                 }
             }
@@ -260,6 +275,141 @@ namespace comeconv
                                             continue;
                                     }
                                 }
+                                if (data.Count() > 0)
+                                {
+                                    count++;
+                                    var ttt = ConvChatData(data, _props).TrimEnd();
+                                    if (!string.IsNullOrEmpty(ttt))
+                                        sw.WriteLine(ttt);
+                                    //else
+                                    //_form.AddLog("deleted:" + line, 9);
+                                }
+                            }
+                        }
+                    }
+                    _form.AddLog("コメント数: " + count, 1);
+                    ConvComment.EndXmlDoc(sw);
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(TwitchConvertChatDownloader), Ex);
+                return false;
+            }
+            return true;
+        }
+        private static JToken FindJTokenByName(JToken jtoken, string name)
+        {
+            if (jtoken is JObject)
+            {
+                foreach (KeyValuePair<string, JToken> kvp in (JObject)jtoken)
+                {
+                    if (kvp.Key == name)
+                    {
+                        return kvp.Value;
+                    }
+                    else
+                    {
+                        JToken retVal = FindJTokenByName(kvp.Value, name);
+                        if (retVal != null)
+                        {
+                            return retVal;
+                        }
+                    }
+                }
+            }
+            else if (jtoken is JArray)
+            {
+                foreach (JToken jtokenInArray in (JArray)jtoken)
+                {
+                    JToken retVal = FindJTokenByName(jtokenInArray, name);
+                    if (retVal != null)
+                    {
+                        return retVal;
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
+            return null;
+        }
+
+        public bool TwitchConvertYtDlpYoutube(string sfile, string dfile)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+
+            try
+            {
+                using (var sr = new StreamReader(sfile, enc))
+                using (var sw = new StreamWriter(dfile, true, enc))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    string line;
+                    int count = 0;
+                    ConvComment.BeginXmlDoc(sw);
+                    while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
+                    {
+                        line = sr.ReadLine();
+                        if (Utils.RgxYTJson.IsMatch(line.TrimStart()))
+                        {
+                            //チャットの処理
+                            {
+                                var data = new Dictionary<string, string>();
+                                var jo = JObject.Parse(line);
+                                JToken jt_lenderer = null;
+                                jt_lenderer = FindJTokenByName((JToken)jo, "liveChatTextMessageRenderer");
+                                if (jt_lenderer == null)
+                                    jt_lenderer = FindJTokenByName((JToken)jo, "liveChatPaidMessageRenderer");
+                                if (jt_lenderer == null)
+                                    continue;
+                                data.Add("threadid", jt_lenderer["id"].ToString());
+                                data.Add("vpos", ((long)((double)jo["replayChatItemAction"]["videoOffsetTimeMsec"]/10D)).ToString());
+                                var utime = jt_lenderer["timestampUsec"].ToString();
+                                if (utime.Length > 6)
+                                {
+                                    //01 234567
+                                    data.Add("date", utime.Substring(0, utime.Length - 6));
+                                    data.Add("date_usec", utime.Substring(utime.Length - 6));
+                                }
+                                data.Add("user_id", jt_lenderer["authorName"]["simpleText"].ToString());
+                                data.Add("name", jt_lenderer["authorName"]["simpleText"].ToString());
+
+                                string message = "";
+                                JToken jt_runs = FindJTokenByName(jt_lenderer, "runs");
+                                if (jt_runs != null)
+                                {
+                                    foreach (var emt in jt_runs)
+                                    {
+                                        if (emt["text"] != null)
+                                            message += emt["text"].ToString();
+                                        else if (emt["emoji"] != null)
+                                            if (emt["emoji"]["isCustomEmoji"] == null ||
+                                                emt["emoji"]["isCustomEmoji"].ToString() == "false")
+                                                message += emt["emoji"]["emojiId"].ToString();
+                                            else
+                                                if (emt["emoji"]["shortcuts"] != null)
+                                                message += emt["emoji"]["shortcuts"].FirstOrDefault().ToString();
+                                    }
+                                }
+
+                                if (FindJTokenByName(jt_lenderer, "purchaseAmountText") != null)
+                                {
+                                    if (_props.IsTwiGift)
+                                    {
+                                        message = jt_lenderer["purchaseAmountText"]["simpleText"] + " " + message;
+                                        data.Add("mail", "shita");
+                                    }
+                                    else
+                                    {
+                                        message = "";
+                                    }
+                                }
+                                if (message.Length <= 0)
+                                    continue;
+                                data.Add("content", message);
+
                                 if (data.Count() > 0)
                                 {
                                     count++;

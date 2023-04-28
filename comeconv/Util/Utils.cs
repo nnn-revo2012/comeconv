@@ -121,10 +121,17 @@ namespace comeconv.Util
             return result;
         }
 
+        public static readonly Regex RgxYTJson =  new Regex("^\\{(\'|\")(clickTrackingParams|replayChatItemAction).*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
         public static readonly Regex RgxCDJsonl = new Regex("^\\{(\'|\").*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
         private static readonly Regex RgxCDJson = new Regex("^\\[\n +\\{\n", RegexOptions.Compiled | RegexOptions.Singleline);
         private static char[] _read_buf = new char[256];
         //Twitchのコメントファイルの種類を返す
+        // 0 Chat Downloader (*.jsonl)
+        // 1 Chat Downloader (*.json)
+        // 5 TwitchDownloader (json)
+        // 6 TwitchDownloader (text)
+        // 10 yt-dlp (Youtube)
+        // 11 yt-dlp (Twitch)
         public static int IsTwitchFileType(string filename)
         {
             var enc = new System.Text.UTF8Encoding(false);
@@ -136,14 +143,18 @@ namespace comeconv.Util
                 if (len > 0)
                 {
                     var str = new string(_read_buf);
-                    if (RgxCDJsonl.IsMatch(str))
-                        result = 0;
+                    if (RgxYTJson.IsMatch(str))
+                        result = 10;    //yt-dlp (Youtube)
+                    else if (RgxCDJsonl.IsMatch(str))
+                        result = 0; //Chat Downloader
                     else if (RgxCDJson.IsMatch(str))
-                        result = 1;
-                    else if (str.StartsWith("{\"streamer\":{\"name\":")|| str.StartsWith("{\"FileInfo\":{\"Version\":"))
-                        result = 5;
+                        result = 1; //Chat Downloader
+                    else if (str.StartsWith("{\"streamer\":{\"name\":") || str.StartsWith("{\"FileInfo\":{\"Version\":"))
+                        result = 5; //Twitch
+                    else if (str.StartsWith("{\"comments\":["))
+                        result = 11;    //yt-dlp (Twitch)
                     else
-                        result = 10;
+                        result = 6;
                 }
             }
 
