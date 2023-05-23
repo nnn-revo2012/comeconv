@@ -9,61 +9,6 @@ namespace comeconv.Prop
 
     public class Props
     {
-        //定数設定
-        public static readonly string[][] ReplaceWords =
-            {
-            new[] {"?PID?","lv1234567","ProgramId。lv1234567のような文字列。"},
-            new[] {"?UNAME?","ユーザ名","ユーザ名。公式の場合、official"},
-            new[] {"?UID?","ユーザID","ユーザID。nicovideo.jp/user/に続く数字の列。公式の場合、official"},
-            new[] {"?CNAME?","コミュニティ名","コミュニティ名。公式の場合、official"},
-            new[] {"?CID?","コミュニティID","コミュニティID。co1234のような文字列。公式の場合、official"},
-            new[] {"?TITLE?","放送タイトル","放送タイトル。"},
-            new[] {"?YEAR?","2019","年4桁(開演時刻)"},
-            new[] {"?MONTH?","09","月2桁(開演時刻)"},
-            new[] {"?DAY?","01","日2桁(開演時刻)"},
-            new[] {"?DAY8?","20190901","年4桁,月2桁,日2桁"},
-            new[] {"?DAY6?","190901","年2桁,月2桁,日2桁"},
-            new[] {"?HOUR?","18","時2桁"},
-            new[] {"?MINUTE?","31","分2桁"},
-            new[] {"?SECOND?","02","秒2桁"},
-            new[] {"?TIME6?","183102","時2桁,分2桁,秒2桁"},
-            new[] {"?TIME4?","3102","時2桁,分2桁"}
-            //new[] {"", "",""}
-            };
-
-        public static readonly IDictionary<string, string> PropLists =
-            new Dictionary<string, string>()
-        {
-            // "community"
-            {"comId", "community.id"}, // "co\d+"
-            // "program"
-            {"beginTime", "program.beginTime"}, // integer
-            {"description", "program.description"}, // 放送説明
-            {"endTime", "program.endTime"}, // integer
-            {"isFollowerOnly", "program.isFollowerOnly"}, // bool
-            {"isPrivate", "program.isPrivate"}, // bool
-            {"mediaServerType","program.mediaServerType"}, // "DMC"
-            {"nicoliveProgramId", "program.nicoliveProgramId"}, // "lv\d+"
-            {"openTime", "program.openTime"}, // integer
-            {"providerType", "program.providerType"}, // "community"
-            {"status", "program.status"}, //
-            {"userName", "program.supplier.name"}, // ユーザ名
-            {"userPageUrl", "program.supplier.pageUrl"}, // "https://www.nicovideo.jp/user/\d+"
-            {"title", "program.title"}, // title
-            {"vposBaseTime", "program.vposBaseTime"}, // integer
-            // "site"
-            {"serverTime", "site.serverTime"}, // integer
-            // "socialGroup"
-            {"socDescription", "socialGroup.description"}, // コミュ説明
-            {"socId", "socialGroup.id"}, // "co\d+" or "ch\d+"
-            {"socLevel", "socialGroup.level"}, // integer
-            {"socName", "socialGroup.name"}, // community name
-            {"socType", "socialGroup.type"}, // "community"
-            // "user"
-            {"accountType", "user.accountType"}, // "premium"
-            {"isLoggedIn", "user.isLoggedIn"}, // bool
-        };
-
         public bool IsDebug { get; set; }
 
         public string ExecFile { get; set; }
@@ -322,32 +267,6 @@ namespace comeconv.Prop
         public static string GetDirSepString()
         {
             return Path.DirectorySeparatorChar.ToString();
-        }
-
-        public static string GetProviderType(string type)
-        {
-            var result = "？？";
-            switch (type)
-            {
-                case "community":
-                    result = "コミュニティ";
-                    break;
-                case "user":
-                    result = "コミュニティ";
-                    break;
-                case "channel":
-                    result = "チャンネル";
-                    break;
-                case "official":
-                    result = "公式生放送";
-                    break;
-                case "cas":
-                    result = "実験放送";
-                    break;
-                default:
-                    break;
-            }
-            return result;
         }
 
     }

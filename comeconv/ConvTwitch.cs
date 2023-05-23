@@ -385,12 +385,25 @@ namespace comeconv
                                         if (emt["text"] != null)
                                             message += emt["text"].ToString();
                                         else if (emt["emoji"] != null)
+                                        {
                                             if (emt["emoji"]["isCustomEmoji"] == null ||
                                                 emt["emoji"]["isCustomEmoji"].ToString() == "false")
+                                            {
                                                 message += emt["emoji"]["emojiId"].ToString();
+                                            }
                                             else
-                                                if (emt["emoji"]["shortcuts"] != null)
-                                                message += emt["emoji"]["shortcuts"].FirstOrDefault().ToString();
+                                            {
+                                                if (!_props.IsTwiCommType)
+                                                {
+                                                    if (emt["emoji"]["shortcuts"] != null)
+                                                        message += emt["emoji"]["shortcuts"].FirstOrDefault().ToString();
+                                                }
+                                                else
+                                                {
+                                                    message += "　";
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 

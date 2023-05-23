@@ -18,15 +18,10 @@ namespace comeconv
         //0処理待ち 1処理中 2中断
         private static int ProgramStatus { get; set; } //プログラム状態
 
-        //dispose するもの
-        //private NicoDb _ndb = null;                   //NicoDb
-
         private ExecPsInfo epi = null;                //実行／保存ファイル情報
 
         private readonly object lockObject = new object();  //情報表示用
         private string LogFile;
-        //private string LogFile2;
-        //private string LogFile3;
 
         public Form1(string[] args)
         {
@@ -118,10 +113,6 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                //if (_ndb != null)
-                //{
-                //    _ndb.Dispose();
-                //}
                 AddLog("ドラッグ＆ドロップできません。\r\n" + Ex.Message, 2);
             }
 
@@ -303,10 +294,6 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                //if (_ndb != null)
-                //{
-                //    _ndb.Dispose();
-                //}
                 AddLog("ドラッグ＆ドロップできません。\r\n" + Ex.Message, 2);
             }
 
@@ -425,10 +412,6 @@ namespace comeconv
             }
             catch (Exception Ex)
             {
-                //if (_ndb != null)
-                //{
-                //    _ndb.Dispose();
-                //}
                 AddLog("ドラッグ＆ドロップできません。\r\n" + Ex.Message, 2);
             }
 
