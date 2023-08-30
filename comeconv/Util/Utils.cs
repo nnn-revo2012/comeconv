@@ -23,21 +23,38 @@ namespace comeconv.Util
         //サロゲートペア＆結合文字 検出＆文字除去
         //\ud83d\ude0a
         //か\u3099
+        //異体字セレクタ U+FE00～U+FE0F、U+E0100〜U+E01EF は削除
+        //サロゲートペア文字は t で置換
         public static string DelEmoji(string s, string t = "")
         {
-            if (!IsSurrogatePair(s)) return s;
+            if (s.Length <= 0) return s;
 
             StringBuilder sb = new StringBuilder();
-            TextElementEnumerator tee = StringInfo.GetTextElementEnumerator(s);
-
-            tee.Reset();
-            while (tee.MoveNext())
+            for (int i = 0; i < s.Length; i++)
             {
-                string te = tee.GetTextElement();
-                if (Char.IsSurrogate(te[0]))
-                    sb.Append(t); //サロゲートペアまたは結合文字の場合
+                char c = s[i];
+                if (c >= (char)0xFE00 && c <= (char)0xFE0F)
+                {
+                    continue;
+                }
+                else if (Char.IsHighSurrogate(c))
+                {
+                    if (c == (char)0xdb40)
+                    {
+                        char cc = s[i + 1];
+                        if (cc >= (char)0xdd00 && cc <= (char)0xddef)
+                        {
+                            ++i;
+                            continue;
+                        }
+                    }
+                    sb.Append(t);
+                    ++i;
+                }
                 else
-                    sb.Append(te);
+                {
+                    sb.Append(c);
+                }
             }
             return sb.ToString();
         }
@@ -112,7 +129,7 @@ namespace comeconv.Util
         {
             var result = -1;
 
-            var ext = Path.GetExtension(filename);
+            var ext = Path.GetExtension(filename).ToLower();
             if (ext == ".xml" || ext == ".json" || ext == ".jsonl" || ext == ".txt")
                 result = 0;
             else if (ext == ".ts" || ext == ".flv" || ext == ".mp4")

@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2023/04/30
+【作成月日】 2023/08/30
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -253,4 +253,12 @@ GNU General Public License v3.0
   Twitch変換機能追加
   - yt-dlp(Youtube)の --write-subs に対応
   Json.NET 13.0.3 のDLLが更新されていなかったので追加
+2023/08/30 Version 0.0.1.23
+  - ファイル種別判定で拡張子が大文字でも判定するよう修正
+  - サロゲートペア削除メソッドを修正
+    異体字セレクタ削除(さきゅばすの同メソッドと同等に修正)
+  Twitch変換機能修正
+  - yt-dlp(Youtube)のコメント変換時に常にYoutubeカスタム絵文字が:aaaaaaaaa: のように表示されるのを修正
+  リファクタリング
+  - 不要な変数と未使用のメソッド削除
 
