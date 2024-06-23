@@ -85,9 +85,13 @@ namespace comeconv
                         _form.AddLog("yt-dlp(Youtube)", 1);
                         result = TwitchConvertYtDlpYoutube(sfile, dfile);
                         break;
-                    case 11: //yt-dlp (Youtube)
+                    case 11: //yt-dlp (Twitch)
                         _form.AddLog("yt-dlp(Twitch)", 1);
                         //result = TwitchConvertYtDlpTwitch(sfile, dfile);
+                        break;
+                    case 20: //ツイキャス録画君
+                        _form.AddLog("ツイキャス録画君", 1);
+                        result = TwitcastingConvert(sfile, dfile);
                         break;
                     default:
                         _form.AddLog("ファイルの型式が違います", 2);
@@ -633,6 +637,86 @@ namespace comeconv
             return true;
         }
 
+        private static Regex _RegCasUser = new Regex("（(.*)）$", RegexOptions.Compiled);
+        private static Regex _RgxCasDate = new Regex("（(\\d+年\\d+月\\d+日\\d+時\\d+分\\d+秒)）\\.", RegexOptions.Compiled | RegexOptions.Singleline);
+        public bool TwitcastingConvert(string sfile, string dfile)
+        {
+            var enc = new System.Text.UTF8Encoding(false);
+
+            try
+            {
+                using (var sr = new StreamReader(sfile, enc))
+                using (var sw = new StreamWriter(dfile, true, enc))
+                {
+                    string line;
+                    long unixtime = 0;
+                    DateTime dt;
+                    long ut = 0;
+                    int count = 0;
+                    ConvComment.BeginXmlDoc(sw);
+
+                    if (DateTime.TryParse(_RgxCasDate.Match(sfile).Groups[1].ToString(), out dt))
+                    {
+                        unixtime = Utils.GetUnixTime(dt);
+                    }
+
+                    while (!sr.EndOfStream) // ファイルが最後になるまで順に読み込み
+                    {
+                        line = sr.ReadLine();
+                        if (line.TrimStart().StartsWith("["))
+                        {
+                            while (!line.EndsWith("）"))
+                            {
+                                line += "\r\n" + sr.ReadLine();
+                            }
+                            //チャットの処理
+                            {
+                                var data = new Dictionary<string, string>();
+                                if (DateTime.TryParse(Utils.RgxCasText.Match(line).Groups[1].ToString(), out dt))
+                                {
+                                    ut = Utils.GetUnixTime(dt);
+                                }
+                                data.Add("date", ut.ToString());
+                                data.Add("date_usec", "0");
+                                data.Add("vpos", ((long)(ut - unixtime)*100).ToString());
+
+                                var idx = line.LastIndexOf("（");
+                                if (idx >= 0)
+                                {
+                                    data.Add("user_id", _RegCasUser.Match(line.Substring(idx)).Groups[1].ToString());
+                                    if (data["user_id"].StartsWith("c:tw"))
+                                        data.Add("mail", "184");
+                                    line = line.Substring(0, idx);
+                                }
+                                idx = line.LastIndexOf("] ");
+                                if (idx >= 0)
+                                {
+                                    data.Add("content", line.Substring(idx+2));
+                                }
+
+                                if (data.Count() > 0)
+                                {
+                                    count++;
+                                    var ttt = ConvChatData(data, _props).TrimEnd();
+                                    if (!string.IsNullOrEmpty(ttt))
+                                        sw.WriteLine(ttt);
+                                    //else
+                                    //_form.AddLog("deleted:" + line, 9);
+                                }
+                            }
+                        }
+                    }
+                    _form.AddLog("コメント数: " + count, 1);
+                    ConvComment.EndXmlDoc(sw);
+                }
+            }
+            catch (Exception Ex)
+            {
+                DebugWrite.Writeln(nameof(TwitcastingConvert), Ex);
+                return false;
+            }
+            return true;
+        }
 
         protected virtual void Dispose(bool disposing)
         {

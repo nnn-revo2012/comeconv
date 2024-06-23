@@ -141,6 +141,7 @@ namespace comeconv.Util
         public static readonly Regex RgxYTJson =  new Regex("^\\{(\'|\")(clickTrackingParams|replayChatItemAction).*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
         public static readonly Regex RgxCDJsonl = new Regex("^\\{(\'|\").*(\'|\")\\: ", RegexOptions.Compiled | RegexOptions.Singleline);
         private static readonly Regex RgxCDJson = new Regex("^\\[\n +\\{\n", RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RgxCasText = new Regex("^\\[(\\d+\\/\\d+\\/\\d+ \\d+\\:\\d+\\:\\d+)\\] ", RegexOptions.Compiled | RegexOptions.Singleline);
         private static char[] _read_buf = new char[256];
         //Twitchのコメントファイルの種類を返す
         // 0 Chat Downloader (*.jsonl)
@@ -149,6 +150,7 @@ namespace comeconv.Util
         // 6 TwitchDownloader (text)
         // 10 yt-dlp (Youtube)
         // 11 yt-dlp (Twitch)
+        // 20 ツイキャス録画君
         public static int IsTwitchFileType(string filename)
         {
             var enc = new System.Text.UTF8Encoding(false);
@@ -170,6 +172,8 @@ namespace comeconv.Util
                         result = 5; //Twitch
                     else if (str.StartsWith("{\"comments\":["))
                         result = 11;    //yt-dlp (Twitch)
+                    else if (RgxCasText.IsMatch(str))
+                        result = 20;    //ツイキャス録画君
                     else
                         result = 6;
                 }

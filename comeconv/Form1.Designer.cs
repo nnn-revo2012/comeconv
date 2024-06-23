@@ -614,17 +614,17 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(91, 45);
+            this.label19.Location = new System.Drawing.Point(76, 52);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(331, 48);
+            this.label19.Size = new System.Drawing.Size(331, 72);
             this.label19.TabIndex = 6;
-            this.label19.Text = "TwitchDownloader (text/json)\r\nChat Downloader   (json/jsonl)\r\nyt-dlp (Youtube)\r\nT" +
-    "witchDownloader text形式のコメントは代替絵文字が表示されます";
+            this.label19.Text = "TwitchDownloader (text/json)\r\nChat Downloader (json/jsonl)\r\nyt-dlp (Youtube)\r\nツイキ" +
+    "ャス (ツイキャス録画君のテキスト形式)\r\n\r\nTwitchDownloader text形式のコメントは代替絵文字が表示されます";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(20, 45);
+            this.label18.Location = new System.Drawing.Point(5, 52);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 12);
             this.label18.TabIndex = 5;
@@ -647,7 +647,7 @@
             this.groupBox4.Controls.Add(this.textBox6);
             this.groupBox4.Controls.Add(this.checkBox11);
             this.groupBox4.Controls.Add(this.checkBox9);
-            this.groupBox4.Location = new System.Drawing.Point(6, 107);
+            this.groupBox4.Location = new System.Drawing.Point(4, 148);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(421, 237);
             this.groupBox4.TabIndex = 4;
@@ -816,11 +816,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label14.Location = new System.Drawing.Point(6, 3);
+            this.label14.Location = new System.Drawing.Point(4, 12);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(419, 30);
+            this.label14.Size = new System.Drawing.Size(315, 30);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Twitch・YouTubeのコメントファイルをニコニココメント形式(xml)に\r\n変換します";
+            this.label14.Text = "Twitch・YouTube・ツイキャスのコメントファイルを\r\nニコニココメント形式(xml)に変換します";
             // 
             // repair
             // 
