@@ -1,7 +1,7 @@
 ﻿===============================================================================
 【タイトル】 comeconv
 【ファイル】 comeconv.exe
-【作成月日】 2023/08/30
+【作成月日】 2024/07/15
 【著 作 者】 nnn-revo2012
 【開発環境】 Microsoft Windows 10
              Microsoft Visual Studio Community 2019
@@ -14,11 +14,11 @@
 ===============================================================================
 
 ■説明
-・ニコニコ生放送の動画＆コメントを新旧のニコ動のツールで再生、またYoutube、Twitchなどのコメントをニコ動のツールで使えるように変換します
+・ニコニコ生放送の動画＆コメントを新旧のニコ動のツールで再生、またYoutube、Twitch、ツイキャスのコメントをニコ動のツールで使えるように変換します
 ・GUI(Windows Forms)使用
 ・ニコ生新配信録画ツール（仮などでダウンロードした動画やコメントを古いさきゅばす(1.67.7.11)や古いニコ動のツールで
   結合・再生するための各種変換をおこないます
-・TwitchDownloader、Chat Downloader、yt-dlpでダウンロードしたTwitchの・YouTubeのコメントをニコ動形式および
+・TwitchDownloader、Chat Downloader、yt-dlp、ツイキャス録画君でダウンロードしたTwitch・YouTube・ツイキャスのコメントをニコ動形式および
 　さきゅばす結合用に変換します
 
 ※さきゅばすはこのツールを使わないで直接ニコ生の動画とコメントを結合できるようになりました。
@@ -128,6 +128,7 @@ https://blog.nicovideo.jp/niconews/127212.html
   YouTube 絵文字は絵文字として表示されます。代替絵文字は削除されます
 3.yt-dlp
   youtubeのみ対応
+4.ツイキャス録画君
 
 ※Chat DownloaderでYouTubeのスーパーチャットを動画開始00:00:00から取得する
   (開始時間を指定しないと開始時間以前のチャットもすべて取得されます)
@@ -156,6 +157,8 @@ https://github.com/xenova/chat-downloader
 パソコンにPythonをインストールした後、pipというコマンドでインストール
 ・yt-dlp
 https://github.com/yt-dlp/yt-dlp/releases
+・ツイキャス録画君
+https://www.skypower.xyz/TwitCasting_rokugakun.html
 
 ■免責事項
 本ソフトウェアを利用して発生した如何なる損害について著作者は一切の責任を負いません。
@@ -261,4 +264,5 @@ GNU General Public License v3.0
   - yt-dlp(Youtube)のコメント変換時に常にYoutubeカスタム絵文字が:aaaaaaaaa: のように表示されるのを修正
   リファクタリング
   - 不要な変数と未使用のメソッド削除
-
+2024/07/15 Version 0.0.1.24
+  - ツイキャス録画君のコメントをXML形式に変換する機能作成
