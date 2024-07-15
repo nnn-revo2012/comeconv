@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -643,6 +644,10 @@ namespace comeconv
         {
             var enc = new System.Text.UTF8Encoding(false);
 
+            List<string> hashlist = new List<string>();
+            SHA256 sha256 = SHA256.Create();
+            StringBuilder sb2 = new StringBuilder();
+
             try
             {
                 using (var sr = new StreamReader(sfile, enc))
@@ -653,6 +658,8 @@ namespace comeconv
                     DateTime dt;
                     long ut = 0;
                     int count = 0;
+                    int count2 = 0;
+
                     ConvComment.BeginXmlDoc(sw);
 
                     if (DateTime.TryParse(_RgxCasDate.Match(sfile).Groups[1].ToString(), out dt))
@@ -672,6 +679,23 @@ namespace comeconv
                             //チャットの処理
                             {
                                 var data = new Dictionary<string, string>();
+                                byte[] ba = Encoding.UTF8.GetBytes(line);
+                                byte[] ba2 = sha256.ComputeHash(ba);
+                                // バイト配列を16進数文字列に変換
+                                sb2.Clear();
+                                foreach (byte b in ba2)
+                                {
+                                    sb2.Append(b.ToString("x2"));
+                                }
+                                if (hashlist.Contains(sb2.ToString()))
+                                {
+                                    count2++;
+                                    continue;
+                                }
+                                else
+                                {
+                                    hashlist.Add(sb2.ToString());
+                                }
                                 if (DateTime.TryParse(Utils.RgxCasText.Match(line).Groups[1].ToString(), out dt))
                                 {
                                     ut = Utils.GetUnixTime(dt);
@@ -706,15 +730,22 @@ namespace comeconv
                             }
                         }
                     }
+                    _form.AddLog("重複コメント数: " + count2, 1);
                     _form.AddLog("コメント数: " + count, 1);
                     ConvComment.EndXmlDoc(sw);
                 }
             }
             catch (Exception Ex)
             {
+                hashlist.Clear();
+                sha256.Clear();
+                sb2.Clear();
                 DebugWrite.Writeln(nameof(TwitcastingConvert), Ex);
                 return false;
             }
+            hashlist.Clear();
+            sha256.Clear();
+            sb2.Clear();
             return true;
         }
 
