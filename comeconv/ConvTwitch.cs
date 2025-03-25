@@ -378,9 +378,11 @@ namespace comeconv
                                     data.Add("date", utime.Substring(0, utime.Length - 6));
                                     data.Add("date_usec", utime.Substring(utime.Length - 6));
                                 }
-                                data.Add("user_id", jt_lenderer["authorName"]["simpleText"].ToString());
-                                data.Add("name", jt_lenderer["authorName"]["simpleText"].ToString());
-
+                                if (jt_lenderer["authorName"] != null)
+                                {
+                                    data.Add("user_id", jt_lenderer["authorName"]["simpleText"].ToString());
+                                    data.Add("name", jt_lenderer["authorName"]["simpleText"].ToString());
+                                }
                                 string message = "";
                                 JToken jt_runs = FindJTokenByName(jt_lenderer, "runs");
                                 if (jt_runs != null)
